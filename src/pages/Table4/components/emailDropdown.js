@@ -40,7 +40,7 @@ function EmailDropdown(props) {
             <h1>Select Users To Send Email</h1>
             
             <label for="">Select by:</label>
-                <select name="" id=""  onChange={handleChange}>
+                <select name="" id="" onChange={handleChange}>
                     <option value="0">Select an option</option>
                     <option value="1">Select All</option>
                     <option value="2">Department</option>
