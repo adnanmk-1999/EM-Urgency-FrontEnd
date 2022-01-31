@@ -51,6 +51,9 @@
   text-decoration: none;
   font-size: 17px;
 }
+.loginForm {
+  padding: 5% 25% 0 25% ;
+}
 
 @keyframes App-logo-spin {
   from {
