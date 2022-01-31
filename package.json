@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.25.0",
     "jsx-runtime": "^1.2.0",
     "material-table": "^1.69.3",
     "nanoid": "^3.1.30",
