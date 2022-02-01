@@ -23,7 +23,7 @@ function EmailDropdown(props) {
       ])
 
       const columns = [
-        { title: "Name", field: "name", sorting: true, filterPlaceholder: "filter", cellStyle: { background: "#009688" }, headerStyle: { color: "#fff" }}, 
+        { title: "Name", field: "name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }}, 
         { title: "Email", field: "email", filterPlaceholder: "filter"}
       ]
     
@@ -107,7 +107,7 @@ function EmailDropdown(props) {
                             showTextRowsSelected: true, 
                             columnsButton: false,
                             rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-                            headerStyle: { background: "#f44336",color:"#fff"}
+                            headerStyle: { background: "#FC816D",color:"#fff"}
                             }}
                         onSelectionChange={(selectedRows) => console.log(selectedRows)}
                     />
@@ -119,7 +119,7 @@ function EmailDropdown(props) {
             <button type = "button">Send</button>
             
             <br/>
-            <button type = "button" onClick={() => Navigate('/table4')}>Go Back</button>
+            <button type = "button" onClick={() => Navigate('/admindashboard')}>Go Back</button>
         </>
         
     )

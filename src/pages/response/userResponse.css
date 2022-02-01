@@ -1,0 +1,20 @@
+.respondButton{
+    border: none;
+    background-color: none;
+}
+
+.respondBoxButton{
+    background-color: #FC816D;
+    border-radius: 10px;
+    height: 40px;
+    width: 100%;
+    color: white;
+    border: none;
+    font-size: 12px;
+}
+
+.App{
+    margin: 20px;
+    font-size: 12px;
+    
+}

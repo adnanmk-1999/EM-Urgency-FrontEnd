@@ -4,7 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 // import EmailDropdown from './components/emailDropdown';
 
-function Table4() {
+function AlertTable() {
   const [tableData, setTableData] = useState([
     { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
     { id : "2", date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
@@ -23,7 +23,7 @@ function Table4() {
   ])
 
   const columns = [
-    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", cellStyle: { background: "#009688" }, headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
+    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
     { title: "Category", field: "category",filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
@@ -40,7 +40,6 @@ function Table4() {
 
   return (
     <div className="App">
-      <h1 align = "center">React-App</h1>
 
       {/* <EmailDropdown data = {state}/> */}
 
@@ -81,7 +80,7 @@ function Table4() {
           pageSize: 5,
           paginationType: "stepped", 
           showFirstLastPageButtons: false, 
-          paginationPosition: "both", 
+          paginationPosition: "bottom", 
           exportButton: true,
           exportAllData: true, 
           exportFileName: "TableData", 
@@ -97,7 +96,7 @@ function Table4() {
           grouping: true, 
           columnsButton: true,
           rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          headerStyle: { background: "#f44336",color:"#fff"}
+          headerStyle: { background: "#FC816D",color:"#fff"}
         }}
 
         actions={[
@@ -122,9 +121,6 @@ function Table4() {
         icons={{ Add: () => <AddIcon /> }} 
         />
 
-
-        <h2>Content here</h2>
-
       <pre>
         {JSON.stringify(tableData, null, 5)}  
       </pre>
@@ -138,44 +134,4 @@ function Table4() {
   );
 }
 
-export default Table4;
-
-// function ConditionalActions() {
-//   return (
-//     <MaterialTable
-//       title="Conditional Actions Preview"
-//       columns={[
-//         { title: 'Name', field: 'name' },
-//         { title: 'Surname', field: 'surname' },
-//         { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-//         {
-//           title: 'Birth Place',
-//           field: 'birthCity',
-//           lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-//         },
-//       ]}
-//       data={[
-//         { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//         { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-//       ]}
-//       actions={[
-//         {
-//           icon: 'save',
-//           tooltip: 'Save User',
-//           onClick: (event, rowData) => alert("You saved " + rowData.name)
-//         },
-//         rowData => ({
-//           icon: 'delete',
-//           tooltip: 'Delete User',
-//           onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
-//           disabled: rowData.birthYear < 2000
-//         })
-//       ]}
-//     />
-//   )
-// }
-
-
-
-
-// style={{ background: rowData.status === "sent" ? "#008000aa" : "#f90000aa",borderRadius:"4px",paddingLeft:5 }}
+export default AlertTable;

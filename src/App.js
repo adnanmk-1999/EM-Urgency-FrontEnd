@@ -4,10 +4,10 @@ import React from 'react';
 import './App.css';
 
 //importing components
-import Table4 from "./pages/Table4/Table4";
-import EmailDropdown from "./pages/Table4/components/emailDropdown";
-import PieChart1 from "./pages/PieChart1/PieChart1";
-import BarChart1 from "./pages/barChart1/BarChart1";
+import AlertTable from "./pages/alertManagement/alertTable";
+import EmailDropdown from "./pages/alertManagement/components/emailDropdown";
+import PieChart from "./pages/pieChart/pieChart";
+import BarChart from "./pages/barChart/barChart";
 import Login from "./pages/login/loginPage";
 import UserResponse from "./pages/response/userResponse";
 
@@ -25,22 +25,21 @@ function MyRouter(){
     <Router>
 
       <div className = "topnav">
-      <div><Link className = "link" to = "/table4">Material Table 1</Link></div>
-      <div><Link className = "link" to = "/piechart1">Chart 1</Link></div>
-      <div><Link className = "link" to = "/barchart1">Chart 2</Link></div>
+      <div><Link className = "link" to = "/admindashboard">Alert Management</Link></div>
+      <div><Link className = "link" to = "/piechart">Pie Chart</Link></div>
+      <div><Link className = "link" to = "/barchart">Bar Chart</Link></div>
+      <div><Link className = "link" to = "/userdashboard">Response</Link></div>
       <div><Link className = "link" to = "/login">Sign In</Link></div>
-      <div><Link className = "link" to = "/response">Response</Link></div>
-
       </div>
 
       <Routes>
 
-        <Route path = "/table4" element = {<Table4 />}/>
+        <Route path = "/admindashboard" element = {<AlertTable />}/>
         <Route path = "/emaildropdown" element = {<EmailDropdown />}/>
-        <Route path = "/piechart1" element = {<PieChart1 />}/>
-        <Route path = "/barchart1" element = {<BarChart1 />}/>
+        <Route path = "/piechart" element = {<PieChart />}/>
+        <Route path = "/barchart" element = {<BarChart />}/>
         <Route path = "/login" element = {<Login />}/>
-        <Route path = "/response" element = {<UserResponse />}/>
+        <Route path = "userdashboard" element = {<UserResponse />}/>
 
 
       </Routes>

@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import MaterialTable from 'material-table'
 import {AddIcon} from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
-import BasicButtons from "./button";
-// import EmailDropdown from './components/emailDropdown';
+import RespondBox from './components/respondBox';
+
+import './userResponse.css';
+
+
 function UserResponse() {
+
   const [responseData, setResponseData] = useState([
     { id : "1", No:"1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan"},
     { id : "2", No:"2",  date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan"},
@@ -24,21 +28,18 @@ function UserResponse() {
 
   const columns = [
     { title: "No", field: "No", filterPlaceholder: "filter"},
-    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", cellStyle: { background: "#009688" }, headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
+    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
     { title: "Category", field: "category",filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter"},
     { title: "Messsage", field: "message", filterPlaceholder: "filter"}
-
-    
   ]
 
-  // const [state, setState] = useState([])
+  //State to store the message to be displayed in the message box, which is in another component
+  const [message, setMessage] = useState(''); 
 
-  const Navigate = useNavigate();
 
   return (
     <div className="App">
-      <h1 align = "center">React-App</h1>
        <MaterialTable
         title="Response"
         columns={columns} 
@@ -56,7 +57,7 @@ function UserResponse() {
           pageSize: 5,
           paginationType: "stepped", 
           showFirstLastPageButtons: false, 
-          paginationPosition: "both", 
+          paginationPosition: "bottom", 
           exportButton: true,
           exportAllData: true, 
           exportFileName: "TableData", 
@@ -72,49 +73,51 @@ function UserResponse() {
           grouping: true, 
           columnsButton: true,
           rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          headerStyle: { background: "#f44336",color:"#fff"}
+          headerStyle: { background: "#FC816D",color:"#fff"}
         }}
 
         actions={[
-
                 {
-                    icon: 'email',
+                    icon : "reply",
                     tooltip: 'Sent response',
                     onClick: (event, rowData) => {
                     console.log("row data is", rowData)
-                      Navigate('/emaildropdown')              
-                    } 
-                }                       
-              
-        
+                    setMessage(rowData.message)
+                  }
+                }  
+                                   
         ]}
-          
         
-           
-        
-       
+        components={{
+          Action: props => (
+            <>
+            <button
+              onClick={(event) => props.action.onClick(event, props.data)}
+              className='respondButton'
+              size="small"
+            >
+            <RespondBox content={message}/>
+            </button>
+            
+            </>
+          ),
+        }}
+
         onSelectionChange={(selectedRows) => console.log(selectedRows)}
         
         icons={{ Add: () => <AddIcon /> }} 
         />
 
-
-        <h2>Content here</h2>
-         <BasicButtons/>
-
-
       <pre>
-        {JSON.stringify(responseData, null, 5)}  
+        {JSON.stringify(message, null, 5)}  
       </pre>
 
-
     </div>
-
-
-
 
   );
 }
 
-export default UserResponse;
 
+
+
+export default UserResponse;
