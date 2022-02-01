@@ -34,18 +34,23 @@
 }
 
 .topnav {
-  background-color: #333;
+  background-color: white;
   overflow: hidden;
+  border: solid rgb(117, 109, 109);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 2px;
 }
 
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #FC816D;
+  color: white;
 }
 
 .link {
   float: left;
-  color: #f2f2f2;
+  color: rgb(20, 20, 20);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
