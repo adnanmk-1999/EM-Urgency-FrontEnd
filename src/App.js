@@ -9,6 +9,7 @@ import EmailDropdown from "./pages/Table4/components/emailDropdown";
 import PieChart1 from "./pages/PieChart1/PieChart1";
 import BarChart1 from "./pages/barChart1/BarChart1";
 import Login from "./pages/login/loginPage";
+import UserResponse from "./pages/response/userResponse";
 
 function App(){
   return(
@@ -28,6 +29,7 @@ function MyRouter(){
       <div><Link className = "link" to = "/piechart1">Chart 1</Link></div>
       <div><Link className = "link" to = "/barchart1">Chart 2</Link></div>
       <div><Link className = "link" to = "/login">Sign In</Link></div>
+      <div><Link className = "link" to = "/response">Response</Link></div>
 
       </div>
 
@@ -38,7 +40,7 @@ function MyRouter(){
         <Route path = "/piechart1" element = {<PieChart1 />}/>
         <Route path = "/barchart1" element = {<BarChart1 />}/>
         <Route path = "/login" element = {<Login />}/>
-
+        <Route path = "/response" element = {<UserResponse />}/>
 
 
       </Routes>

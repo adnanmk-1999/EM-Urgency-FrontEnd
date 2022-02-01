@@ -14,15 +14,21 @@ function Login (){
     function handleSubmit(event){
       event.preventDefault();
 
-      axios.post(`http://localhost:4000/users/login`, data)
-          .then(response => { 
+      axios.post(`http://localhost:4010/users/login`, data)
+          .then(response => {
+              let role = response.data.roles;
+              console.log(role);
               localStorage.setItem('accessToken', response.data.accessToken)
               localStorage.setItem('refreshToken', response.data.refreshToken)
               localStorage.setItem('roles', response.data.roles)
               localStorage.setItem('username', response.data.username)
               localStorage.setItem('email', response.data.email)
-   
-              })
+              if(role.includes("Role:ADMIN")){
+                console.log("admin")
+              }else{
+                console.log("user")
+              }
+          })
           .catch(error =>{
               localStorage.clear();
               if(error.response){
@@ -50,14 +56,6 @@ return(
         Login
       </Button>
     </Form>
-
-
-
-
-
-<pre>
-        {JSON.stringify(data, 10, 5)}  
-</pre>
 
 </>
 )
