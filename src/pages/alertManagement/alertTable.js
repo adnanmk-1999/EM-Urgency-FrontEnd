@@ -29,7 +29,7 @@ function AlertTable() {
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
     {
       title: "Sent Status", field: "status",
-      render: (rowData) => <div style={{backgroundColor : rowData.status === 'pending' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius:"4px",textAlign:"center"}}>{rowData.status}</div>,
+      render: (rowData) => <div style={{backgroundColor : rowData.status === 'pending' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius:"4px",textAlign:"center", color:'white'}}>{rowData.status}</div>,
        searchable: false, export: false, editable : false
     }
   ]
