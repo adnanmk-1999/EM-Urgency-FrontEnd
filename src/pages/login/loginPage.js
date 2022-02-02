@@ -99,7 +99,7 @@ return(
                         </button><br/><br/>
                         <p style={{color:"#E31836", textAlign: 'center'}}>OR</p>
                         <button type="submit" className="signIn">
-                          <img className="microsoftLogo" src = {MicrosoftLogo}></img> Sign In
+                          <img className="microsoftLogo" src = {MicrosoftLogo} alt="logo"></img> Sign In
                         </button><br/>
                     
 

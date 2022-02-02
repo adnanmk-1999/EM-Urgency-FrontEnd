@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 function BarChart1(){
 
-    const [data, setData] = useState([
+    const [data] = useState([
         { name: "Christmas", NotResponded: 30, Responded: 35 },
         { name: "Subject 2", NotResponded: 46, Responded: 23 },
         { name: "Subject 3", NotResponded: 43, Responded: 21 },

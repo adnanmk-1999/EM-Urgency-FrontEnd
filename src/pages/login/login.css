@@ -40,7 +40,7 @@ body{
     border-color: #5369f8; */
     background-image: linear-gradient(to right, #E31836 , #E42F24);
     color: #fff;
-    width: fill;
+    width: stretch;
     height: 45px;
     border-radius: 5px;
     border: 2px solid #bebebe;
@@ -53,7 +53,7 @@ body{
   
   .signIn {
     color: rgb(54, 53, 53);
-    width: fill;
+    width: stretch;
     height: 45px;
     border-radius: 5px;
     background-color:white;
@@ -66,7 +66,7 @@ body{
   }
 
   .userTextFeild {
-    width: fill;
+    width: stretch;
     height: 45px;
     border: 2px solid #bebebe;
     box-sizing: border-box;
@@ -79,7 +79,7 @@ body{
   }
   .password {
 /* position: absolute; */
-    width: fill;
+    width: stretch;
     height: 45px; 
     padding-left: 10px;
     border: 2px solid #bebebe;

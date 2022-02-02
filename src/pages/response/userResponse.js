@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import MaterialTable from 'material-table'
 import {AddIcon} from '@material-ui/icons/Add';
-import { useNavigate } from 'react-router-dom';
 import RespondBox from './components/respondBox';
 
 import './userResponse.css';
@@ -9,7 +8,7 @@ import './userResponse.css';
 
 function UserResponse() {
 
-  const [responseData, setResponseData] = useState([
+  const [responseData] = useState([
     { id : "1", No:"1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "1 All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
     { id : "2", No:"2",  date: "2022-01-10", category: "alert", subject : "Subject 2", message: "2 All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
     { id : "3", No:"3",  date: "2020-04-07", category: "event", subject : "Subject 3", message: " 3 All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
@@ -36,7 +35,7 @@ function UserResponse() {
   ]
 
   //State to store the message to be displayed in the message box, which is in another component
-  const [message, setMessage] = useState('Message'); 
+  const [message] = useState('Message'); 
 
  
 
