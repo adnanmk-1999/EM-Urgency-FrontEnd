@@ -10,20 +10,20 @@ import './userResponse.css';
 function UserResponse() {
 
   const [responseData, setResponseData] = useState([
-    { id : "1", No:"1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "2", No:"2",  date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "3", No:"3",  date: "2020-04-07", category: "event", subject : "Subject 3", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "4", No:"4", date: "2020-04-07", category: "announcement", subject : "Subject 4", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "5", No:"5", date: "2020-04-07", category: "event", subject : "Subject 5", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "6", No:"6", date: "2020-04-07", category: "alert", subject : "Subject 6", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "7", No:"7", date: "2020-04-07", category: "announcement", subject : "Subject 7", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "8", No:"8", date: "2020-04-07", category: "announcement", subject : "Subject 8", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "9", No:"9", date: "2020-04-07", category: "event", subject : "Subject 9", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "10", No:"10", date: "2020-04-07", category: "event", subject : "Subject 10", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "11", No:"11", date: "2020-04-07", category: "alert", subject : "Subject 11", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "12", No:"12", date: "2020-04-07", category: "alert", subject : "Subject 12", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "13", No:"13", date: "2020-04-07", category: "announcement", subject : "Subject 13", message: "All employees are requsted to update their pending leaves before 14 Jan"},
-    { id : "14", No:"14", date: "2020-04-07", category: "event", subject : "Subject 14", message: "All employees are requsted to update their pending leaves before 14 Jan"}
+    { id : "1", No:"1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "1 All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
+    { id : "2", No:"2",  date: "2022-01-10", category: "alert", subject : "Subject 2", message: "2 All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
+    { id : "3", No:"3",  date: "2020-04-07", category: "event", subject : "Subject 3", message: " 3 All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
+    { id : "4", No:"4", date: "2020-04-07", category: "announcement", subject : "Subject 4", message: " 4 All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
+    { id : "5", No:"5", date: "2020-04-07", category: "event", subject : "Subject 5", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
+    { id : "6", No:"6", date: "2020-04-07", category: "alert", subject : "Subject 6", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
+    { id : "7", No:"7", date: "2020-04-07", category: "announcement", subject : "Subject 7", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
+    { id : "8", No:"8", date: "2020-04-07", category: "announcement", subject : "Subject 8", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "no"},
+    { id : "9", No:"9", date: "2020-04-07", category: "event", subject : "Subject 9", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
+    { id : "10", No:"10", date: "2020-04-07", category: "event", subject : "Subject 10", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "no"},
+    { id : "11", No:"11", date: "2020-04-07", category: "alert", subject : "Subject 11", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
+    { id : "12", No:"12", date: "2020-04-07", category: "alert", subject : "Subject 12", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "no"},
+    { id : "13", No:"13", date: "2020-04-07", category: "announcement", subject : "Subject 13", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
+    { id : "14", No:"14", date: "2020-04-07", category: "event", subject : "Subject 14", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"}
   ])
 
   const columns = [
@@ -31,16 +31,14 @@ function UserResponse() {
     { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
     { title: "Category", field: "category",filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter"},
-    { title: "Messsage", field: "message", filterPlaceholder: "filter"}
+    { title: "Messsage", field: "message", filterPlaceholder: "filter"},
+    { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { pending : "Pending", yes : "Yes", no : "No" }},
   ]
 
   //State to store the message to be displayed in the message box, which is in another component
-  const [message, setMessage] = useState('adfsfaffd'); 
+  const [message, setMessage] = useState('Message'); 
 
-  function delayBox(){
-    
-  }
-  
+ 
 
   return (
     <div className="App">
@@ -84,27 +82,25 @@ function UserResponse() {
                 {
                     icon : "reply",
                     tooltip: 'Sent response',
-                    onClick: (event, rowData) => {
+                    onClick: (data, rowData) => {
                     console.log("row data is", rowData)
-                    setMessage(rowData.message)
+                    
                   }
                 }  
-                                   
         ]}
         
         components={{
           Action: props => (
             <>
             <button
-            onClick={(event) => {
+            onClick={(event) => {   
                 props.action.onClick(event, props.data)
-
               }}
               className='respondButton'
               size="small"
               style={{textTransform: 'none'}}
             >
-              <RespondBox content={message}/>
+            <RespondBox content={message} />
             </button>
             
             </>

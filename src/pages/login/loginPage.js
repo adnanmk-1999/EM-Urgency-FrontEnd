@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Form , Button } from "react-bootstrap";
+import { Form , Button, Container, Row, Col } from "react-bootstrap";
 import './login.css'
 import { useNavigate } from "react-router-dom";
+
+import MicrosoftLogo from '../../images/microsoftLogo.png'
+
 
 function Login (){
     const [data, setData] = useState({});
@@ -47,8 +50,8 @@ function Login (){
 //     <br />
 //     <h4>Welcome Back to EM-Urgency</h4>
 //     <h1>Login</h1>
+//     {/* <div>
 //     <Form className="loginForm" onSubmit = {handleSubmit}>
-
 //       <Form.Group className="mb-3" onChange={handleChange}  >
 //         <Form.Control type="text" placeholder="Username" name="username" />
 //       </Form.Group>
@@ -64,9 +67,35 @@ function Login (){
 //       <Button type="submit" style={{ width: "100%",backgroundColor:"white",color:"black"}}>
 //         Sign In
 //       </Button>
-
 //     </Form>
+//     </div> */}
 
+//     <Container>
+//       <Row>
+//         <Col sm={6}>
+//         <Form className="loginForm" onSubmit = {handleSubmit}>
+//       <Form.Group className="mb-3" onChange={handleChange}  >
+//         <Form.Control type="text" placeholder="Username" name="username" />
+//       </Form.Group>
+
+//       <Form.Group className="mb-3" controlId="formBasicPassword" onChange={handleChange} >
+//         <Form.Control type="password" placeholder="Password" name="password" />
+//       </Form.Group>
+
+//       <Button variant="primary" type="submit" style={{ width: "100%" }}>
+//         Login
+//       </Button><br/><br/>
+//       <p><center>OR</center></p>
+//       <Button type="submit" style={{ width: "100%",backgroundColor:"white",color:"black"}}>
+//         Sign In
+//       </Button>
+//     </Form>
+//         </Col>
+//         <Col sm={6}>
+//           <img src = {LoginImage} alt = "loginImage"></img>
+//         </Col>
+//       </Row>
+//     </Container>
 // </>
 // )
 // }
@@ -78,10 +107,10 @@ return(
               <div className="card-body p-0">
                 <div className="row no-gutters">
                   <div className="col-lg-6">
-                    <div className="p-3">
-                    <h5 className="h5 mb-2" style={{fontSize:"20px",fontFamily:"Roboto"}}>Welcome back to EM-Urgency</h5>
+                    <div className="p-4">
+                    <h3 className="h5 mb-2" style={{fontSize:"30px",fontFamily:"Roboto"}}>Welcome back to EM-Urgency</h3><br/>
                       <div className="mb-4">
-                        <h3 className="h4 font-weight-bold text-theme mb-4" style={{marginTop:"5px",fontSize:"39px",fontFamily:"Roboto"}}>Login</h3>
+                        <h1 className="h4 font-weight-bold text-theme mb-4" style={{marginTop:"5px",fontSize:"60px",fontFamily:"Roboto", color : "#2C2424"}}>Login</h1><br/>
                       </div>
                       <form onSubmit = {handleSubmit}>
                         <div className="form-group">
@@ -89,39 +118,43 @@ return(
                           <input
                             type="text"
                             name="username"
-                            placeholder="  Username" onChange={handleChange}
+                            placeholder="Username" onChange={handleChange}
                             // className="form-control"
                             // style={{border:"2px solid #032D23",boxSizing:"border-box",
                             // borderRadius:"6px"}}
                             className="userTextFeild"
-                            
-                            
-                            
+                              
                           />
-                        </div><br/>
-                        <div className="form-group mb-4">
+                        </div>
+                        <br/>
+                       
+                        <div className="form-group">
                           <input
                             type="password"
                             name="password"
-                            placeholder="  Password" onChange={handleChange} 
+                            placeholder="Password" onChange={handleChange} 
                             // className="form-control"
                             className="password"
                             id="exampleInputPassword1"
                           />
-                        </div>
-                        <div>
-                        <button type="submit" className="btn-theme">
+                          </div>
+                          <br/>
+
+                          <div className="form-group">
+
+                          </div>
+                           <button type="submit" className="btntheme">
                           Login
                         </button><br/><br/>
-                        <p style={{color:"#FFC2B3", marginLeft:"43%"}}>OR</p>
+                        <p style={{color:"#E31836", textAlign: 'center'}}>OR</p>
                         <button type="submit" className="signIn">
-                          Sign In
+                          <img className="microsoftLogo" src = {MicrosoftLogo}></img> Sign In
                         </button><br/>
-                        </div>
+
+                       
   
                       </form>
                     </div>
-                  </div>
                   <div className="col-lg-6 d-none d-lg-inline-block">
                     <div className="account-block rounded-right">
                       <div className="overlay rounded-right" />
@@ -137,8 +170,11 @@ return(
             </div>
             
           </div>
+
+        
           
         </div>
+      </div>
       </div>
       
 

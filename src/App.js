@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React from 'react';
 import './App.css';
 
+
+
 //importing components
 import AlertTable from "./pages/alertManagement/alertTable";
 import EmailDropdown from "./pages/alertManagement/components/emailDropdown";

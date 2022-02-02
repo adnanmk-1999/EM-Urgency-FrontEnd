@@ -3,11 +3,11 @@ body{
   }
   .account-block {
     padding: 0;
-    background-image: url(login_bg.png);
+    background-image: url('../../images/loginBg.png');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 460px;
-    width:455px;
+    height: 100%;
+    width: 100%;
     position: relative;
   }
   .account-block .overlay {
@@ -35,42 +35,65 @@ body{
     color: rgb(33, 37, 41) !important;
   }
   
-  .btn-theme {
+  .btntheme {
     /* background-color: #4259ee;
     border-color: #5369f8; */
     background-image: linear-gradient(to right, #E31836 , #E42F24);
     color: #fff;
-    width: 370px;
+    width: fill;
     height: 45px;
-
     border-radius: 5px;
+    border: 2px solid #bebebe;
+  }
+
+  .btntheme:hover {
+    background-image: linear-gradient(to right, #f8b1bc , #f8dddd);
+    color: black;
   }
   
   .signIn {
     color: rgb(54, 53, 53);
-    width: 370px;
+    width: fill;
     height: 45px;
     border-radius: 5px;
     background-color:white;
+    border: 2px solid #bebebe;
+  }
+
+  .signIn:hover {
+    background-color: #f8dddd;
+    
   }
 
   .userTextFeild {
-    position: absolute;
-    width: 370px;
+    width: fill;
     height: 45px;
-    border: 2px solid #032D23;
+    border: 2px solid #bebebe;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding-left: 10px;
+  }
+
+  .userTextFeild:hover {
+    background-color: #f8dddd;
+  }
+  .password {
+/* position: absolute; */
+    width: fill;
+    height: 45px; 
+    padding-left: 10px;
+    border: 2px solid #bebebe;
     box-sizing: border-box;
     border-radius: 6px;
   }
 
-  .password {
-/* position: absolute; */
-    width: 370px;
-    height: 45px; 
-/* left: 102px; */
-    margin-top: 45px;
+  .password:hover {
+    background-color: #f8dddd;
 
-    border: 2px solid #032D23;
-    box-sizing: border-box;
-    border-radius: 6px;
+  }
+
+  .microsoftLogo{
+    width: 40px;
+    height: 40px;
+    padding : 1%
   }
