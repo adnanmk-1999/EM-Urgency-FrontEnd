@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Form , Button } from "react-bootstrap";
 import './login.css'
+import { useNavigate } from "react-router-dom";
 
 function Login (){
     const [data, setData] = useState({});
-
+    const navigate= useNavigate()
     function handleChange(event){
       const name = event.target.name;
       const value = event.target.value;
@@ -26,7 +27,9 @@ function Login (){
               localStorage.setItem('username', response.data.username)
               localStorage.setItem('email', response.data.email)
               if(role.includes(Role)){
-                console.log("admin")
+                // console.log("admin")
+                navigate('/admindashboard')
+                
               }else{
                 console.log("user")
               }
@@ -106,6 +109,7 @@ return(
                             id="exampleInputPassword1"
                           />
                         </div>
+                        <div>
                         <button type="submit" className="btn-theme">
                           Login
                         </button><br/><br/>
@@ -113,6 +117,7 @@ return(
                         <button type="submit" className="signIn">
                           Sign In
                         </button><br/>
+                        </div>
   
                       </form>
                     </div>

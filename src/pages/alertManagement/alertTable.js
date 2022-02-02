@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // import EmailDropdown from './components/emailDropdown';
 
 function AlertTable() {
@@ -33,7 +34,24 @@ function AlertTable() {
        searchable: false, export: false, editable : false
     }
   ]
-
+   useEffect(()=>{
+    var config = {
+      method: 'get',
+      url: 'http://localhost:4010/roles/usercontent',
+      headers: { 
+        'x-access-token': localStorage.getItem('accessToken')
+      }
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+   })
   // const [state, setState] = useState([])
 
   const Navigate = useNavigate();
