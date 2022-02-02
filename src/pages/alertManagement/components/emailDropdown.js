@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import MaterialTable from 'material-table';
+import "./emailDropdown.css";
 
 
 function EmailDropdown(props) {
@@ -37,6 +38,7 @@ function EmailDropdown(props) {
 
     return(
         <>
+        <div className='email'>
             <h1>Select Users To Send Email</h1>
             
             <label for="">Select by:</label>
@@ -120,6 +122,7 @@ function EmailDropdown(props) {
             
             <br/>
             <button type = "button" onClick={() => Navigate('/admindashboard')}>Go Back</button>
+            </div>
         </>
         
     )
