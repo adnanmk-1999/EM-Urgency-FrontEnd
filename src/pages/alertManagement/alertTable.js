@@ -3,9 +3,9 @@ import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import EmailDropdown from './components/emailDropdown';
 
 function AlertTable() {
+
   const [tableData, setTableData] = useState([
     { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
     { id : "2", date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},

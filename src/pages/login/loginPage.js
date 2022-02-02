@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Form , Button, Container, Row, Col } from "react-bootstrap";
 import './login.css'
 
 import MicrosoftLogo from '../../images/microsoftLogo.png'
 
+import { useNavigate } from "react-router-dom";
 
 function Login (){
+
+    localStorage.clear()
+
     const [data, setData] = useState({});
+
+    const navigate = useNavigate();
 
     function handleChange(event){
       const name = event.target.name;
@@ -30,8 +35,11 @@ function Login (){
               localStorage.setItem('email', response.data.email)
               if(role.includes(Role)){
                 console.log("admin")
+                navigate('/admindashboard')
+
               }else{
                 console.log("user")
+                navigate('/userdashboard')
               }
           })
           .catch(error =>{
@@ -42,60 +50,6 @@ function Login (){
           })
   };
 
-// return(
-//     <>
-//     <br />
-//     <h4>Welcome Back to EM-Urgency</h4>
-//     <h1>Login</h1>
-//     {/* <div>
-//     <Form className="loginForm" onSubmit = {handleSubmit}>
-//       <Form.Group className="mb-3" onChange={handleChange}  >
-//         <Form.Control type="text" placeholder="Username" name="username" />
-//       </Form.Group>
-
-//       <Form.Group className="mb-3" controlId="formBasicPassword" onChange={handleChange} >
-//         <Form.Control type="password" placeholder="Password" name="password" />
-//       </Form.Group>
-
-//       <Button variant="primary" type="submit" style={{ width: "100%" }}>
-//         Login
-//       </Button><br/><br/>
-//       <p><center>OR</center></p>
-//       <Button type="submit" style={{ width: "100%",backgroundColor:"white",color:"black"}}>
-//         Sign In
-//       </Button>
-//     </Form>
-//     </div> */}
-
-//     <Container>
-//       <Row>
-//         <Col sm={6}>
-//         <Form className="loginForm" onSubmit = {handleSubmit}>
-//       <Form.Group className="mb-3" onChange={handleChange}  >
-//         <Form.Control type="text" placeholder="Username" name="username" />
-//       </Form.Group>
-
-//       <Form.Group className="mb-3" controlId="formBasicPassword" onChange={handleChange} >
-//         <Form.Control type="password" placeholder="Password" name="password" />
-//       </Form.Group>
-
-//       <Button variant="primary" type="submit" style={{ width: "100%" }}>
-//         Login
-//       </Button><br/><br/>
-//       <p><center>OR</center></p>
-//       <Button type="submit" style={{ width: "100%",backgroundColor:"white",color:"black"}}>
-//         Sign In
-//       </Button>
-//     </Form>
-//         </Col>
-//         <Col sm={6}>
-//           <img src = {LoginImage} alt = "loginImage"></img>
-//         </Col>
-//       </Row>
-//     </Container>
-// </>
-// )
-// }
 return(
 <div id="main-wrapper" className="container">
         <div className="row justify-content-center">
