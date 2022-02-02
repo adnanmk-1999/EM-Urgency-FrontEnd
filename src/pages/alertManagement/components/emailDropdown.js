@@ -10,7 +10,7 @@ function EmailDropdown(props) {
         value : "0"
     })
 
-    const [tableData, setTableData] = useState([
+    const [tableData] = useState([
         { id : "1", name: "Adnan", email: "adnan@gmail.com"},
         { id : "2", name: "Adnan", email: "adnan@gmail.com"},
         { id : "3", name: "Adnan", email: "adnan@gmail.com"},
