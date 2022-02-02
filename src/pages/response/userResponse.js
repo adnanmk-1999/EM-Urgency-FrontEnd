@@ -35,8 +35,12 @@ function UserResponse() {
   ]
 
   //State to store the message to be displayed in the message box, which is in another component
-  const [message, setMessage] = useState(''); 
+  const [message, setMessage] = useState('adfsfaffd'); 
 
+  function delayBox(){
+    
+  }
+  
 
   return (
     <div className="App">
@@ -92,11 +96,15 @@ function UserResponse() {
           Action: props => (
             <>
             <button
-              onClick={(event) => props.action.onClick(event, props.data)}
+            onClick={(event) => {
+                props.action.onClick(event, props.data)
+
+              }}
               className='respondButton'
               size="small"
+              style={{textTransform: 'none'}}
             >
-            <RespondBox content={message}/>
+              <RespondBox content={message}/>
             </button>
             
             </>
