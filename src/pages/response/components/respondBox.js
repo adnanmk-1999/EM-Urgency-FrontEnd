@@ -44,9 +44,9 @@ function RespondDialogBox(props) {
             <center>
             <div>Respond:
                 <input type="radio" id="" name="response" value="Yes"/>
-                <label for="">Yes</label> &nbsp;
+                <label>Yes</label> &nbsp;
                 <input type="radio" id="" name="response" value="No"/>
-                <label for="">No</label>
+                <label>No</label>
             </div>
             </center>
           </DialogContentText>

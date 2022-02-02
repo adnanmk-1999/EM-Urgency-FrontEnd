@@ -68,7 +68,6 @@ function AlertTable() {
         editable={{
           onRowAdd: (newRow) => new Promise((resolve, reject) => {
             setTableData([ {...newRow, status : "pending"}, ...tableData])
-
             setTimeout(() => resolve(), 500)
           }),
           onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
