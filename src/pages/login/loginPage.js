@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Form , Button, Container, Row, Col } from "react-bootstrap";
 import './login.css'
-import { useNavigate } from "react-router-dom";
 
 import MicrosoftLogo from '../../images/microsoftLogo.png'
 
 
 function Login (){
     const [data, setData] = useState({});
-    const navigate= useNavigate()
+
     function handleChange(event){
       const name = event.target.name;
       const value = event.target.value;
@@ -30,9 +29,7 @@ function Login (){
               localStorage.setItem('username', response.data.username)
               localStorage.setItem('email', response.data.email)
               if(role.includes(Role)){
-                // console.log("admin")
-                navigate('/admindashboard')
-                
+                console.log("admin")
               }else{
                 console.log("user")
               }
@@ -150,11 +147,15 @@ return(
                         <button type="submit" className="signIn">
                           <img className="microsoftLogo" src = {MicrosoftLogo}></img> Sign In
                         </button><br/>
+                    
+
+
 
                        
   
                       </form>
                     </div>
+                  </div>
                   <div className="col-lg-6 d-none d-lg-inline-block">
                     <div className="account-block rounded-right">
                       <div className="overlay rounded-right" />
@@ -174,7 +175,6 @@ return(
         
           
         </div>
-      </div>
       </div>
       
 
