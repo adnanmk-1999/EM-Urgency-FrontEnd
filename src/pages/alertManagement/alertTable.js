@@ -37,12 +37,12 @@ function AlertTable() {
 
   const columns = [
     { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
-    { title: "Category", field: "category",filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement : "Announcement" } },
+    { title: "Category", field: "categoryName",filterPlaceholder: "filter", lookup: { Holiday: "Holiday", Event: "Event", Announcement : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
     {
-      title: "Sent Status", field: "status",
-      render: (rowData) => <div style={{backgroundColor : rowData.status === 'pending' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius:"4px",textAlign:"center", color:'white'}}>{rowData.status}</div>,
+      title: "Sent Status", field: "statusName",
+      render: (rowData) => <div style={{backgroundColor : rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius:"4px",textAlign:"center", color:'white'}}>{rowData.statusName}</div>,
        searchable: false, export: false, editable : false
     }
   ]
