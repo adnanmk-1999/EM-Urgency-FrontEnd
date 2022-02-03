@@ -7,21 +7,33 @@ import axios from 'axios';
 function AlertTable() {
 
   const [tableData, setTableData] = useState([
-    { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
-    { id : "2", date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-    { id : "3", date: "2020-04-07", category: "event", subject : "Subject 3", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "4", date: "2020-04-07", category: "announcement", subject : "Subject 4", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-    { id : "5", date: "2020-04-07", category: "event", subject : "Subject 5", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "6", date: "2020-04-07", category: "alert", subject : "Subject 6", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "7", date: "2020-04-07", category: "announcement", subject : "Subject 7", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-    { id : "8", date: "2020-04-07", category: "announcement", subject : "Subject 8", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "9", date: "2020-04-07", category: "event", subject : "Subject 9", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "10", date: "2020-04-07", category: "event", subject : "Subject 10", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "11", date: "2020-04-07", category: "alert", subject : "Subject 11", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-    { id : "12", date: "2020-04-07", category: "alert", subject : "Subject 12", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-    { id : "13", date: "2020-04-07", category: "announcement", subject : "Subject 13", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-    { id : "14", date: "2020-04-07", category: "event", subject : "Subject 14", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"}
+  //   { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
+  //   { id : "2", date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
+  //   { id : "3", date: "2020-04-07", category: "event", subject : "Subject 3", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "4", date: "2020-04-07", category: "announcement", subject : "Subject 4", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
+  //   { id : "5", date: "2020-04-07", category: "event", subject : "Subject 5", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "6", date: "2020-04-07", category: "alert", subject : "Subject 6", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "7", date: "2020-04-07", category: "announcement", subject : "Subject 7", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
+  //   { id : "8", date: "2020-04-07", category: "announcement", subject : "Subject 8", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "9", date: "2020-04-07", category: "event", subject : "Subject 9", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "10", date: "2020-04-07", category: "event", subject : "Subject 10", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "11", date: "2020-04-07", category: "alert", subject : "Subject 11", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
+  //   { id : "12", date: "2020-04-07", category: "alert", subject : "Subject 12", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
+  //   { id : "13", date: "2020-04-07", category: "announcement", subject : "Subject 13", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
+  //   { id : "14", date: "2020-04-07", category: "event", subject : "Subject 14", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"}
   ])
+
+  useEffect(() => {
+
+    axios.get('http://localhost:4010/admin/alert') //gets data from api
+    .then(response =>{
+    console.log('Promise fullfilled'); //if data recieved, output
+    console.log(response); //display output (responce)
+    setTableData(response.data); //save only 'data' in response to the state
+    })
+    },[]);
+    
+    
 
   const columns = [
     { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
