@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {Navbar, Container, Nav} from 'react-bootstrap'
 import React from 'react';
 
 //Importing components
@@ -11,22 +12,36 @@ import BarChart from "../pages/barChart/barChart";
 import Login from "../pages/login/loginPage";
 import UserResponse from "../pages/response/userResponse";
 
+import Logo from '../images/logo1.png'
+
 
 
 function MyRouter(){
     return(
       <Router>
-  
-        <div className = "topnav">
-        <div><Link className = "link" to = "/">Home Page</Link></div>
-        <div><Link className = "link" to = "/admindashboard">Alert Management</Link></div>
-        <div><Link className = "link" to = "/piechart">Pie Chart</Link></div>
-        <div><Link className = "link" to = "/barchart">Bar Chart</Link></div>
-        <div><Link className = "link" to = "/userdashboard">Response</Link></div>
-        {!localStorage.getItem('accessToken') && <Link className="link" to="/login">Sign In</Link>}
-        {localStorage.getItem('accessToken') && <Link className="link" onClick={() => window.location = '/login'} to="/login">Sign Out</Link>}
-        </div>
-  
+
+          <Navbar expand="lg" className="topnav">
+          
+            <Container className = "container">
+              <img className = "logo1" src = {Logo} alt = "logo"></img>
+              <Navbar.Brand ></Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav>
+                    <Link className = "link " to = "/">Home Page</Link>
+                    <Link className = "link" to = "/admindashboard">Alert Management</Link>
+                    <Link className = "link" to = "/piechart">Pie Chart</Link>
+                    <Link className = "link" to = "/barchart">Bar Chart</Link>
+                    <Link className = "link" to = "/userdashboard">Response</Link>
+
+
+                    {!localStorage.getItem('accessToken') && <Link className="linkR" to="/login">Sign In</Link>}
+                    {localStorage.getItem('accessToken') && <Link className="linkR" onClick={() => window.location = '/login'} to="/login">Sign Out</Link>}
+                  </Nav>
+                </Navbar.Collapse>
+            </Container>
+          </Navbar>
+
         <Routes>
 
           <Route path = "/" element = {<HomePage />}/>
@@ -37,7 +52,6 @@ function MyRouter(){
           <Route path = "/barchart" element = {<BarChart />}/>
           <Route path = "/login" element = {<Login />}/>
           <Route path = "userdashboard" element = {<UserResponse />}/>
-  
   
         </Routes>
   

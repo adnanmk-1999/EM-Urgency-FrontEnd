@@ -52,8 +52,18 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 16px;
 }
+
+.linkR {
+  float: right;
+  color: rgb(20, 20, 20);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
 .loginForm {
   padding: 5% 25% 0 25% ;
 }
@@ -69,4 +79,15 @@
 
 h1, h2, h3, h4, h5, h6 {
   color: #2C2424;
+}
+
+
+.logo1{
+  width: 90px;
+  margin: none;
+  padding: none;
+}
+
+.active {
+  background-color: #f8dddd;
 }
