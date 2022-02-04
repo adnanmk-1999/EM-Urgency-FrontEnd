@@ -35,12 +35,25 @@ function UserResponse() {
   ]
 
   //State to store the message to be displayed in the message box, which is in another component
-  const [message] = useState('Message'); 
+  const [message, setMessage] = useState('mess'); 
 
+  const [openDialogue, setOpenDialogue] = useState(false);
+
+  function handleClickOpen(props, event) {
+    props.action.onClick(event, props.data);
+    setMessage(props.data.message)
+    setOpenDialogue(true)
+  }
  
 
   return (
+    <>
+
+    { openDialogue && <RespondBox content={message} handleClose = {() => setOpenDialogue(false)}/>}
     <div className="App">
+        
+      
+
        <MaterialTable
         title="Response"
         columns={columns} 
@@ -91,17 +104,11 @@ function UserResponse() {
         components={{
           Action: props => (
             <>
-            <button
-            onClick={(event) => {   
-                props.action.onClick(event, props.data)
-              }}
-              className='respondButton'
-              size="small"
-              style={{textTransform: 'none'}}
-            >
-            <RespondBox content={message} />
+
+            <button className='respondBoxButton' variant="outlined" onClick={(event) => handleClickOpen(props, event)}>
+              Respond
             </button>
-            
+
             </>
           ),
         }}
@@ -116,6 +123,7 @@ function UserResponse() {
       </pre>
 
     </div>
+    </>
 
   );
 }

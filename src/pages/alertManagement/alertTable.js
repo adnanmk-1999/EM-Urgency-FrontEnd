@@ -3,7 +3,16 @@ import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from "react-toastify";
+
+
+import { toast } from "react-toastify";
+// Import toastify css file
+import 'react-toastify/dist/ReactToastify.css';
+ // toast-configuration method,
+ // it is compulsory method.
+ toast.configure()
+
+
 
 function AlertTable() {
 
@@ -26,18 +35,20 @@ function AlertTable() {
       });
     
     })
-    
-    //Adding toastify
-    const notify = () =>
-    toast.success("Alert added!", {
-      position: "bottom-center",
-      autoClose: 2500,
-      hideProgressBar: false,
-      // closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    });
+
+    const notifySuccess = () => {
+ 
+      // Calling toast method by passing string
+      toast.success("Alert added!", {
+          position: "bottom-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+  }
 
 
   const [tableData, setTableData] = useState([
@@ -110,6 +121,7 @@ function AlertTable() {
             setTableData([ {...newRow, statusName : "Draft"}, ...tableData])
             setInputAlert({...newRow, status_id : 1})
             setTimeout(() => {
+              notifySuccess()
               resolve()
             }, 500)
           }),
@@ -180,6 +192,10 @@ function AlertTable() {
         
         icons={{ Add: () => <AddIcon /> }} 
         />
+
+
+
+        <button onClick={notifySuccess}>Beautiful Thasni</button>
 
       <pre>
         {JSON.stringify(tableData, null, 5)}  
