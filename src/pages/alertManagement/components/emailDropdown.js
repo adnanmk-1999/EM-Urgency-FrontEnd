@@ -88,7 +88,7 @@ function EmailDropdown(props) {
 
             {
                 option.value === "4" ?         
-                <div>
+                <div className='individual'>
                     <MaterialTable
                         title = "Select employees"
                         columns = {columns} 
@@ -102,7 +102,7 @@ function EmailDropdown(props) {
                             filtering: true, 
                             paging: true, 
                             pageSizeOptions: [2, 5, 10, 20, 25, 50, 100], 
-                            pageSize: 5,
+                            pageSize: 2,
                             paginationType: "stepped", 
                             showFirstLastPageButtons: false, 
                             paginationPosition: "bottom",

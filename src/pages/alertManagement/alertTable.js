@@ -3,6 +3,7 @@ import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
 
 function AlertTable() {
 
@@ -25,6 +26,19 @@ function AlertTable() {
       });
     
     })
+    
+    //Adding toastify
+    const notify = () =>
+    toast.success("Alert added!", {
+      position: "bottom-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      // closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
 
   const [tableData, setTableData] = useState([
   //   { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
@@ -61,6 +75,7 @@ function AlertTable() {
       axios.post('http://localhost:4010/admin/alert', inputAlert) //gets data from api
       .then(response => {
         console.log('alertPosted'); //if data recieved, output
+        
         })
       },[inputAlert]);
 
