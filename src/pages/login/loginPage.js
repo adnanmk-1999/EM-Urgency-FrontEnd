@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import './login.css'
 
+import './login.css';
 import MicrosoftLogo from '../../images/microsoftLogo.png'
 
-import { useNavigate } from "react-router-dom";
+
 
 function Login (){
 
@@ -13,6 +14,7 @@ function Login (){
     const [data, setData] = useState({});
 
     const navigate = useNavigate();
+
 
     function handleChange(event){
       const name = event.target.name;
