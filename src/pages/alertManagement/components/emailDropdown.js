@@ -44,6 +44,7 @@ function EmailDropdown(props) {
         <Card.Body className="email">
           <Card.Title className='h1'>Select Users To Send Email</Card.Title><br/>
           <Card.Text>
+              
           <label for="" className='selectBy'>Select by:</label>
                 <select name="" id="" onChange={handleChange} className="dropdown">
                      <option  value="0" className='optionName'>Select an option</option>
@@ -52,35 +53,35 @@ function EmailDropdown(props) {
                      <option value="3" className='optionName'>Location</option>
                      <option value="4" className='optionName'>Individual</option>
                  </select>
+                 
              <br/>
              <br/>
 
             {
                 option.value === "2" ?
-                <div>
-                    <label>Department: </label>
-                    <br/>
-                    <input type="checkbox" id="" name="" value=""></input>
-                    <label for="">DTS - Digital Tranformation Services</label><br/>
-                    <input type="checkbox" id="" name="" value=""></input>
-                    <label for="">PES - Product Engineering Services</label><br/>
-                    <input type="checkbox" id="" name="" value=""></input>
-                    <label for="">ESS - Enterprice Software Services</label><br/>
+                <div className='dept'>
+                    <label className='department'>Department: </label><br/>
+                    <input type="checkbox" id="" name="" value="" className='checkbox'></input>
+                    <label for=""className='departments'>DTS - Digital Tranformation Services</label><br/>
+                    <input type="checkbox" id="" name="" value=""className='checkbox'></input>
+                    <label for="" className='departments'>PES - Product Engineering Services</label><br/>
+                    <input type="checkbox" id="" name="" value="" className='checkbox'></input>
+                    <label for="" className='departments'>ESS - Enterprice Software Services</label><br/>
                 </div>
                 : null
             }
 
             {
                 option.value === "3" ?
-                <div>
-                    <label>Location: </label>
+                <div className='loc'>
+                    <label className='location'>Location: </label>
                     <br/>
-                    <input type="checkbox" id="" name="" value=""></input>
-                    <label for="">Thiruvananthapuram</label><br/>
-                    <input type="checkbox" id="" name="" value=""></input>
-                    <label for="">Bengaluru</label><br/>
-                    <input type="checkbox" id="" name="" value=""></input>
-                    <label for="">Kochi</label><br/>
+                    <input type="checkbox" id="" name="" value="" className='checkbox'></input>
+                    <label for="" className='locations'>Thiruvananthapuram</label><br/>
+                    <input type="checkbox" id="" name="" value="" className='checkbox'></input>
+                    <label for="" className='locations'>Bengaluru</label><br/>
+                    <input type="checkbox" id="" name="" value="" className='checkbox'></input>
+                    <label for="" className='locations'>Kochi</label><br/>
                 </div>
                 : null
             }
@@ -123,8 +124,8 @@ function EmailDropdown(props) {
             <br/>
             <button className="send" type = "button">Send</button>
             
-            <br/>
-            <button type = "button" onClick={() => Navigate('/admindashboard')}>Go Back</button>
+            
+            <button type = "button" onClick={() => Navigate('/admindashboard')}className='goBack'>Go Back</button>
           </Card.Text>
         </Card.Body>
       </Card>
