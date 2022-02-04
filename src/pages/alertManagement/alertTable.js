@@ -6,6 +6,26 @@ import axios from 'axios';
 
 function AlertTable() {
 
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: 'http://localhost:4010/roles/admincontent',
+      headers: { 
+        'x-access-token': localStorage.getItem('accessToken')
+        }
+      };
+    
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        alert('Session Timed out login again')
+        window.location = '/login'
+      });
+    
+    })
+
   const [tableData, setTableData] = useState([
   //   { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
   //   { id : "2", date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
@@ -24,20 +44,31 @@ function AlertTable() {
   ])
 
   useEffect(() => {
-
     axios.get('http://localhost:4010/admin/alert') //gets data from api
-    .then(response =>{
-    console.log('Promise fullfilled'); //if data recieved, output
-    console.log(response); //display output (responce)
-    setTableData(response.data); //save only 'data' in response to the state
-    })
+    .then(response => {
+      console.log('Promise fullfilled'); //if data recieved, output
+      console.log(response); //display output (responce)
+      setTableData(response.data); //save only 'data' in response to the state
+      })
     },[]);
-    
+
+
+    //State to store a particular alert during the adding  process
+    const [inputAlert, setInputAlert] = useState({})
+
+    useEffect(() => {
+      console.log(inputAlert)
+      axios.post('http://localhost:4010/admin/alert', inputAlert) //gets data from api
+      .then(response => {
+        console.log('alertPosted'); //if data recieved, output
+        })
+      },[inputAlert]);
+
     
 
   const columns = [
     { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
-    { title: "Category", field: "categoryName",filterPlaceholder: "filter", lookup: { Holiday: "Holiday", Event: "Event", Announcement : "Announcement" } },
+    { title: "Category", field: "categoryName",filterPlaceholder: "filter", lookup: { Announcement : "Announcement", Event: "Event", Holiday: "Holiday" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
     {
@@ -46,25 +77,7 @@ function AlertTable() {
        searchable: false, export: false, editable : false
     }
   ]
-   useEffect(()=>{
-    var config = {
-      method: 'get',
-      url: 'http://localhost:4010/roles/usercontent',
-      headers: { 
-        'x-access-token': localStorage.getItem('accessToken')
-      }
-    };
-    
-    axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
-   })
-  // const [state, setState] = useState([])
+   
 
   const Navigate = useNavigate();
 
@@ -79,8 +92,11 @@ function AlertTable() {
         data={tableData}
         editable={{
           onRowAdd: (newRow) => new Promise((resolve, reject) => {
-            setTableData([ {...newRow, status : "pending"}, ...tableData])
-            setTimeout(() => resolve(), 500)
+            setTableData([ {...newRow, statusName : "Draft"}, ...tableData])
+            setInputAlert({...newRow, status_id : 1})
+            setTimeout(() => {
+              resolve()
+            }, 500)
           }),
           onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
             const updatedData = [...tableData]
@@ -154,6 +170,10 @@ function AlertTable() {
         {JSON.stringify(tableData, null, 5)}  
       </pre>
 
+
+      <pre>
+        {JSON.stringify(inputAlert, null, 5)}  
+      </pre>
 
     </div>
 
