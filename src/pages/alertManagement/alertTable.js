@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
  toast.configure()
 
 
-
 function AlertTable() {
 
   useEffect(() => {
@@ -36,8 +35,7 @@ function AlertTable() {
     
     })
 
-    const notifySuccess = () => {
- 
+  const notifyAdd = () => {
       // Calling toast method by passing string
       toast.success("Alert added!", {
           position: "bottom-center",
@@ -50,23 +48,46 @@ function AlertTable() {
         });
   }
 
+  const notifyDelete = () => {
+    // Calling toast method by passing string
+    toast.success("Alert Deleted!", {
+        position: "bottom-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+  }
 
-  const [tableData, setTableData] = useState([
-  //   { id : "1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "pending"},
-  //   { id : "2", date: "2022-01-10", category: "alert", subject : "Subject 2", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-  //   { id : "3", date: "2020-04-07", category: "event", subject : "Subject 3", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "4", date: "2020-04-07", category: "announcement", subject : "Subject 4", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-  //   { id : "5", date: "2020-04-07", category: "event", subject : "Subject 5", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "6", date: "2020-04-07", category: "alert", subject : "Subject 6", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "7", date: "2020-04-07", category: "announcement", subject : "Subject 7", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-  //   { id : "8", date: "2020-04-07", category: "announcement", subject : "Subject 8", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "9", date: "2020-04-07", category: "event", subject : "Subject 9", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "10", date: "2020-04-07", category: "event", subject : "Subject 10", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "11", date: "2020-04-07", category: "alert", subject : "Subject 11", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-  //   { id : "12", date: "2020-04-07", category: "alert", subject : "Subject 12", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "fail"},
-  //   { id : "13", date: "2020-04-07", category: "announcement", subject : "Subject 13", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"},
-  //   { id : "14", date: "2020-04-07", category: "event", subject : "Subject 14", message: "All employees are requsted to update their pending leaves before 14 Jan", status: "sent"}
-  ])
+  const notifyEdit = () => {
+    // Calling toast method by passing string
+    toast.success("Alert Updated!", {
+        position: "bottom-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+  }
+
+  const notifyCancel = () => {
+    // Calling toast method by passing string
+    toast.error("Cancelled !", {
+        position: "bottom-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+  }
+
+  const [tableData, setTableData] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:4010/admin/alert') //gets data from api
@@ -76,41 +97,51 @@ function AlertTable() {
       setTableData(response.data); //save only 'data' in response to the state
       })
     },[]);
-
-
-    //State to store a particular alert during the adding  process
-    const [inputAlert, setInputAlert] = useState({})
-
-    useEffect(() => {
-      console.log(inputAlert)
-      axios.post('http://localhost:4010/admin/alert', inputAlert) //gets data from api
-      .then(response => {
-        console.log('alertPosted'); //if data recieved, output
-        
-        })
-      },[inputAlert]);
-
     
-
   const columns = [
-    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
-    { title: "Category", field: "categoryName",filterPlaceholder: "filter", lookup: { Announcement : "Announcement", Event: "Event", Holiday: "Holiday" } },
-    { title: "Subject", field: "subject", filterPlaceholder: "filter" },
-    { title: "Messsage", field: "message", filterPlaceholder: "filter" },
+    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date(),
+        validate:rowData => {
+          if(rowData.date === undefined || rowData.date === ""){
+            return "Required"
+          }
+          return true
+        }
+    }, 
+    { title: "Category", field: "categoryName",filterPlaceholder: "filter", lookup: { Announcement : "Announcement", Event: "Event", Holiday: "Holiday" },
+        validate:rowData => {
+          if(rowData.categoryName === undefined || rowData.categoryName === ""){
+            return "Required"
+          }
+          return true
+        }
+    },
+    { title: "Subject", field: "subject", filterPlaceholder: "filter",
+      validate:rowData => {
+        if(rowData.subject === undefined || rowData.subject === ""){
+          return "Required"
+      }
+      return true
+    }
+    },
+    { title: "Messsage", field: "message", filterPlaceholder: "filter" ,
+        validate:rowData => {
+          if(rowData.message === undefined || rowData.message === ""){
+            return "Required"
+          }
+          return true
+        }
+    },
     {
       title: "Sent Status", field: "statusName",
       render: (rowData) => <div style={{backgroundColor : rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius:"4px",textAlign:"center", color:'white'}}>{rowData.statusName}</div>,
        searchable: false, export: false, editable : false
     }
   ]
-   
 
   const Navigate = useNavigate();
 
   return (
     <div className="App">
-
-      {/* <EmailDropdown data = {state}/> */}
 
       <MaterialTable
         title="Alert Information"
@@ -119,9 +150,9 @@ function AlertTable() {
         editable={{
           onRowAdd: (newRow) => new Promise((resolve, reject) => {
             setTableData([ {...newRow, statusName : "Draft"}, ...tableData])
-            setInputAlert({...newRow, status_id : 1})
             setTimeout(() => {
-              notifySuccess()
+              notifyAdd()
+              addRow(newRow)
               resolve()
             }, 500)
           }),
@@ -129,15 +160,26 @@ function AlertTable() {
             const updatedData = [...tableData]
             updatedData[oldRow.tableData.id] = newRow
             setTableData(updatedData)
-            setTimeout(() => resolve(), 500)
+            setTimeout(() => {
+              resolve();
+              console.log(newRow)
+              updateRow(newRow.id, newRow);
+              notifyEdit();
+              }, 500)
           }),
           onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
             const updatedData = [...tableData]
             updatedData.splice(selectedRow.tableData.id, 1)
             setTableData(updatedData)
-            setTimeout(() => resolve(), 1000)
-
-          })
+            setTimeout(() => { 
+              resolve();
+              deleteRow(selectedRow.id);
+              notifyDelete();
+              }
+              , 1000)
+          }),
+          onRowAddCancelled: () => {notifyCancel()},
+          onRowUpdateCancelled: () => {notifyCancel()}
         }}
 
         options={{
@@ -195,15 +237,10 @@ function AlertTable() {
 
 
 
-        <button onClick={notifySuccess}>Beautiful Thasni</button>
+        <button onClick={notifyAdd}>Beautiful Thasni</button>
 
       <pre>
         {JSON.stringify(tableData, null, 5)}  
-      </pre>
-
-
-      <pre>
-        {JSON.stringify(inputAlert, null, 5)}  
       </pre>
 
     </div>
@@ -212,6 +249,30 @@ function AlertTable() {
 
 
   );
+}
+
+function addRow(data){
+  axios.post(`http://localhost:4010/admin/alert`, data)
+    .then(response => {
+      console.log('Promise fullfilled');
+      console.log(response);  
+  })
+}
+
+function deleteRow(id){
+  axios.delete(`http://localhost:4010/admin/alert/${id}`)
+    .then(response => {
+      console.log('Promise fullfilled');
+      console.log(response);  
+  })
+}
+
+function updateRow(id, data){
+  axios.put(`http://localhost:4010/admin/alert/${id}`, data)
+    .then(response => {
+      console.log('Promise fullfilled');
+      console.log(response);  
+  })
 }
 
 export default AlertTable;
