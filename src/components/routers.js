@@ -11,6 +11,7 @@ import PieChart from "../pages/pieChart/pieChart";
 import BarChart from "../pages/barChart/barChart";
 import Login from "../pages/login/loginPage";
 import UserResponse from "../pages/response/userResponse";
+import AboutUs from "../pages/aboutUs/aboutUs";
 
 import Logo from '../images/logo1.png'
 
@@ -33,6 +34,9 @@ function MyRouter(){
                     <Link className = "link" to = "/piechart">Pie Chart</Link>
                     <Link className = "link" to = "/barchart">Bar Chart</Link>
                     <Link className = "link" to = "/userdashboard">Response</Link>
+                    <Link className = "link" to = "/aboutus">About us</Link>
+
+
 
 
                     {!localStorage.getItem('accessToken') && <Link className="linkR" to="/login">Sign In</Link>}
@@ -52,6 +56,8 @@ function MyRouter(){
           <Route path = "/barchart" element = {<BarChart />}/>
           <Route path = "/login" element = {<Login />}/>
           <Route path = "userdashboard" element = {<UserResponse />}/>
+          <Route path = "/aboutus" element = {<AboutUs />}/>
+
   
         </Routes>
   
