@@ -7,31 +7,30 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function RespondDialogBox(props) {
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(tru);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <div>
-      <button className='respondBoxButton' variant="outlined" onClick={handleClickOpen}>
-        Respond
-      </button>
+
       <Dialog
-        open={open}
+        open={true}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={props.handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>{"Message"}</DialogTitle>
@@ -52,8 +51,8 @@ function RespondDialogBox(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-            <Button onClick={handleClose}>Submit</Button><br/>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={props.handleClose}>Submit</Button><br/>
+            <Button onClick={props.handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </div>
