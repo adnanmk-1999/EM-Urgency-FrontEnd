@@ -3,7 +3,7 @@ import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 function AlertTable() {
 
@@ -33,7 +33,7 @@ function AlertTable() {
       position: "bottom-center",
       autoClose: 2500,
       hideProgressBar: false,
-      // closeOnClick: true,
+      closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined
@@ -75,7 +75,6 @@ function AlertTable() {
       axios.post('http://localhost:4010/admin/alert', inputAlert) //gets data from api
       .then(response => {
         console.log('alertPosted'); //if data recieved, output
-        
         })
       },[inputAlert]);
 
@@ -184,7 +183,7 @@ function AlertTable() {
       <pre>
         {JSON.stringify(tableData, null, 5)}  
       </pre>
-
+      <button onClick={notify}>click me</button>
 
       <pre>
         {JSON.stringify(inputAlert, null, 5)}  
