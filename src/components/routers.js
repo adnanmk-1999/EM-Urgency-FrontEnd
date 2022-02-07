@@ -12,6 +12,7 @@ import BarChart from "../pages/barChart/barChart";
 import Login from "../pages/login/loginPage";
 import UserResponse from "../pages/response/userResponse";
 import AboutUs from "../pages/aboutUs/aboutUs";
+import ContactUs from "../pages/contactUs/contactUs";
 
 import Logo from '../images/logo1.png'
 
@@ -35,6 +36,7 @@ function MyRouter(){
                     <Link className = "link" to = "/barchart">Bar Chart</Link>
                     <Link className = "link" to = "/userdashboard">Response</Link>
                     <Link className = "link" to = "/aboutus">About us</Link>
+                    <Link className = "link" to = "/contactus">Contact us</Link>
 
 
 
@@ -57,6 +59,7 @@ function MyRouter(){
           <Route path = "/login" element = {<Login />}/>
           <Route path = "userdashboard" element = {<UserResponse />}/>
           <Route path = "/aboutus" element = {<AboutUs />}/>
+          <Route path = "/contactus" element = {<ContactUs />}/>
 
   
         </Routes>

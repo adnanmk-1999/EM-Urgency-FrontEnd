@@ -6,20 +6,18 @@
     margin-top: 10%;
     color: #2C2424;
     font-weight: lighter;
-    font-family: Roboto;
 }
 
-.aboutImage {
+.contactImage {
     width: stretch;
     background-repeat: no-repeat;
     background-size: cover;
-
-
 }
-.titleAbout {
+
+.titleContact {
     color: #2C2424;
+    text-align: center;
     padding-top: 3%;
-    padding-left: 5%;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -28,14 +26,17 @@
     position: absolute;
 }
 
-.titleAbout h1{
-    color: white;
-}
-.titleAbout h2 {
-    color: white;
-    font-weight: lighter;
-    font-size: large;
-    padding-top: 20px;
-    line-height: 30px;
+.head2 {
+    color:white;
+    padding-left: 5%;
+    padding-top: 27px;
 }
 
+.textImage{
+    position: relative;
+}
+
+.underlineTitle{
+    position: absolute;
+    width: 100%;
+}
