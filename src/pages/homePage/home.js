@@ -1,15 +1,21 @@
 import React from 'react';
 import { Carousel, Card, Button, Row, Col, Container } from 'react-bootstrap';
+import './home.css';
 import home1 from '../../images/home1.jpg';
 import home2 from '../../images/home2.jpg';
-import './home.css';
 import emergencyAlert from '../../images/emergencyAlert.png'
-import microsoftLogo from '../../images/microsoftLogo.png'
 import buildAKit from '../../images/buildAKit.png'
 import flooding from '../../images/flooding.png'
 import getVaccinated from '../../images/getVaccinated.png'
 import makeAPlan from '../../images/makeAPlan.png'
 import preparednessVideos from '../../images/preparednessVideos.png'
+import home3 from '../../images/home3.jpg';
+import home4 from '../../images/home4.png';
+import home5 from '../../images/home5.jpg';
+
+
+
+
 
 
 
@@ -21,7 +27,7 @@ function homePage() {
                 <Carousel.Item style={{ backgroundColor: 'white' }}>
                     <img
                         className="homeImage img-fluid"
-                        src={home1}
+                        src={home5}
                         alt="First slide"
                     />
                 </Carousel.Item>
@@ -32,13 +38,30 @@ function homePage() {
                         alt="Second slide"
                     />
                 </Carousel.Item>
-                {/* <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="holder.js/800x400?text=Third slide&bg=20232a"
-      alt="Third slide"
-    />
-  </Carousel.Item> */}
+                <Carousel.Item style={{ backgroundColor: 'white' }}>
+                    <img
+                        className='homeImage img-fluid '
+                        src={home3}
+                        alt="Third slide"
+                    />
+                </Carousel.Item>
+
+                <Carousel.Item style={{ backgroundColor: 'white' }}>
+                    <img
+                        className='homeImage img-fluid '
+                        src={home4}
+                        alt="fourth slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item style={{ backgroundColor: 'white' }}>
+                    <img
+                        className='homeImage img-fluid '
+                        src={home1}
+                        alt="fifth slide"
+                    />
+                </Carousel.Item>
+
+
             </Carousel>
             <Container>
                 <Row>
@@ -70,14 +93,14 @@ function homePage() {
                             <Container>
                                 <Row>
                                     <Col xs={4} sm={3} md={3}>
-                                        <Card.Img className='tileImage'  src={flooding}/>
+                                        <Card.Img className='tileImage' src={flooding} />
 
                                     </Col>
                                     <Col xs={8} sm={9} md={9}>
                                         <Card.Body className='tileBody'>
                                             <Card.Title className='tileHeading'>Flooding</Card.Title>
                                             <Card.Text  >
-                                            If you approach a flooded road or walkway, follow this rule: turn around, don't drown!
+                                                If you approach a flooded road or walkway, follow this rule: turn around, don't drown!
                                             </Card.Text>
                                         </Card.Body>
                                     </Col>
@@ -92,14 +115,14 @@ function homePage() {
                             <Container>
                                 <Row>
                                     <Col xs={4} sm={3} md={3}>
-                                        <Card.Img className='tileImage'  src={preparednessVideos}/>
+                                        <Card.Img className='tileImage' src={preparednessVideos} />
 
                                     </Col>
                                     <Col xs={8} sm={9} md={9}>
                                         <Card.Body className='tileBody'>
                                             <Card.Title className='tileHeading'>Preparedness Videos</Card.Title>
                                             <Card.Text  >
-                                            Learn how to prepare for disasters with Ready’s preparedness videos and public service announcements
+                                                Learn how to prepare for disasters with Ready’s preparedness videos and public service announcements
                                             </Card.Text>
                                         </Card.Body>
                                     </Col>
@@ -110,7 +133,7 @@ function homePage() {
                         </Card>
                     </Col>
 
-                    
+
 
                 </Row>
                 {/*Row 2*/}
@@ -121,14 +144,14 @@ function homePage() {
                             <Container>
                                 <Row>
                                     <Col xs={4} sm={3} md={3}>
-                                        <Card.Img className='tileImage'  src={emergencyAlert}/>
+                                        <Card.Img className='tileImage' src={emergencyAlert} />
 
                                     </Col>
                                     <Col xs={8} sm={9} md={9}>
                                         <Card.Body className='tileBody'>
                                             <Card.Title className='tileHeading'>Emergency Alerts</Card.Title>
                                             <Card.Text  >
-                                            Wireless emergency alerts allow officials to provide the public with life-saving information quickly.
+                                                Wireless emergency alerts allow officials to provide the public with life-saving information quickly.
                                             </Card.Text>
                                         </Card.Body>
                                     </Col>
@@ -143,14 +166,14 @@ function homePage() {
                             <Container>
                                 <Row>
                                     <Col xs={4} sm={3} md={3}>
-                                        <Card.Img className='tileImage'  src={makeAPlan}/>
+                                        <Card.Img className='tileImage' src={makeAPlan} />
 
                                     </Col>
                                     <Col xs={8} sm={9} md={9}>
                                         <Card.Body className='tileBody'>
                                             <Card.Title className='tileHeading'>Make a Plan</Card.Title>
                                             <Card.Text  >
-                                            Be Prepared. Make an emergency plan today and practice it.
+                                                Be Prepared. Make an emergency plan today and practice it.
                                             </Card.Text>
                                         </Card.Body>
                                     </Col>
@@ -161,7 +184,7 @@ function homePage() {
                         </Card>
                     </Col>
 
-                    
+
 
                 </Row>
                 {/*Row 3*/}
@@ -172,14 +195,14 @@ function homePage() {
                             <Container>
                                 <Row>
                                     <Col xs={4} sm={3} md={3}>
-                                        <Card.Img className='tileImage'  src={buildAKit}/>
+                                        <Card.Img className='tileImage' src={buildAKit} />
 
                                     </Col>
                                     <Col xs={8} sm={9} md={9}>
                                         <Card.Body className='tileBody'>
                                             <Card.Title className='tileHeading'>Build a Kit</Card.Title>
                                             <Card.Text  >
-                                            Make sure your emergency kitstocked with the right items.
+                                                Make sure your emergency kitstocked with the right items.
                                             </Card.Text>
                                         </Card.Body>
                                     </Col>
@@ -194,14 +217,14 @@ function homePage() {
                             <Container>
                                 <Row>
                                     <Col xs={4} sm={3} md={3}>
-                                        <Card.Img className='tileImage'  src={getVaccinated}/>
+                                        <Card.Img className='tileImage' src={getVaccinated} />
 
                                     </Col>
                                     <Col xs={8} sm={9} md={9}>
                                         <Card.Body className='tileBody'>
                                             <Card.Title className='tileHeading'>Get Vaccinated</Card.Title>
                                             <Card.Text  >
-                                            COVID-19 vaccines are free and available to anyone five and older who wants one.
+                                                COVID-19 vaccines are free and available to anyone five and older who wants one.
                                             </Card.Text>
                                         </Card.Body>
                                     </Col>
@@ -212,7 +235,7 @@ function homePage() {
                         </Card>
                     </Col>
 
-                    
+
 
                 </Row>
 
