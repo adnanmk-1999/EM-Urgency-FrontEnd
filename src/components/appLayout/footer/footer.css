@@ -1,0 +1,10 @@
+li a, div a{
+    text-decoration: none;
+    color: white;
+}
+.list-unstyled{
+    color: white;
+}
+.footerBackground{
+    background-color: #e29f95;
+}
