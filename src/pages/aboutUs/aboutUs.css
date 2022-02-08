@@ -16,6 +16,7 @@
 
 
 }
+
 .titleAbout {
     color: #2C2424;
     padding-top: 3%;
@@ -28,9 +29,10 @@
     position: absolute;
 }
 
-.titleAbout h1{
+.titleAbout h1 {
     color: white;
 }
+
 .titleAbout h2 {
     color: white;
     font-weight: lighter;
