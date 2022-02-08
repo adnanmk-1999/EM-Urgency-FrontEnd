@@ -5,6 +5,59 @@ height: 369px;
 margin-left: 15%;
 margin-right: 15%;
 margin-top: 3%;
+}
 
+.welcomeText {
+    margin-top: 3%;
+    text-align: center;
+    
+}
 
+.welcomeContent {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.welcomeButton {
+    background: linear-gradient(180deg, #E41D33 0%, #E42C27 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+
+}
+
+.welcomeCard {
+    margin: 0 15% 0 15%;
+    border: none;
+
+}
+.tileCard {
+ border: none;
+ margin-top: 5%;
+}
+
+.tileImage {
+    margin-top: 50%;
+    width:100%;
+    border-radius: 50%;
+  
+}
+
+.tileBody {
+    margin-top: 10%;
+
+}
+
+.tileContainer {
+    /* margin: 0 50% 0 15%; */
+    /* margin-right: 15%;
+    margin-left: 15%; */
+    padding: 0 6% 0 6%;
+    margin-bottom: 5%;
 }
