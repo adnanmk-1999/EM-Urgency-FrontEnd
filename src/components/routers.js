@@ -16,8 +16,6 @@ import ContactUs from "../pages/contactUs/contactUs";
 
 import Logo from '../images/logo1.png'
 
-
-
 function MyRouter(){
     return(
       <Router>

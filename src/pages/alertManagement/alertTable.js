@@ -4,141 +4,72 @@ import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
-import { toast } from "react-toastify";
-// Import toastify css file
-import 'react-toastify/dist/ReactToastify.css';
- // toast-configuration method,
- // it is compulsory method.
- toast.configure()
-
+import Toaster from '../../components/toaster';
+import axiosConfig from '../../components/axiosConfig';
 
 function AlertTable() {
 
+  const [tableData, setTableData] = useState([]);
+  
+  const Navigate = useNavigate();
+
+  //Get alerts 
   useEffect(() => {
-    var config = {
-      method: 'get',
-      url: 'http://localhost:4010/roles/admincontent',
-      headers: { 
-        'x-access-token': localStorage.getItem('accessToken')
-        }
-      };
-    
-      axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        alert('Session Timed out login again')
-        window.location = '/login'
-      });
-    
-    })
-
-  const notifyAdd = () => {
-      // Calling toast method by passing string
-      toast.success("Alert added!", {
-          position: "bottom-center",
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-  }
-
-  const notifyDelete = () => {
-    // Calling toast method by passing string
-    toast.success("Alert Deleted!", {
-        position: "bottom-center",
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-  }
-
-  const notifyEdit = () => {
-    // Calling toast method by passing string
-    toast.success("Alert Updated!", {
-        position: "bottom-center",
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-  }
-
-  const notifyCancel = () => {
-    // Calling toast method by passing string
-    toast.error("Cancelled !", {
-        position: "bottom-center",
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-  }
-
-  const [tableData, setTableData] = useState([])
-
-  useEffect(() => {
-    axios.get('http://localhost:4010/admin/alert') //gets data from api
+    axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
     .then(response => {
       console.log('Promise fullfilled'); //if data recieved, output
       console.log(response); //display output (responce)
       setTableData(response.data); //save only 'data' in response to the state
       })
+    .catch(() => {
+      alert('Session Timed out login again')
+      window.location = '/login'
+      });
     },[]);
     
   const columns = [
-    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date(),
-        validate:rowData => {
-          if(rowData.date === undefined || rowData.date === ""){
-            return "Required"
-          }
-          return true
-        }
-    }, 
-    { title: "Category", field: "categoryName",filterPlaceholder: "filter", lookup: { Announcement : "Announcement", Event: "Event", Holiday: "Holiday" },
-        validate:rowData => {
-          if(rowData.categoryName === undefined || rowData.categoryName === ""){
-            return "Required"
-          }
-          return true
-        }
-    },
-    { title: "Subject", field: "subject", filterPlaceholder: "filter",
-      validate:rowData => {
-        if(rowData.subject === undefined || rowData.subject === ""){
+    {
+      title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date(),
+      validate: rowData => {
+        if (rowData.date === undefined || rowData.date === "") {
           return "Required"
-      }
-      return true
-    }
-    },
-    { title: "Messsage", field: "message", filterPlaceholder: "filter" ,
-        validate:rowData => {
-          if(rowData.message === undefined || rowData.message === ""){
-            return "Required"
-          }
-          return true
         }
+        return true
+      }
+    },
+    {
+      title: "Category", field: "categoryName", filterPlaceholder: "filter", lookup: { Announcement: "Announcement", Event: "Event", Holiday: "Holiday" },
+      validate: rowData => {
+        if (rowData.categoryName === undefined || rowData.categoryName === "") {
+          return "Required"
+        }
+        return true
+      }
+    },
+    {
+      title: "Subject", field: "subject", filterPlaceholder: "filter",
+      validate: rowData => {
+        if (rowData.subject === undefined || rowData.subject === "") {
+          return "Required"
+        }
+        return true
+      }
+    },
+    {
+      title: "Messsage", field: "message", filterPlaceholder: "filter",
+      validate: rowData => {
+        if (rowData.message === undefined || rowData.message === "") {
+          return "Required"
+        }
+        return true
+      }
     },
     {
       title: "Sent Status", field: "statusName",
-      render: (rowData) => <div style={{backgroundColor : rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius:"4px",textAlign:"center", color:'white'}}>{rowData.statusName}</div>,
-       searchable: false, export: false, editable : false
+      render: (rowData) => <div style={{ backgroundColor: rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
+      searchable: false, export: false, editable: false
     }
   ]
-
-  const Navigate = useNavigate();
 
   return (
     <div className="App">
@@ -151,7 +82,7 @@ function AlertTable() {
           onRowAdd: (newRow) => new Promise((resolve, reject) => {
             setTableData([ {...newRow, statusName : "Draft"}, ...tableData])
             setTimeout(() => {
-              notifyAdd()
+              Toaster.notifyAdd()
               addRow(newRow)
               resolve()
             }, 500)
@@ -164,7 +95,7 @@ function AlertTable() {
               resolve();
               console.log(newRow)
               updateRow(newRow.id, newRow);
-              notifyEdit();
+              Toaster.notifyEdit();
               }, 500)
           }),
           onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
@@ -174,12 +105,12 @@ function AlertTable() {
             setTimeout(() => { 
               resolve();
               deleteRow(selectedRow.id);
-              notifyDelete();
+              Toaster.notifyDelete();
               }
               , 1000)
           }),
-          onRowAddCancelled: () => {notifyCancel()},
-          onRowUpdateCancelled: () => {notifyCancel()}
+          onRowAddCancelled: () => {Toaster.notifyCancel()},
+          onRowUpdateCancelled: () => {Toaster.notifyCancel()}
         }}
 
         options={{
@@ -234,25 +165,19 @@ function AlertTable() {
         
         icons={{ Add: () => <AddIcon /> }} 
         />
-
-
-
-        <button onClick={notifyAdd}>Beautiful Thasni</button>
+        <button style = {{width : '100%', color : 'white', backgroundColor: '#EE362D'}}onClick={Toaster.notifyAdd}>Beautiful Thasni</button>
 
       <pre>
         {JSON.stringify(tableData, null, 5)}  
       </pre>
-
     </div>
-
-
-
-
   );
 }
 
+
+//Helper Function for CRUD operations in the alert table
 function addRow(data){
-  axios.post(`http://localhost:4010/admin/alert`, data)
+  axios(axiosConfig.postConfig('http://localhost:4010/admin/alert', data))
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);  
@@ -260,15 +185,18 @@ function addRow(data){
 }
 
 function deleteRow(id){
-  axios.delete(`http://localhost:4010/admin/alert/${id}`)
+  axios(axiosConfig.deleteConfig(`http://localhost:4010/admin/alert/${id}`, id))
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);  
-  })
+    })
+    .catch(() => {
+      console.log("Could not delete")
+    })
 }
 
 function updateRow(id, data){
-  axios.put(`http://localhost:4010/admin/alert/${id}`, data)
+  axios(axiosConfig.editConfig(`http://localhost:4010/admin/alert/${id}`, id, data))
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);  
