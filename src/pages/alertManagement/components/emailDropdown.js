@@ -46,7 +46,7 @@ function EmailDropdown(props) {
           <Card.Text>
               
           <label for="" className='selectBy'>Select by:</label>
-                <select name="" id="" onChange={handleChange} className="dropdown">
+                <select name="" id="" onChange={handleChange} className="dropDown">
                      <option  value="0" className='optionName'>Select an option</option>
                      <option value="1" className='optionName'>Select All</option>
                      <option value="2" className='optionName'>Department</option>

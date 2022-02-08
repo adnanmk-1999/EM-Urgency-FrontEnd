@@ -32,28 +32,89 @@
 
 .topnav {
   background-color: white;
-  overflow: hidden;
   border: solid rgb(117, 109, 109);
   border-top: none;
   border-left: none;
   border-right: none;
   border-width: 2px;
+  padding: 0.5%;
+  text-align: center;
 }
 
 
-.topnav a:hover {
+.link:hover {
   background-color: #FC816D;
   color: white;
 }
 
 .link {
-  float: left;
   color: rgb(20, 20, 20);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 16px;
 }
+
+.linkLink{
+  color: rgb(20, 20, 20);
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  text-indent: 20px;
+  padding: 0px 16px 0px 16px;
+}
+
+.linkLink:hover{
+  background-color: #FC816D;
+  color: white;
+}
+
+#beautifulThasni{
+  color: rgb(20, 20, 20);
+}
+
+
+#beautifulThasni:hover{
+  background-color: #FC816D;
+  color: white;
+}
+
+
+.dropNav{
+  text-align: center;
+  text-decoration: none;
+  color: rgb(20, 20, 20);
+  padding: 1% 16px 0px 16px;
+}
+
+.dropNav:hover{
+  background-color: #FC816D;
+  color: white;
+}
+
+.linkItem{
+  float: left;
+  color: rgb(20, 20, 20);
+  padding: 2%;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.linkItem:hover {
+  background-color: #FC816D;
+  color: white;
+}
+
+.linkItemContent{
+  color: rgb(20, 20, 20);
+  padding: 0%;
+}
+
+.linkItemContent:hover {
+  background-color: #FC816D;
+  color: white;
+}
+
 
 .linkR {
   float: right;

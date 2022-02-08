@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import {Navbar, Container, Nav} from 'react-bootstrap'
+import {Navbar, Container, Nav, NavDropdown, FormControl, Form, Button} from 'react-bootstrap'
 import React from 'react';
 
 //Importing components
@@ -19,7 +19,7 @@ import Logo from '../images/logo1.png'
 function MyRouter(){
     return(
       <Router>
-
+{/* 
           <Navbar expand="lg" className="topnav">
           
             <Container className = "container">
@@ -28,23 +28,46 @@ function MyRouter(){
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav>
-                    <Link className = "link " to = "/">Home Page</Link>
-                    <Link className = "link" to = "/admindashboard">Alert Management</Link>
+                    <Link className = "link " to = "/">Home</Link>
+                    <Link className = "link" to = "/admindashboard">Alert</Link>
                     <Link className = "link" to = "/piechart">Pie Chart</Link>
                     <Link className = "link" to = "/barchart">Bar Chart</Link>
                     <Link className = "link" to = "/userdashboard">Response</Link>
-                    <Link className = "link" to = "/aboutus">About us</Link>
-                    <Link className = "link" to = "/contactus">Contact us</Link>
+                    <Link className = "link" to = "/aboutus">About</Link>
+                    <Link className = "link" to = "/contactus">Contact</Link>
 
-
-
-
-                    {!localStorage.getItem('accessToken') && <Link className="linkR" to="/login">Sign In</Link>}
-                    {localStorage.getItem('accessToken') && <Link className="linkR" onClick={() => window.location = '/login'} to="/login">Sign Out</Link>}
+                  </Nav>
+                  <Nav >
+                  {!localStorage.getItem('accessToken') && <Nav.Link className="linkR" to="/login">Sign In</Nav.Link>}
+                    {localStorage.getItem('accessToken') && <Nav.Link className="linkR" onClick={() => window.location = '/login'} to="/login">Sign Out</Nav.Link>}
                   </Nav>
                 </Navbar.Collapse>
             </Container>
-          </Navbar>
+          </Navbar> */}
+
+          <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="topnav">
+  <Container className = "container">
+  <img className = "logo1" src = {Logo} alt = "logo"></img>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="me-auto">
+    <Nav.Link className = "link"><Link to = "/" className="linkLink">Home</Link></Nav.Link>
+    <Nav.Link className = "link"><Link to = "/aboutus" className="linkLink">About</Link></Nav.Link>
+                    <Nav.Link className = "link"><Link to = "/admindashboard" className="linkLink">Alert</Link></Nav.Link>
+                    <Nav.Link className = "link"><Link to = "/userdashboard" className="linkLink">Response</Link></Nav.Link>
+                    <Nav.Link className = "link"><Link to = "/contactus" className="linkLink">Contact</Link></Nav.Link>
+      <NavDropdown title="Charts" className = "dropNav" id="beautifulThasni">
+        <NavDropdown.Item className = "linkItem"><Link className = "linkItemContent" to = "/piechart">Alert Chart</Link></NavDropdown.Item>
+        <NavDropdown.Item className = "linkItem"><Link className = "linkItemContent" to = "/barchart">Response Chart</Link></NavDropdown.Item>
+      </NavDropdown>
+    </Nav>
+    <Nav>
+    {!localStorage.getItem('accessToken') && <Nav.Link className="link" ><Link to="/login" className="linkLink">Sign In</Link></Nav.Link>}
+    {localStorage.getItem('accessToken') && <Nav.Link className="link" ><Link onClick={() => window.location = '/login'} to="/login" className="linkLink">Sign Out</Link></Nav.Link>}
+    </Nav>
+  </Navbar.Collapse>
+  </Container>
+</Navbar>
 
         <Routes>
 
