@@ -3,6 +3,9 @@ import './contactUs.css';
 import { Card, Row, Col, Container } from 'react-bootstrap';
 import ContactImage from '../../images/contactUs.png';
 import microsoftLogo from '../../images/microsoftLogo.png'
+import facebook from '../../images/facebook.png'
+import twitter from '../../images/twitter.png'
+
 
 function ContactUs() {
     return (
@@ -18,11 +21,11 @@ function ContactUs() {
 
             <Container>
                 <Row>
-                    <Col xs={12} sm={4} md={4} lg={4}>
+                    <Col md={4} >
                         <Card style={{ marginTop: 15, border: "none" }}>
-                            <center><Card.Img className='imageCard' variant="top" src={microsoftLogo} /></center>
-                            <Card.Body style={{ textAlign: "center" }}>
-                                <Card.Text style={{ textAlign: "left" }}>
+                            <center><Card.Img className='imageCardMS' variant="top" src={microsoftLogo} /></center>
+                            <Card.Body >
+                                <Card.Text  className='cardText'>
                                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
                                 </Card.Text>
                             </Card.Body>
@@ -30,22 +33,22 @@ function ContactUs() {
                     </Col>
 
 
-                    <Col xs={12} sm={4} md={4} lg={4}>
+                    <Col  md={4} >
                         <Card style={{ marginTop: 15, border: "none" }}>
-                            <center><Card.Img className='imageCard' variant="top" src={microsoftLogo} /></center>
-                            <Card.Body style={{ textAlign: "center" }}>
-                                <Card.Text style={{ textAlign: "left" }}>
+                            <center><Card.Img className='imageCard' variant="top" src={twitter} /></center>
+                            <Card.Body>
+                                <Card.Text  className='cardText'>
                                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
 
-                    <Col xs={12} sm={4} md={4} lg={4}>
+                    <Col  md={4} >
                         <Card style={{ marginTop: 15, border: "none" }}>
-                            <center><Card.Img className='imageCard' variant="top" src={microsoftLogo} /></center>
-                            <Card.Body style={{ textAlign: "center" }}>
-                                <Card.Text style={{ textAlign: "left" }}>
+                            <center><Card.Img className='imageCard' variant="top" src={facebook} /></center>
+                            <Card.Body >
+                                <Card.Text className='cardText'>
                                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
                                 </Card.Text>
                             </Card.Body>

@@ -18,12 +18,12 @@ function AboutUs() {
 
             <Container>
                 <Row>
-                    <Col xs={12} sm={4} md={4} lg={4}>
+                    <Col md={4}>
                         <h1 className='cardHeading'>Who we are?</h1>
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0" }}>
 
-                            <Card.Body style={{ textAlign: "center"}}>
-                                <Card.Text style={{ textAlign: "left" }}>
+                            <Card.Body >
+                                <Card.Text  className='cardText'>
                                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
                                 </Card.Text>
                             </Card.Body>
@@ -31,22 +31,22 @@ function AboutUs() {
                     </Col>
 
 
-                    <Col xs={12} sm={4} md={4} lg={4}>
+                    <Col md={4}>
                         <h1 className='cardHeading'>What we provide?</h1>
-                        <Card style={{marginTop: 15, backgroundColor: "#F9F0F0" }}>
-                            <Card.Body style={{textAlign: "center"}}>
-                                <Card.Text style={{ textAlign: "left" }}>
+                        <Card style={{marginTop: 15, backgroundColor: "#F9F0F0"}}>
+                            <Card.Body >
+                                <Card.Text  className='cardText'>
                                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
 
-                    <Col xs={12} sm={4} md={4} lg={4}>
+                    <Col  md={4} >
                         <h1 className='cardHeading'>Why choose us?</h1>
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0" }}>
-                            <Card.Body style={{textAlign: "center"}}>
-                                <Card.Text style={{ textAlign: "left" }}>
+                            <Card.Body >
+                                <Card.Text  className='cardText'>
                                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
                                 </Card.Text>
                             </Card.Body>
