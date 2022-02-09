@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import './login.css';
 import MicrosoftLogo from '../../images/microsoftLogo.png'
+import UserContext from "../context/userContext";
 
 
 
 function Login (){
 
-    localStorage.clear()
+    // localStorage.clear()
 
     const [data, setData] = useState({});
 
     const navigate = useNavigate();
-
+    const userContext = useContext(UserContext);
 
     function handleChange(event){
       const name = event.target.name;
@@ -30,11 +31,12 @@ function Login (){
               let role = response.data.roles;
               const Role="Role:ADMIN";
               console.log(role);
-              localStorage.setItem('accessToken', response.data.accessToken)
-              localStorage.setItem('refreshToken', response.data.refreshToken)
-              localStorage.setItem('roles', response.data.roles)
-              localStorage.setItem('username', response.data.username)
-              localStorage.setItem('email', response.data.email)
+              // localStorage.setItem('accessToken', response.data.accessToken)
+              // localStorage.setItem('refreshToken', response.data.refreshToken)
+              // localStorage.setItem('roles', response.data.roles)
+              // localStorage.setItem('username', response.data.username)
+              // localStorage.setItem('email', response.data.email)
+              userContext.login(response.data.accessToken,response.data.roles,response.data.username,response.data.email);
               if(role.includes(Role)){
                 console.log("admin")
                 navigate('/admindashboard')

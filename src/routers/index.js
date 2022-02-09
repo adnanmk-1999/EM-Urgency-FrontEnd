@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import React from 'react';
+import { useContext } from "react";
+import UserContext from "../pages/context/userContext";
 
 import NavBar from "../components/appLayout/navBar/navBar";
 
@@ -16,6 +18,7 @@ import AboutUs from "../pages/aboutUs/aboutUs";
 import ContactUs from "../pages/contactUs/contactUs";
 
 function RouterIndex(){
+    const userContext = useContext(UserContext);
     return(
         <>
             <Router>
