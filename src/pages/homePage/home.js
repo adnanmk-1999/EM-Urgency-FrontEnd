@@ -1,68 +1,24 @@
 import React from 'react';
-import { Carousel, Card, Button, Row, Col, Container } from 'react-bootstrap';
+import { Card, Button, Row, Col, Container } from 'react-bootstrap';
 import './home.css';
-import home1 from '../../images/home1.jpg';
-import home2 from '../../images/home2.jpg';
+
 import emergencyAlert from '../../images/emergencyAlert.png'
 import buildAKit from '../../images/buildAKit.png'
 import flooding from '../../images/flooding.png'
 import getVaccinated from '../../images/getVaccinated.png'
 import makeAPlan from '../../images/makeAPlan.png'
 import preparednessVideos from '../../images/preparednessVideos.png'
-import home3 from '../../images/home3.jpg';
-import home4 from '../../images/home4.png';
-import home5 from '../../images/home5.jpg';
 
 
 
-
-
-
+import Carousel from "../../components/carousel"
 
 
 function homePage() {
     return (
         <>
-            <Carousel >
-                <Carousel.Item style={{ backgroundColor: 'white' }}>
-                    <img
-                        className="homeImage img-fluid"
-                        src={home5}
-                        alt="First slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item style={{ backgroundColor: 'white' }}>
-                    <img
-                        className='homeImage img-fluid '
-                        src={home2}
-                        alt="Second slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item style={{ backgroundColor: 'white' }}>
-                    <img
-                        className='homeImage img-fluid '
-                        src={home3}
-                        alt="Third slide"
-                    />
-                </Carousel.Item>
-
-                <Carousel.Item style={{ backgroundColor: 'white' }}>
-                    <img
-                        className='homeImage img-fluid '
-                        src={home4}
-                        alt="fourth slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item style={{ backgroundColor: 'white' }}>
-                    <img
-                        className='homeImage img-fluid '
-                        src={home1}
-                        alt="fifth slide"
-                    />
-                </Carousel.Item>
-
-
-            </Carousel>
+            <Carousel />
+          
             <Container>
                 <Row>
                     <Col md={12}>

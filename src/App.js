@@ -1,14 +1,15 @@
-import MyRouter from './components/routers';
 import React from 'react';
 import './App.css';
 import FooterPage from './components/appLayout/footer/footer';
+
+import RouterIndex from './routers';
 
 
 function App(){
   return(
     <>
-    <MyRouter/>
-    <FooterPage/>
+      <RouterIndex />
+      <FooterPage />
     </>
   );
 };
