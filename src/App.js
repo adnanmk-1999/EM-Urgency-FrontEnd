@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import FooterPage from './components/appLayout/footer/footer';
-import UserContextProvider from "./pages/context/provider/userContextProvider.js";
+import UserContextProvider from "./context/provider/userContextProvider";
 import RouterIndex from './routers';
 
 

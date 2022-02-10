@@ -2,13 +2,13 @@ import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap'
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useContext} from "react"
-import UserContext from '../../../pages/context/userContext';
+import UserContext from '../../../context/userContext';
 
 import Logo from "../../../images/logo1.png"
 
 function NavBar(){
   const userContext = useContext(UserContext);
-
+  
     return (
         <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="topnav">
           <Container className="container">
@@ -18,7 +18,8 @@ function NavBar(){
               <Nav className="me-auto">
                 <Nav.Link className="link"><Link to="/" className="linkLink">Home</Link></Nav.Link>
                 <Nav.Link className="link"><Link to="/aboutus" className="linkLink">About</Link></Nav.Link>
-              {localStorage.getItem('roles') === "Role:ADMIN" &&<Nav.Link className="link"><Link to="/admindashboard" className="linkLink">Alert</Link></Nav.Link>}                <Nav.Link className="link"><Link to="/userdashboard" className="linkLink">Response</Link></Nav.Link>
+                <Nav.Link className="link"><Link to="/admindashboard" className="linkLink">Alert</Link></Nav.Link>        
+                <Nav.Link className="link"><Link to="/userdashboard" className="linkLink">Response</Link></Nav.Link>
                 <Nav.Link className="link"><Link to="/contactus" className="linkLink">Contact</Link></Nav.Link>
                 <NavDropdown title="Charts" className="dropNav" id="beautifulThasni">
                   <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/piechart">Alert Chart</Link></NavDropdown.Item>
@@ -27,11 +28,9 @@ function NavBar(){
               </Nav>
               <Nav>
                 {!localStorage.getItem('accessToken') && <Nav.Link className="link" ><Link to="/login" className="linkLink">Sign In</Link></Nav.Link>}
-                {/* {localStorage.getItem('accessToken') && <Nav.Link className="link" ><Link onClick={() => window.location = '/login'} to="/login" className="linkLink">Sign Out</Link></Nav.Link>} */}
                 {userContext.userDetails && <Nav.Link className="link" ><Link onClick={() => {
                     userContext.logout(); window.location = "/login"
                   }} to="/login" className="linkLink">Sign Out</Link></Nav.Link>}
-
               </Nav>
             </Navbar.Collapse>
           </Container>

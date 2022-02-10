@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import './login.css';
 import MicrosoftLogo from '../../images/microsoftLogo.png'
-import UserContext from "../context/userContext";
+import UserContext from "../../context/userContext";
 
 
 
@@ -29,14 +29,14 @@ function Login (){
       axios.post(`http://localhost:4010/users/login`, data)
           .then(response => {
               let role = response.data.roles;
-              const Role="Role:ADMIN";
+              const Role = "Role:ADMIN";
               console.log(role);
               // localStorage.setItem('accessToken', response.data.accessToken)
               // localStorage.setItem('refreshToken', response.data.refreshToken)
               // localStorage.setItem('roles', response.data.roles)
               // localStorage.setItem('username', response.data.username)
               // localStorage.setItem('email', response.data.email)
-              userContext.login(response.data.accessToken,response.data.roles,response.data.username,response.data.email);
+              userContext.login(response.data.accessToken, response.data.roles, response.data.username, response.data.email);
               if(role.includes(Role)){
                 console.log("admin")
                 navigate('/admindashboard')
