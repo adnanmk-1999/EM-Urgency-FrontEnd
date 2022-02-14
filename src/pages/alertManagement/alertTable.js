@@ -165,7 +165,7 @@ function AlertTable() {
         
         icons={{ Add: () => <AddIcon /> }} 
         />
-        <button style = {{width : '100%', color : 'white', backgroundColor: '#EE362D'}}onClick={Toaster.notifyAdd}>Beautiful Thasni</button>
+        <button style = {{width : '100%', color : 'white', backgroundColor: '#EE362D'}}onClick={Toaster.notifyAdd}>Test Toaster</button>
 
       <pre>
         {JSON.stringify(tableData, null, 5)}  
