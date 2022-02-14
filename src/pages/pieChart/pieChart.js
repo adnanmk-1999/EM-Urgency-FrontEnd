@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import roleController from '../../helpers/roleLogin';
 
-function PieChart1() {
+function PieGraph() {
+
+  if(!roleController.isAdmin()){
+    window.location = '/login'
+  }
 
     const [count] = useState(
         {id : 1, success : 40, fail : 10, pending : 10}
@@ -35,4 +40,4 @@ function PieChart1() {
       );
 }
 
-export default PieChart1;
+export default PieGraph;

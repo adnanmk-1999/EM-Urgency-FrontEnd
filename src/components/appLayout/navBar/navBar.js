@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {useContext} from "react"
 import UserContext from '../../../context/userContext';
+import roleController from '../../../helpers/roleLogin';
 
 import Logo from "../../../images/logo1.png"
 
@@ -18,14 +19,13 @@ function NavBar(){
               <Nav className="me-auto">
                 <Nav.Link className="link"><Link to="/" className="linkLink">Home</Link></Nav.Link>
                 <Nav.Link className="link"><Link to="/aboutus" className="linkLink">About</Link></Nav.Link>
-                <Nav.Link className="link"><Link to="/admindashboard" className="linkLink">Alert</Link></Nav.Link>        
-                <Nav.Link className="link"><Link to="/userdashboard" className="linkLink">Response</Link></Nav.Link>
-                <Nav.Link className="link"><Link to="/contactus" className="linkLink">Contact</Link></Nav.Link>
-
-                <NavDropdown title="Charts" className="dropNav" id="beautifulThasni">
+                {roleController.isAdmin() && <Nav.Link className="link"><Link to="/admindashboard" className="linkLink">Alert</Link></Nav.Link>}               
+                 {roleController.isUser() && <Nav.Link className="link"><Link to="/userdashboard" className="linkLink">Response</Link></Nav.Link>}
+                {<Nav.Link className="link"><Link to="/contactus" className="linkLink">Contact</Link></Nav.Link>}
+                { roleController.isAdmin() && <NavDropdown title="Charts" className="dropNav" id="beautifulThasni">
                   <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/piechart"> Alert Chart</Link></NavDropdown.Item>
                   <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/barchart"> Response Chart</Link></NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown>}
               </Nav>
               <Nav>
                 {!localStorage.getItem('accessToken') && <Nav.Link className="link" ><Link to="/login" className="linkLink">Sign In</Link></Nav.Link>}

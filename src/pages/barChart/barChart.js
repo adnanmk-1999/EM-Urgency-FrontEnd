@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import roleController from '../../helpers/roleLogin';
 
-function BarChart1(){
+function BarGraph(){
+
+  if(!roleController.isAdmin()){
+    window.location = '/login'
+  }
 
     const [data] = useState([
         { name: "Christmas", NotResponded: 30, Responded: 35 },
@@ -38,4 +43,4 @@ function BarChart1(){
       );
 }
 
-export default BarChart1;
+export default BarGraph;

@@ -1,41 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table'
-import {AddIcon} from '@material-ui/icons/Add';
+import { AddIcon } from '@material-ui/icons/Add';
 import RespondBox from './components/respondBox';
-
+import axios from 'axios';
+import axiosConfig from '../../helpers/axiosConfig';
 import './userResponse.css';
-
+import roleController from '../../helpers/roleLogin';
 
 function UserResponse() {
 
-  const [responseData] = useState([
-    { id : "1", No:"1", date: "2020-04-07", category: "announcement", subject : "Subject 1", message: "1 All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
-    { id : "2", No:"2",  date: "2022-01-10", category: "alert", subject : "Subject 2", message: "2 All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
-    { id : "3", No:"3",  date: "2020-04-07", category: "event", subject : "Subject 3", message: " 3 All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
-    { id : "4", No:"4", date: "2020-04-07", category: "announcement", subject : "Subject 4", message: " 4 All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
-    { id : "5", No:"5", date: "2020-04-07", category: "event", subject : "Subject 5", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
-    { id : "6", No:"6", date: "2020-04-07", category: "alert", subject : "Subject 6", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
-    { id : "7", No:"7", date: "2020-04-07", category: "announcement", subject : "Subject 7", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
-    { id : "8", No:"8", date: "2020-04-07", category: "announcement", subject : "Subject 8", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "no"},
-    { id : "9", No:"9", date: "2020-04-07", category: "event", subject : "Subject 9", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
-    { id : "10", No:"10", date: "2020-04-07", category: "event", subject : "Subject 10", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "no"},
-    { id : "11", No:"11", date: "2020-04-07", category: "alert", subject : "Subject 11", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "yes"},
-    { id : "12", No:"12", date: "2020-04-07", category: "alert", subject : "Subject 12", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "no"},
-    { id : "13", No:"13", date: "2020-04-07", category: "announcement", subject : "Subject 13", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"},
-    { id : "14", No:"14", date: "2020-04-07", category: "event", subject : "Subject 14", message: "All employees are requsted to update their pending leaves before 14 Jan", reply: "pending"}
-  ])
+  if(!roleController.isUser()){
+    window.location = '/login'
+  }
+
+  
+const [responseData, setResponseData] = useState([])
 
   const columns = [
-    { title: "No", field: "No", filterPlaceholder: "filter"},
-    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue : new Date()}, 
-    { title: "Category", field: "category",filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement : "Announcement" } },
-    { title: "Subject", field: "subject", filterPlaceholder: "filter"},
-    { title: "Messsage", field: "message", filterPlaceholder: "filter"},
-    { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { pending : "Pending", yes : "Yes", no : "No" }},
+    { title: "No", field: "No", filterPlaceholder: "filter" },
+    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date() },
+    { title: "Category", field: "category", filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement: "Announcement" } },
+    { title: "Subject", field: "subject", filterPlaceholder: "filter" },
+    { title: "Messsage", field: "message", filterPlaceholder: "filter" },
+    { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { pending: "Pending", yes: "Yes", no: "No" } },
   ]
 
+ //Get alerts 
+  useEffect(() => {
+    axios(axiosConfig.getConfig('http://localhost:4010/users/response')) //gets data from api
+      .then(response => {
+        console.log('Promise fullfilled'); //if data recieved, output
+        console.log(response); //display output (responce)
+        setResponseData(response.data); //save only 'data' in response to the state
+      })
+      .catch(() => {
+        alert('Session Timed out login again')
+        window.location ='/login'
+      });
+  }, []);
+
+
   //State to store the message to be displayed in the message box, which is in another component
-  const [message, setMessage] = useState('mess'); 
+  const [message, setMessage] = useState('mess');
 
   const [openDialogue, setOpenDialogue] = useState(false);
 
@@ -44,85 +50,85 @@ function UserResponse() {
     setMessage(props.data.message)
     setOpenDialogue(true)
   }
- 
+
 
   return (
     <>
 
-    { openDialogue && <RespondBox content={message} handleClose = {() => setOpenDialogue(false)}/>}
-    <div className="App">
-        
-      
+      {openDialogue && <RespondBox content={message} handleClose={() => setOpenDialogue(false)} />}
+      <div className="App">
 
-       <MaterialTable
-        title="Response"
-        columns={columns} 
-        data={responseData}
-        
-        options={{
-          sorting: true, 
-          search: true,
-          searchFieldAlignment: "right", 
-          searchAutoFocus: true, 
-          searchFieldVariant: "standard",
-          filtering: true, 
-          paging: true, 
-          pageSizeOptions: [2, 5, 10, 20, 25, 50, 100], 
-          pageSize: 5,
-          paginationType: "stepped", 
-          showFirstLastPageButtons: false, 
-          paginationPosition: "bottom", 
-          exportButton: true,
-          exportAllData: true, 
-          exportFileName: "TableData", 
-          addRowPosition: "first", 
-          actionsColumnIndex: -1, 
-          selection: false,
-          showSelectAllCheckbox: true, 
-          showTextRowsSelected: true, 
-          // selectionProps: rowData => ({
-          //   disabled: rowData.status == "pending",
-          //   // color:"primary"
-          // }),
-          grouping: true, 
-          columnsButton: true,
-          rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          headerStyle: { background: "#FC816D",color:"#fff"}
-        }}
 
-        actions={[
-                {
-                    icon : "reply",
-                    tooltip: 'Sent response',
-                    onClick: (data, rowData) => {
-                    console.log("row data is", rowData)
-                    
-                  }
-                }  
-        ]}
-        
-        components={{
-          Action: props => (
-            <>
 
-            <button className='respondBoxButton' variant="outlined" onClick={(event) => handleClickOpen(props, event)}>
-              Respond
-            </button>
+        <MaterialTable
+          title="Response"
+          columns={columns}
+          data={responseData}
 
-            </>
-          ),
-        }}
+          options={{
+            sorting: true,
+            search: true,
+            searchFieldAlignment: "right",
+            searchAutoFocus: true,
+            searchFieldVariant: "standard",
+            filtering: true,
+            paging: true,
+            pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
+            pageSize: 5,
+            paginationType: "stepped",
+            showFirstLastPageButtons: false,
+            paginationPosition: "bottom",
+            exportButton: true,
+            exportAllData: true,
+            exportFileName: "TableData",
+            addRowPosition: "first",
+            actionsColumnIndex: -1,
+            selection: false,
+            showSelectAllCheckbox: true,
+            showTextRowsSelected: true,
+            // selectionProps: rowData => ({
+            //   disabled: rowData.status == "pending",
+            //   // color:"primary"
+            // }),
+            grouping: true,
+            columnsButton: true,
+            rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
+            headerStyle: { background: "#FC816D", color: "#fff" }
+          }}
 
-        onSelectionChange={(selectedRows) => console.log(selectedRows)}
-        
-        icons={{ Add: () => <AddIcon /> }} 
+          actions={[
+            {
+              icon: "reply",
+              tooltip: 'Sent response',
+              onClick: (data, rowData) => {
+                console.log("row data is", rowData)
+
+              }
+            }
+          ]}
+
+          components={{
+            Action: props => (
+              <>
+
+                <button className='respondBoxButton' variant="outlined" onClick={(event) => handleClickOpen(props, event)}>
+                  Respond
+                </button>
+
+              </>
+            ),
+          }}
+
+          onSelectionChange={(selectedRows) => console.log(selectedRows)}
+
+          icons={{ Add: () => <AddIcon /> }}
         />
 
-      <pre>
-        {JSON.stringify(message, null, 5)}  
-      </pre>
+        <pre>
+          {JSON.stringify(message, null, 5)}
+        </pre>
 
-    </div>
+      </div>
     </>
 
   );

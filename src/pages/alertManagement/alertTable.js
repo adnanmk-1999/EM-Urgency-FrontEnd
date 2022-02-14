@@ -3,11 +3,15 @@ import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import roleController from '../../helpers/roleLogin';
 import Toaster from '../../components/toaster';
-import axiosConfig from '../../components/axiosConfig';
+import axiosConfig from '../../helpers/axiosConfig';
 
 function AlertTable() {
+
+  if(!roleController.isAdmin()){
+    window.location = '/login'
+  }
 
   const [tableData, setTableData] = useState([]);
   
@@ -17,7 +21,8 @@ function AlertTable() {
   useEffect(() => {
     axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
     .then(response => {
-      console.log('Promise fullfilled'); //if data recieved, output
+      console.log('Promise fullfilled');
+      console.log(localStorage.getItem('roles')) //if data recieved, output
       console.log(response); //display output (responce)
       setTableData(response.data); //save only 'data' in response to the state
       })
