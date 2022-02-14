@@ -156,7 +156,7 @@ function AlertTable() {
             tooltip: 'Sent Mail',
             onClick: (event, rowData) => {
               console.log("row data is", rowData)
-              Navigate('/emaildropdown')              
+              Navigate('/sendemail')              
             }
           }
         ]}

@@ -29,7 +29,7 @@ function RouterIndex(){
                     <Route path="/" element={<HomePage />} />
                     <Route path="*" element={<NoMatch />} />
                     <Route path="/admindashboard" element={<AlertTable />} />
-                    <Route path="/emaildropdown" element={<EmailDropdown />} />
+                    <Route path="/sendemail" element={<EmailDropdown />} />
                     <Route path="/piechart" element={<PieChart />} />
                     <Route path="/barchart" element={<BarChart />} />
                     <Route path="/login" element={<Login />} />

@@ -21,11 +21,10 @@ function NavBar(){
                 <Nav.Link className="link"><Link to="/admindashboard" className="linkLink">Alert</Link></Nav.Link>        
                 <Nav.Link className="link"><Link to="/userdashboard" className="linkLink">Response</Link></Nav.Link>
                 <Nav.Link className="link"><Link to="/contactus" className="linkLink">Contact</Link></Nav.Link>
-                <Nav.Link className="link"><Link to="/emaildropdown" className="linkLink">Send</Link></Nav.Link>
 
-                <NavDropdown title="Charts" className="dropNav" id="">
-                  <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/piechart">Alert Chart</Link></NavDropdown.Item>
-                  <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/barchart">Response Chart</Link></NavDropdown.Item>
+                <NavDropdown title="Charts" className="dropNav" id="beautifulThasni">
+                  <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/piechart"> Alert Chart</Link></NavDropdown.Item>
+                  <NavDropdown.Item className="linkItem"><Link className="linkItemContent" to="/barchart"> Response Chart</Link></NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               <Nav>
