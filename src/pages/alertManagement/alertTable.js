@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useHistory} from 'react-router-dom';
 import axios from 'axios';
 import roleController from '../../helpers/roleLogin';
 import Toaster from '../../components/toaster';
 import axiosConfig from '../../helpers/axiosConfig';
 
-function AlertTable() {
+function AlertTable(props) {
 
   if(!roleController.isAdmin()){
     window.location = '/login'
@@ -16,6 +16,8 @@ function AlertTable() {
   const [tableData, setTableData] = useState([]);
   
   const Navigate = useNavigate();
+  const history = useHistory();
+
 
   //Get alerts 
   useEffect(() => {
@@ -31,6 +33,14 @@ function AlertTable() {
       window.location = '/login'
       });
     },[]);
+
+   const redirectToReport = (rowData) => {
+      
+      history.push({
+        pathname: "/sendemail",
+        state: { id: rowData.id } // your row data
+      });
+    };
     
   const columns = [
     {
@@ -161,7 +171,8 @@ function AlertTable() {
             tooltip: 'Sent Mail',
             onClick: (event, rowData) => {
               console.log("row data is", rowData)
-              Navigate('/sendemail')              
+              // Navigate('/sendemail')   
+              redirectToReport(rowData);           
             }
           }
         ]}

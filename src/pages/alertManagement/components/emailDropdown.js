@@ -1,14 +1,20 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import "./emailDropdown.css";
 import {Card, Container, Row, Col} from 'react-bootstrap';
+import axios from 'axios';
+import axiosConfig from '../../../helpers/axiosConfig';
+
 
 function EmailDropdown(props) {
 
     const [option, setOption] = useState({
         value : "0"
     })
+
+    const [data,setData] = useState({props})
+    console.log(data);
 
     const [tableData] = useState([
         { id : "1", name: "Adnan", email: "adnan@gmail.com"},
@@ -29,6 +35,28 @@ function EmailDropdown(props) {
       ]
     
     const Navigate = useNavigate();
+    const location = useLocation();
+    console.log(location.state.id);
+
+    function handleSubmit(event){
+        event.preventDefault();
+        
+        if(option.value === "1"){
+        
+        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/all`,data))
+            .then(response => {
+               alert('message send to all users')
+            })
+            .catch(error =>{
+                localStorage.clear();
+                if(error.response){
+                    alert(error.response.data.message)  //=> response payload
+                }
+            })
+    }};
+
+    
+  
 
     function handleChange (event) {
         const val = event.target.value
@@ -125,7 +153,7 @@ function EmailDropdown(props) {
                                             }
 
                                             <br />
-                                            <button className="goBack" type="button">Send</button> &nbsp;&nbsp;
+                                            <button className="goBack" type="button" onClick={handleSubmit}>Send</button> &nbsp;&nbsp;
                                             <button type="button" onClick={() => Navigate('/admindashboard')} className='goBack'>Go Back</button>
                                         </Card.Text>
                                     </Card.Body>
