@@ -43,7 +43,8 @@
 
 
 .link:hover {
-  background-color: #FC816D;
+ /* background-color: #FC816D;*/
+ background-color: #FFC0B1;
   color: white;
 }
 
@@ -65,7 +66,8 @@
 }
 
 .linkLink:hover{
-  background-color: #FC816D;
+  /*background-color: #FC816D;*/
+  background-color: #FFC0B1;
   color: white;
 }
 
@@ -75,7 +77,8 @@
 
 
 #beautifulThasni:hover{
-  background-color: #FC816D;
+  /* background-color: #FC816D; */
+  background-color: #FFC0B1;
   color: white;
 }
 
@@ -88,7 +91,8 @@
 }
 
 .dropNav:hover{
-  background-color: #FC816D;
+  /* background-color: #FC816D; */
+  background-color: #FFC0B1;
   color: white;
 }
 
@@ -101,7 +105,8 @@
 }
 
 .linkItem:hover {
-  background-color: #FC816D;
+  /* background-color: #FC816D; */
+  background-color: #FFC0B1;
   color: white;
 }
 
@@ -111,7 +116,8 @@
 }
 
 .linkItemContent:hover {
-  background-color: #FC816D;
+  /* background-color: #FC816D; */
+  background-color: #FFC0B1;
   color: white;
 }
 
