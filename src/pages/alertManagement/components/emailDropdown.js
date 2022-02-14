@@ -9,12 +9,16 @@ import axiosConfig from '../../../helpers/axiosConfig';
 
 function EmailDropdown(props) {
 
+    const Navigate = useNavigate();
+    const location = useLocation();
+
+    const [check,setCheck] = useState([])
     const [option, setOption] = useState({
         value : "0"
     })
 
-    const [data,setData] = useState({props})
-    console.log(data);
+    const [data,setData] = useState({"alertId":location.state.id})
+    console.log("alertid",data);
 
     const [tableData] = useState([
         { id : "1", name: "Adnan", email: "adnan@gmail.com"},
@@ -34,15 +38,15 @@ function EmailDropdown(props) {
         { title: "Email", field: "email", filterPlaceholder: "filter"}
       ]
     
-    const Navigate = useNavigate();
-    const location = useLocation();
-    console.log(location.state.id);
 
     function handleSubmit(event){
         event.preventDefault();
+        if(option.value === "0"){
+            alert("please select an option");
+        }
         
-        if(option.value === "1"){
-        
+        else if(option.value === "1"){
+    
         axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/all`,data))
             .then(response => {
                alert('message send to all users')
@@ -53,7 +57,21 @@ function EmailDropdown(props) {
                     alert(error.response.data.message)  //=> response payload
                 }
             })
-    }};
+        }
+
+    else if(option.value === "2"){
+        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/department`,data))
+        .then(response => {
+           alert('message send to department')
+        })
+        .catch(error =>{
+            localStorage.clear();
+            if(error.response){
+                alert(error.response.data.message)  //=> response payload
+            }
+        })
+}};
+
 
     
   
@@ -62,6 +80,13 @@ function EmailDropdown(props) {
         const val = event.target.value
         console.log(event.target.value)
         setOption({value : val })
+      };
+     
+      function handleChangeCheck (event) {
+        const val = event.target.value
+        setCheck(values => ([...values,val]))
+        console.log(check)
+      
       };
 
     return(
@@ -92,11 +117,11 @@ function EmailDropdown(props) {
                                                 option.value === "2" ?
                                                     <div className='dept'>
                                                         <label className='department'>Departments: </label><br />
-                                                        <input type="checkbox" id="" name="" value="" className='checkbox'></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="1" className='checkbox' onChange={handleChangeCheck}></input> &nbsp;
                                                         <label for="" className='departments'>Digital Tranformation Services</label><br /> 
-                                                        <input type="checkbox" id="" name="" value="" className='checkbox'></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="2" className='checkbox' onChange={handleChangeCheck}></input> &nbsp;
                                                         <label for="" className='departments'>Product Engineering Services</label><br />
-                                                        <input type="checkbox" id="" name="" value="" className='checkbox'></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="3" className='checkbox' onChange={handleChangeCheck}></input> &nbsp;
                                                         <label for="" className='departments'>Enterprice Software Services</label><br />
                                                     </div>
                                                     : null

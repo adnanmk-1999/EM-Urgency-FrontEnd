@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
-import { useNavigate,useHistory} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import roleController from '../../helpers/roleLogin';
 import Toaster from '../../components/toaster';
@@ -15,8 +15,7 @@ function AlertTable(props) {
 
   const [tableData, setTableData] = useState([]);
   
-  const Navigate = useNavigate();
-  const history = useHistory();
+  const navigate = useNavigate();
 
 
   //Get alerts 
@@ -36,8 +35,7 @@ function AlertTable(props) {
 
    const redirectToReport = (rowData) => {
       
-      history.push({
-        pathname: "/sendemail",
+      navigate('/sendemail',{
         state: { id: rowData.id } // your row data
       });
     };
