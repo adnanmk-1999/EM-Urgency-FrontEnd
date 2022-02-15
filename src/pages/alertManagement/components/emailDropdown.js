@@ -9,7 +9,7 @@ import axiosConfig from '../../../helpers/axiosConfig';
 
 function EmailDropdown(props) {
 
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
 
     const [check, setCheck] = useState([])
@@ -21,18 +21,19 @@ function EmailDropdown(props) {
     const [data, setData] = useState({"alertId":location.state.id})
     console.log("alertid",data);
 
-    const [tableData] = useState([
-        { id : "1", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "2", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "3", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "4", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "5", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "6", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "7", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "8", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "9", name: "Adnan", email: "adnan@gmail.com"},
-        { id : "10", name: "Adnan", email: "adnan@gmail.com"},
-      ])
+    const [tableData, setTableData] = useState([])
+
+    useEffect(() => {
+        axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
+        .then(response => {
+          console.log('Promise fullfilled');
+          console.log(response); //display output (responce)
+          setTableData(response.data); //save only 'data' in response to the state
+          })
+        .catch(() => {
+          alert('Session Timed out login again')
+          });
+        },[]);
 
       const columns = [
         { title: "Name", field: "name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }}, 
@@ -51,6 +52,8 @@ function EmailDropdown(props) {
         axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/all`,data))
             .then(response => {
                alert('message send to all users')
+               navigate('/admindashboard')
+               
             })
             .catch(error =>{
                 localStorage.clear();
@@ -64,6 +67,7 @@ function EmailDropdown(props) {
         axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/departments`,data))
         .then(response => {
            alert('message send to department')
+           navigate('/admindashboard')
         })
         .catch(error =>{
             localStorage.clear();
@@ -76,6 +80,7 @@ function EmailDropdown(props) {
             axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/locations`,data))
             .then(response => {
                alert('message send to location')
+               navigate('/admindashboard')
             })
             .catch(error =>{
                 localStorage.clear();
@@ -228,7 +233,7 @@ function EmailDropdown(props) {
 
                                             <br />
                                             <button className="goBack" type="button" onClick={handleSubmit}>Send</button> &nbsp;&nbsp;
-                                            <button type="button" onClick={() => Navigate('/admindashboard')} className='goBack'>Go Back</button>
+                                            <button type="button" onClick={() => navigate('/admindashboard')} className='goBack'>Go Back</button>
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>

@@ -14,9 +14,10 @@ function AlertTable(props) {
   }
 
   const [tableData, setTableData] = useState([]);
+
+  const[reRender, setreRender] = useState('one time')
   
   const navigate = useNavigate();
-
 
   //Get alerts 
   useEffect(() => {
@@ -31,7 +32,7 @@ function AlertTable(props) {
       alert('Session Timed out login again')
       window.location = '/login'
       });
-    },[]);
+    },[reRender]);
 
    const redirectToReport = (rowData) => {
       
@@ -96,7 +97,8 @@ function AlertTable(props) {
             setTableData([ {...newRow, statusName : "Draft"}, ...tableData])
             setTimeout(() => {
               Toaster.notifyAdd()
-              addRow(newRow)
+              addRow(newRow);
+              setreRender('second time')
               resolve()
             }, 500)
           }),
@@ -195,7 +197,6 @@ function addRow(data){
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);  
-      
   })
 }
 
