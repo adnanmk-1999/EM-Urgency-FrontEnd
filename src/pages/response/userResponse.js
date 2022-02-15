@@ -14,7 +14,8 @@ function UserResponse() {
   }
 
   
-const [responseData, setResponseData] = useState([])
+const [responseData, setResponseData] = useState([
+])
 
   const columns = [
     { title: "No", field: "No", filterPlaceholder: "filter" },

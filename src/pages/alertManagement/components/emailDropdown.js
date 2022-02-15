@@ -1,5 +1,5 @@
 import { useNavigate,useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import "./emailDropdown.css";
 import {Card, Container, Row, Col} from 'react-bootstrap';
@@ -12,12 +12,12 @@ function EmailDropdown(props) {
     const Navigate = useNavigate();
     const location = useLocation();
 
-    const [check,setCheck] = useState([])
+    const [check, setCheck] = useState([])
     const [option, setOption] = useState({
         value : "0"
     })
 
-    const [data,setData] = useState({"alertId":location.state.id})
+    const [data, setData] = useState({"alertId":location.state.id})
     console.log("alertid",data);
 
     const [tableData] = useState([
@@ -73,9 +73,6 @@ function EmailDropdown(props) {
 }};
 
 
-    
-  
-
     function handleChange (event) {
         const val = event.target.value
         console.log(event.target.value)
@@ -83,13 +80,23 @@ function EmailDropdown(props) {
       
       };
      
-      function handleChangeCheck (event) {
-        const val = event.target.value
-        console.log(val)
-        setCheck(values => ([...values,val]))
-        console.log(check)
-      
+    function handleChangeCheck (event) {
+        const val = event.target.value;
+        var array = check; 
+        if (array.includes(val)){
+            array.splice(array.indexOf(val), 1);
+            setCheck(array);
+            console.log(check)
+        }
+        else{
+           setCheck(values => ([...values, val])) 
+        }
+        
       };
+
+    useEffect(()=> {
+        console.log(check)
+    }, [check])
 
     return(
         <>
