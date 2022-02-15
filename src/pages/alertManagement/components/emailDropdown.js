@@ -13,6 +13,7 @@ function EmailDropdown(props) {
     const location = useLocation();
 
     const [check, setCheck] = useState([])
+    const [checkLocation, setCheckLocation]=useState([])
     const [option, setOption] = useState({
         value : "0"
     })
@@ -60,7 +61,7 @@ function EmailDropdown(props) {
         }
 
     else if(option.value === "2"){
-        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/department`,data))
+        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/departments`,data))
         .then(response => {
            alert('message send to department')
         })
@@ -70,6 +71,18 @@ function EmailDropdown(props) {
                 alert(error.response.data.message)  //=> response payload
             }
         })
+    }
+    else if(option.value === "3"){
+            axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/locations`,data))
+            .then(response => {
+               alert('message send to location')
+            })
+            .catch(error =>{
+                localStorage.clear();
+                if(error.response){
+                    alert(error.response.data.message)  //=> response payload
+                }
+            })
 }};
 
 
@@ -77,26 +90,53 @@ function EmailDropdown(props) {
         const val = event.target.value
         console.log(event.target.value)
         setOption({value : val })
+        setData({"alertId":data.alertId, "departmentId":[], "locationId":[]});
       
       };
      
-    function handleChangeCheck (event) {
+    function handleChangeCheckDepartment (event) {
         const val = event.target.value;
         var array = check; 
         if (array.includes(val)){
             array.splice(array.indexOf(val), 1);
             setCheck(array);
             console.log(check)
+            setData(values=>({...values, "departmentId":check}))
         }
         else{
            setCheck(values => ([...values, val])) 
         }
-        
+
       };
+
+    useEffect(()=>{
+        console.log(data)
+    }, [data])  
 
     useEffect(()=> {
         console.log(check)
+        setData(values=>({...values, "departmentId":check})) 
     }, [check])
+
+    function handleChangeCheckLocation (event) {
+        const val = event.target.value;
+        var arrayLocation = checkLocation; 
+        if (arrayLocation.includes(val)){
+            arrayLocation.splice(arrayLocation.indexOf(val), 1);
+            setCheckLocation(arrayLocation);
+            console.log(checkLocation)
+            setData(values=>({...values, "locationId":checkLocation}))
+        }
+        else{
+           setCheckLocation(values => ([...values, val])) 
+        }
+
+      };
+
+    useEffect(()=> {
+        console.log(checkLocation)
+        setData(values=>({...values, "locationId":checkLocation})) 
+    }, [checkLocation])
 
     return(
         <>
@@ -126,11 +166,11 @@ function EmailDropdown(props) {
                                                 option.value === "2" ?
                                                     <div className='dept'>
                                                         <label className='department'>Departments: </label><br />
-                                                        <input type="checkbox" id="" name="" value="1" className='checkbox' onChange={handleChangeCheck}></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="1" className='checkbox' onChange={handleChangeCheckDepartment}></input> &nbsp;
                                                         <label for="" className='departments'>Digital Tranformation Services</label><br /> 
-                                                        <input type="checkbox" id="" name="" value="2" className='checkbox' onChange={handleChangeCheck}></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="2" className='checkbox' onChange={handleChangeCheckDepartment}></input> &nbsp;
                                                         <label for="" className='departments'>Product Engineering Services</label><br />
-                                                        <input type="checkbox" id="" name="" value="3" className='checkbox' onChange={handleChangeCheck}></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="3" className='checkbox' onChange={handleChangeCheckDepartment}></input> &nbsp;
                                                         <label for="" className='departments'>Enterprice Software Services</label><br />
                                                     </div>
                                                     : null
@@ -141,11 +181,11 @@ function EmailDropdown(props) {
                                                     <div className='dept'>
                                                         <label className='location'>Locations: </label>
                                                         <br />
-                                                        <input type="checkbox" id="" name="" value="" className=''></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="1" className='' onChange={handleChangeCheckLocation}></input> &nbsp;
                                                         <label for="" className='locations'>Thiruvananthapuram</label><br />
-                                                        <input type="checkbox" id="" name="" value="" className=''></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="2" className='' onChange={handleChangeCheckLocation}></input> &nbsp;
                                                         <label for="" className='locations'>Bengaluru</label><br />
-                                                        <input type="checkbox" id="" name="" value="" className=''></input> &nbsp;
+                                                        <input type="checkbox" id="" name="" value="3" className='' onChange={handleChangeCheckLocation}></input> &nbsp;
                                                         <label for="" className='locations'>Kochi</label><br />
                                                     </div>
                                                     : null
