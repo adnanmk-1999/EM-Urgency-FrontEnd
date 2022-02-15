@@ -11,11 +11,10 @@ function EmailDropdown(props) {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const data2 = [];
 
     const [check, setCheck] = useState([])
     const [checkLocation, setCheckLocation]=useState([])
-    // const [checkIndividual, setCheckIndividual]=useState([])
+    const [sendList, setSendList] = useState([])
     const [option, setOption] = useState({
         value : "0"
     })
@@ -29,28 +28,27 @@ function EmailDropdown(props) {
 
     useEffect(() => {
         axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
-        .then(response => {
-          console.log('Promise fullfilled');
-          console.log(response); //display output (responce)
-          setTableData(response.data); //save only 'data' in response to the state
-          })
-        .catch(() => {
-          alert('Session Timed out login again')
-          });
-        },[]);
-
-        useEffect(() => {
-            axios(axiosConfig.getConfig('http://localhost:4010/users')) //gets data from api
             .then(response => {
-              console.log('get all users');
-              console.log(response); //display output (responce)
-              setTableData(response.data); //save only 'data' in response to the state
-              
+                console.log('Promise fullfilled');
+                console.log(response); //display output (responce)
+                setTableData(response.data); //save only 'data' in response to the state
             })
             .catch(() => {
-              alert('Session Timed out login again')
-              });
-            },[]);
+                alert('Session Timed out login again')
+            });
+    }, []);
+
+    useEffect(() => {
+        axios(axiosConfig.getConfig('http://localhost:4010/users')) //gets data from api
+            .then(response => {
+                console.log('get all users');
+                console.log(response); //display output (responce)
+                setTableData(response.data); //save only 'data' in response to the state
+            })
+            .catch(() => {
+                alert('Session Timed out login again')
+            });
+    }, [option]);
 
 
       const columns = [
@@ -109,7 +107,14 @@ function EmailDropdown(props) {
             })
     }
     else{
-        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`,data))
+
+        var sendIndividual = {
+            ...data, 'individualId': sendList
+        }
+        console.log(sendIndividual)
+        console.log(sendIndividual.individualId)
+
+        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`, sendIndividual))
         .then(response => {
            alert('message send to individual')
            navigate('/admindashboard')
@@ -129,9 +134,7 @@ function EmailDropdown(props) {
         const val = event.target.value
         console.log(event.target.value)
         setOption({value : val })
-        setData({"alertId":data.alertId, "departmentId":[], "locationId":[]});
-        // "individualId":[]
-      
+        setData({"alertId":data.alertId, "departmentId":[], "locationId":[]});      
       };
      
     function handleChangeCheckDepartment (event) {
@@ -198,6 +201,16 @@ function EmailDropdown(props) {
     //     console.log(checkIndividual)
     //     setData(values=>({...values, "individualId":checkIndividual})) 
     // }, [checkIndividual])
+
+    function individualSendList(list){
+        var sendList = []
+        for(var i = 0; i < list.length; i++){
+            var element = list[i].Id
+            sendList.push(element);
+        }
+        console.log(sendList)
+        setSendList(sendList)
+    }
 
     return(
         <>
@@ -282,8 +295,8 @@ function EmailDropdown(props) {
                                                                 rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                                                                 headerStyle: { background: "#FC816D", color: "#fff" }
                                                             }}
-                                                            onSelectionChange={(selectedRows) => console.log(selectedRows[0].Id)} 
-                                                            // console.log(selectedRows)
+                                                            onSelectionChange={(selectedRows) => {console.log(selectedRows); individualSendList(selectedRows) }} 
+                                                            
                                                         />
                                                     </div>
                                                     : null
@@ -303,4 +316,7 @@ function EmailDropdown(props) {
         </>
  )
 }
+
+
+
 export default EmailDropdown;
