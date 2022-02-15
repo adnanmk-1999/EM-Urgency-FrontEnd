@@ -22,6 +22,8 @@ function EmailDropdown(props) {
     console.log("alertid",data);
 
     const [tableData, setTableData] = useState([])
+   var user=tableData;
+   console.log(user)
 
     useEffect(() => {
         axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
@@ -35,8 +37,23 @@ function EmailDropdown(props) {
           });
         },[]);
 
+        useEffect(() => {
+            axios(axiosConfig.getConfig('http://localhost:4010/users')) //gets data from api
+            .then(response => {
+              console.log('get all users');
+              console.log(response); //display output (responce)
+              setTableData(response.data); //save only 'data' in response to the state
+              
+            })
+            .catch(() => {
+              alert('Session Timed out login again')
+              });
+            },[]);
+
+
       const columns = [
-        { title: "Name", field: "name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }}, 
+        { title: "Name", field: "name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }
+    }, 
         { title: "Email", field: "email", filterPlaceholder: "filter"}
       ]
     
@@ -203,6 +220,7 @@ function EmailDropdown(props) {
                                                             title="Select employees"
                                                             columns={columns}
                                                             data={tableData}
+                                                        
                                                             options={{
                                                                 sorting: true,
                                                                 search: true,
