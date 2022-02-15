@@ -195,6 +195,7 @@ function addRow(data){
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);  
+      
   })
 }
 
