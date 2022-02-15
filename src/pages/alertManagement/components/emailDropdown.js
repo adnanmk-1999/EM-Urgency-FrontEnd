@@ -11,9 +11,11 @@ function EmailDropdown(props) {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const data2 = [];
 
     const [check, setCheck] = useState([])
     const [checkLocation, setCheckLocation]=useState([])
+    // const [checkIndividual, setCheckIndividual]=useState([])
     const [option, setOption] = useState({
         value : "0"
     })
@@ -52,9 +54,9 @@ function EmailDropdown(props) {
 
 
       const columns = [
-        { title: "Name", field: "name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }
-    }, 
-        { title: "Email", field: "email", filterPlaceholder: "filter"}
+        {title: "Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }},
+            {title: "Name", field: "Name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }},
+           {title: "Email", field: "Email", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }},
       ]
     
 
@@ -105,7 +107,22 @@ function EmailDropdown(props) {
                     alert(error.response.data.message)  //=> response payload
                 }
             })
-}};
+    }
+    else{
+        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`,data))
+        .then(response => {
+           alert('message send to individual')
+           navigate('/admindashboard')
+        })
+        .catch(error =>{
+            localStorage.clear();
+            if(error.response){
+                alert(error.response.data.message)  //=> response payload
+            }
+        })
+}
+
+};
 
 
     function handleChange (event) {
@@ -113,6 +130,7 @@ function EmailDropdown(props) {
         console.log(event.target.value)
         setOption({value : val })
         setData({"alertId":data.alertId, "departmentId":[], "locationId":[]});
+        // "individualId":[]
       
       };
      
@@ -159,6 +177,27 @@ function EmailDropdown(props) {
         console.log(checkLocation)
         setData(values=>({...values, "locationId":checkLocation})) 
     }, [checkLocation])
+
+    // function handleChangeCheckIndividual (event) {
+    //     const val = event.target.value;
+    //     var arrayIndividual = checkIndividual; 
+    //     console.log(arrayIndividual);
+    //     if (arrayIndividual.includes(val)){
+    //         arrayIndividual.splice(arrayIndividual.indexOf(val), 1);
+    //         setCheckIndividual(arrayIndividual);
+    //         console.log(checkIndividual)
+    //         setData(values=>({...values, "individualId":checkIndividual}))
+    //     }
+    //     else{
+    //        setCheckIndividual(values => ([...values, val])) 
+    //     }
+
+    //   };
+
+    // useEffect(()=> {
+    //     console.log(checkIndividual)
+    //     setData(values=>({...values, "individualId":checkIndividual})) 
+    // }, [checkIndividual])
 
     return(
         <>
@@ -220,7 +259,7 @@ function EmailDropdown(props) {
                                                             title="Select employees"
                                                             columns={columns}
                                                             data={tableData}
-                                                        
+                                                            // onChange={handleChangeCheckIndividual}
                                                             options={{
                                                                 sorting: true,
                                                                 search: true,
@@ -243,7 +282,8 @@ function EmailDropdown(props) {
                                                                 rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                                                                 headerStyle: { background: "#FC816D", color: "#fff" }
                                                             }}
-                                                            onSelectionChange={(selectedRows) => console.log(selectedRows)}
+                                                            onSelectionChange={(selectedRows) => console.log(selectedRows[0].Id)} 
+                                                            // console.log(selectedRows)
                                                         />
                                                     </div>
                                                     : null
