@@ -80,10 +80,12 @@ function EmailDropdown(props) {
         const val = event.target.value
         console.log(event.target.value)
         setOption({value : val })
+      
       };
      
       function handleChangeCheck (event) {
         const val = event.target.value
+        console.log(val)
         setCheck(values => ([...values,val]))
         console.log(check)
       
