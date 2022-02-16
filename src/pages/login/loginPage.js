@@ -36,7 +36,7 @@ function Login (){
               // localStorage.setItem('roles', response.data.roles)
               // localStorage.setItem('username', response.data.username)
               // localStorage.setItem('email', response.data.email)
-              userContext.login(response.data.accessToken, response.data.roles, response.data.username, response.data.email);
+              userContext.login(response.data.accessToken, response.data.roles, response.data.username, response.data.email,response.data.refreshToken);
               if(role.includes(Role)){
                 console.log("admin")
                 navigate('/admindashboard')

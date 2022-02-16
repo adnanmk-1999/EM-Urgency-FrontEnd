@@ -14,6 +14,7 @@ function AlertTable(props) {
   }
 
   const [tableData, setTableData] = useState([]);
+  // const [data, setdata] = useState({})
 
   const[reRender, setreRender] = useState('one time')
   
@@ -22,22 +23,35 @@ function AlertTable(props) {
   //Get alerts 
   useEffect(() => {
     axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
-    .then(response => {
-      console.log('Promise fullfilled');
-      console.log(localStorage.getItem('roles')) //if data recieved, output
-      console.log(response); //display output (responce)
-      setTableData(response.data); //save only 'data' in response to the state
+      .then(response => {
+        console.log('Promise fullfilled');
+        console.log(localStorage.getItem('roles')) //if data recieved, output
+        console.log(response); //display output (responce)
+        setTableData(response.data); //save only 'data' in response to the state
       })
-    .catch(() => {
-      alert('Session Timed out login again')
-      window.location = '/login'
-      });
-    },[reRender]);
+      // .catch(() => {
+      //   alert('trying to relogin');
+      //   setdata(localStorage.getItem('refreshToken'))
+      //   console.log(data);
+      //   axios(axiosConfig.postConfig('http://localhost:4010/users/relogin'),data) //gets data from api
+      //     .then(response => {
+      //       const acc = response.data.accessToken;
+      //       localStorage.setItem('accessToken', acc)
+
+      //     })
+          .catch(() => {
+            alert('Session Timed out login again')
+            localStorage.clear()
+            window.location = '/login'
+          });
+     
+
+  }, [reRender]);
 
    const redirectToReport = (rowData) => {
       
       navigate('/sendemail',{
-        state: { id: rowData.id } // your row data
+        state: { id: rowData.id, message:rowData.message, subject:rowData.subject} // your row data
       });
     };
     

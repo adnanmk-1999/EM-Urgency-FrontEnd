@@ -19,7 +19,7 @@ function EmailDropdown(props) {
         value : "0"
     })
 
-    const [data, setData] = useState({"alertId":location.state.id})
+    const [data, setData] = useState({"alertId":location.state.id,"message":location.state.message,"subject":location.state.subject})
     console.log("alertid",data);
 
     const [tableData, setTableData] = useState([])
@@ -41,8 +41,8 @@ function EmailDropdown(props) {
     useEffect(() => {
         axios(axiosConfig.getConfig('http://localhost:4010/users')) //gets data from api
             .then(response => {
-                console.log('get all users');
-                console.log(response); //display output (responce)
+               
+                 //display output (responce)
                 setTableData(response.data); //save only 'data' in response to the state
             })
             .catch(() => {
@@ -111,8 +111,8 @@ function EmailDropdown(props) {
         var sendIndividual = {
             ...data, 'individualId': sendList
         }
-        console.log(sendIndividual)
-        console.log(sendIndividual.individualId)
+        
+       
 
         axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`, sendIndividual))
         .then(response => {
@@ -132,9 +132,9 @@ function EmailDropdown(props) {
 
     function handleChange (event) {
         const val = event.target.value
-        console.log(event.target.value)
+        
         setOption({value : val })
-        setData({"alertId":data.alertId, "departmentId":[], "locationId":[]});      
+        setData({"alertId":data.alertId, "message":data.message, "subject":data.subject, "departmentId":[], "locationId":[]});      
       };
      
     function handleChangeCheckDepartment (event) {
@@ -143,7 +143,7 @@ function EmailDropdown(props) {
         if (array.includes(val)){
             array.splice(array.indexOf(val), 1);
             setCheck(array);
-            console.log(check)
+           
             setData(values=>({...values, "departmentId":check}))
         }
         else{
@@ -157,7 +157,7 @@ function EmailDropdown(props) {
     }, [data])  
 
     useEffect(()=> {
-        console.log(check)
+       
         setData(values=>({...values, "departmentId":check})) 
     }, [check])
 
@@ -167,7 +167,7 @@ function EmailDropdown(props) {
         if (arrayLocation.includes(val)){
             arrayLocation.splice(arrayLocation.indexOf(val), 1);
             setCheckLocation(arrayLocation);
-            console.log(checkLocation)
+           
             setData(values=>({...values, "locationId":checkLocation}))
         }
         else{
@@ -177,7 +177,7 @@ function EmailDropdown(props) {
       };
 
     useEffect(()=> {
-        console.log(checkLocation)
+     
         setData(values=>({...values, "locationId":checkLocation})) 
     }, [checkLocation])
 
@@ -208,7 +208,7 @@ function EmailDropdown(props) {
             var element = list[i].Id
             sendList.push(element);
         }
-        console.log(sendList)
+       
         setSendList(sendList)
     }
 

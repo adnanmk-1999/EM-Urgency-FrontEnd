@@ -9,29 +9,35 @@ const UserContextProvider = ({ children }) => {
         const roles = localStorage.getItem('roles');
         const username = localStorage.getItem('username');
         const email = localStorage.getItem('email');
+        const refreshToken= localStorage.getItem('refreshToken')
+
 
         setUserDetails(accessToken ? {
             accessToken,
             roles,
             username,
-            email
+            email,
+            refreshToken
         } : null)
     }, []);
 
-    const login = (accessToken, roles, username, email) => {
+    const login = (accessToken, roles, username, email,refreshToken) => {
         // debugger;
         if (accessToken) {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('roles', roles);
             localStorage.setItem('username', username);
             localStorage.setItem('email', email);
+            localStorage.setItem('refreshToken', refreshToken);
+
         }
 
         setUserDetails(accessToken ? {
             accessToken,
             roles,
             username,
-            email
+            email,
+            refreshToken
         } : null)
     };
 
@@ -41,6 +47,8 @@ const UserContextProvider = ({ children }) => {
         localStorage.removeItem('roles');
         localStorage.removeItem('username');
         localStorage.removeItem('email');
+        localStorage.removeItem('refreshToken');
+
         setUserDetails(null);
     }
 
