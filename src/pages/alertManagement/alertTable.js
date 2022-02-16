@@ -94,7 +94,7 @@ function AlertTable(props) {
     },
     {
       title: "Sent Status", field: "statusName",
-      render: (rowData) => <div style={{ backgroundColor: rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.status === 'sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
+      render: (rowData) => <div style={{ width:"100px", backgroundColor: rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.statusName === 'Sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
       searchable: false, export: false, editable: false
     }
   ]
@@ -139,7 +139,9 @@ function AlertTable(props) {
               , 1000)
           }),
           onRowAddCancelled: () => {Toaster.notifyCancel()},
-          onRowUpdateCancelled: () => {Toaster.notifyCancel()}
+          onRowUpdateCancelled: () => {Toaster.notifyCancel()},
+          isEditable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
+          isDeletable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed'
         }}
 
         options={{
@@ -174,28 +176,24 @@ function AlertTable(props) {
         }}
 
         actions={[
-          // {
-          //   icon: () => <GetAppIcon />,
-          //   tooltip: "Click Me",
-          //   onClick: (e, data) => console.log(data),
-          //    //isFreeAction:false
-          // },
-          {
+          
+          rowData => ({
             icon: 'mail',
+            disabled: rowData.statusName === "Sent",
             tooltip: 'Sent Mail',
             onClick: (event, rowData) => {
               console.log("row data is", rowData)
               // Navigate('/sendemail')   
-              redirectToReport(rowData);           
-            }
-          }
+              redirectToReport(rowData);  
+              }         
+            })
         ]}
 
         onSelectionChange={(selectedRows) => console.log(selectedRows)}
         
         icons={{ Add: () => <AddIcon /> }} 
         />
-        <button style = {{width : '100%', color : 'white', backgroundColor: '#EE362D'}}onClick={Toaster.notifyAdd}>Test Toaster</button>
+        <button style = {{width : '100%', color : 'white', backgroundColor: '#EE362D'}} onClick={Toaster.notifyAdd}>Test Toaster</button>
 
       <pre>
         {JSON.stringify(tableData, null, 5)}  
