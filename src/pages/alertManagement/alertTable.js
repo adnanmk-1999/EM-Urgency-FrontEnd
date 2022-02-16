@@ -94,7 +94,7 @@ function AlertTable(props) {
     },
     {
       title: "Sent Status", field: "statusName",
-      render: (rowData) => <div style={{ width:"100px", backgroundColor: rowData.statusName === 'Draft' ? '#2ACAEA' : rowData.statusName === 'Sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
+      render: (rowData) => <div style={{ width:"100px", backgroundColor: rowData.statusName === 'Draft' ? '#F5E767' : rowData.statusName === 'Sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
       searchable: false, export: false, editable: false
     }
   ]

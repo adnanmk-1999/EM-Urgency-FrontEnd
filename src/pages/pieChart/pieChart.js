@@ -9,14 +9,14 @@ function PieGraph() {
   }
 
     const [count] = useState(
-        {id : 1, success : 40, fail : 10, pending : 10}
+        {Sent : 40, Failed : 10, Draft : 10}
     )
 
 
     const [data] = useState([
-        { name: "Success", value: count.success, fill: "#88E16E"},
-        { name: "Pending", value: count.pending, fill: "#F5E767"},
-        { name: "Fail", value: count.fail, fill: "#F66060"}
+        { name: "Success", value: count.Sent, fill: "#88E16E"},
+        { name: "Draft", value: count.Draft, fill: "#F5E767"},
+        { name: "Failed", value: count.Failed, fill: "#F66060"}
     ])
 
     return (
