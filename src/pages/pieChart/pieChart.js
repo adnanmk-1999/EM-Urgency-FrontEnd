@@ -1,43 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+
 import roleController from '../../helpers/roleLogin';
+import axios from 'axios';
+import axiosConfig from '../../helpers/axiosConfig';
+
+import './pieChart.css'
 
 function PieGraph() {
 
-  if(!roleController.isAdmin()){
+  if (!roleController.isAdmin()) {
     window.location = '/login'
   }
 
-    const [count] = useState(
-        {Sent : 40, Failed : 10, Draft : 10}
-    )
+  const [sentCount, setsendCount] = useState([])
+  
+  const [failedCount, setfailedCount] = useState([])
+  
+  const [draftCount, setdraftCount] = useState([])
 
 
-    const [data] = useState([
-        { name: "Success", value: count.Sent, fill: "#88E16E"},
-        { name: "Draft", value: count.Draft, fill: "#F5E767"},
-        { name: "Failed", value: count.Failed, fill: "#F66060"}
-    ])
 
-    return (
-        <>
-        <ResponsiveContainer width= '100%' height={600}>
+  useEffect(() => {
+    axios(axiosConfig.getConfig('http://localhost:4010/admin/piechartsent')) //gets data from api
+      .then(response => {
+        console.log(response.data.data.Sent)
+        setsendCount(response.data.data.Sent); //save only 'data' in response to the state
+      })
+  },[])
+
+  
+  useEffect(()=> {
+    axios(axiosConfig.getConfig('http://localhost:4010/admin/piechartfailed')) //gets data from api
+      .then(response => {
+        setfailedCount(response.data.data.Failed); //save only 'data' in response to the state
+      })
+  },[])
+
+  useEffect(()=> {
+    axios(axiosConfig.getConfig('http://localhost:4010/admin/piechartdraft')) //gets data from api
+      .then(response => {
+        setdraftCount(response.data.data.Draft); //save only 'data' in response to the state
+      })
+  },[])
+
+
+  const data = [
+    { name: "Success", value: sentCount, fill: "#88E16E" },
+    { name: "Draft", value: draftCount, fill: "#F5E767" },
+    { name: "Failed", value: failedCount, fill: "#F66060" }
+  ]
+
+  return (
+    <>
+    <div className='statusHeading'>Alert Status</div>
+      <ResponsiveContainer width='100%' height={600}>
         <PieChart>
-        <Pie  
-          dataKey="value" 
-          isAnimationActive={true}
-          data={data}
-          cx='50%'
-          cy={300}
-          outerRadius={200}
-          label
-        />
-        <Tooltip />
-        <Legend />
+          <Pie
+            dataKey="value"
+            isAnimationActive={true}
+            data={data}
+            cx='50%'
+            cy={250}
+            outerRadius={200}
+            label
+          />
+          <Tooltip />
+          <Legend />
         </PieChart>
-        </ResponsiveContainer>
-        </>
-      );
+      </ResponsiveContainer>
+    </>
+  );
 }
 
 export default PieGraph;
