@@ -1,7 +1,7 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import "./footer.css";
-import Logo from "../../../images/logo1.png";
+import Logo from "../../../images/logo2.jpeg";
 
 
 const FooterPage = () => {
@@ -19,7 +19,7 @@ const FooterPage = () => {
             medical chatbot, who will understand your disease and will auto generate the medical 
             prescription for you.
             </p> */}
-            <img src={Logo} alt="Logo" width={50}></img>&nbsp;
+            <img src={Logo} alt="Logo" width={100}></img>&nbsp;
             
             &copy; {new Date().getFullYear()}, EM-Urgency, All rights reserved
             
