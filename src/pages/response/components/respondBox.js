@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,21 +7,38 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 
+import axios from 'axios';
+import axiosConfig from '../../../helpers/axiosConfig';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function RespondDialogBox(props) {
-  // const [open, setOpen] = React.useState(tru);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const [response, setResponse] = useState({});
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  function handleChange(event) {
+    const res = event.target.value
+    setResponse({ "accessToken": localStorage.getItem('accessToken'), "alertId": props.alertId, "response": res });
+  }
+
+  useEffect(() => {
+    console.log(response)
+  }, [response])
+
+
+  function handleSubmit() {
+    axios(axiosConfig.postConfig(`http://localhost:4010/users/response`, response))
+      .then(() => {
+        alert('Response Submitted !')
+      })
+      .catch(error => {
+        if (error.response) {
+          alert(error.response.data.message)
+        }
+      })
+  }
 
   return (
     <div>
@@ -41,18 +58,18 @@ function RespondDialogBox(props) {
           <br></br>
           <DialogContentText id="alert-dialog-slide-description">
             <center>
-            <div>Respond:
-                <input type="radio" id="" name="response" value="Yes"/>
-                <label>Yes</label> &nbsp;
-                <input type="radio" id="" name="response" value="No"/>
-                <label>No</label>
-            </div>
+              <div>Respond:
+                <input type="radio" name="response" value="Yes" onChange={handleChange} />
+                <label>Yes</label> &nbsp;
+                <input type="radio" name="response" value="No" onChange={handleChange} />
+                <label>No</label>
+              </div>
             </center>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-            <Button onClick={props.handleClose}>Submit</Button><br/>
-            <Button onClick={props.handleClose}>Cancel</Button>
+          <Button onClick={() => {props.handleClose(); handleSubmit()}}>Submit</Button><br />
+          <Button onClick={props.handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </div>

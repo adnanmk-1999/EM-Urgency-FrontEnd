@@ -1,8 +1,8 @@
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import "./emailDropdown.css";
-import {Card, Container, Row, Col} from 'react-bootstrap';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
 
@@ -13,18 +13,18 @@ function EmailDropdown(props) {
     const location = useLocation();
 
     const [check, setCheck] = useState([])
-    const [checkLocation, setCheckLocation]=useState([])
+    const [checkLocation, setCheckLocation] = useState([])
     const [sendList, setSendList] = useState([])
     const [option, setOption] = useState({
-        value : "0"
+        value: "0"
     })
 
-    const [data, setData] = useState({"alertId":location.state.id,"message":location.state.message,"subject":location.state.subject})
-    console.log("alertid",data);
+    const [data, setData] = useState({ "alertId": location.state.id, "message": location.state.message, "subject": location.state.subject })
+    console.log("alertid", data);
 
     const [tableData, setTableData] = useState([])
-   var user=tableData;
-   console.log(user)
+    var user = tableData;
+    console.log(user)
 
     useEffect(() => {
         axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
@@ -41,8 +41,8 @@ function EmailDropdown(props) {
     useEffect(() => {
         axios(axiosConfig.getConfig('http://localhost:4010/users')) //gets data from api
             .then(response => {
-               
-                 //display output (responce)
+
+                //display output (responce)
                 setTableData(response.data); //save only 'data' in response to the state
             })
             .catch(() => {
@@ -51,134 +51,131 @@ function EmailDropdown(props) {
     }, [option]);
 
 
-      const columns = [
-        {title: "Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }},
-            {title: "Name", field: "Name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }},
-           {title: "Email", field: "Email", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }},
-      ]
-    
+    const columns = [
+        { title: "Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
+        { title: "Name", field: "Name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
+        { title: "Email", field: "Email", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
+    ]
 
-    function handleSubmit(event){
+
+    function handleSubmit(event) {
         event.preventDefault();
-        if(option.value === "0"){
+        if (option.value === "0") {
             alert("please select an option");
         }
-        
-        else if(option.value === "1"){
-    
-        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/all`,data))
-            .then(response => {
-               alert('message send to all users')
-               navigate('/admindashboard')
-               
-            })
-            .catch(error =>{
-                localStorage.clear();
-                if(error.response){
-                    alert(error.response.data.message)  //=> response payload
-                }
-            })
+
+        else if (option.value === "1") {
+
+            axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/all`, data))
+                .then(response => {
+                    alert('message send to all users')
+                    navigate('/admindashboard')
+
+                })
+                .catch(error => {
+                    localStorage.clear();
+                    if (error.response) {
+                        alert(error.response.data.message)  //=> response payload
+                    }
+                })
         }
 
-    else if(option.value === "2"){
-        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/departments`,data))
-        .then(response => {
-           alert('message send to department')
-           navigate('/admindashboard')
-        })
-        .catch(error =>{
-            localStorage.clear();
-            if(error.response){
-                alert(error.response.data.message)  //=> response payload
-            }
-        })
-    }
-    else if(option.value === "3"){
-            axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/locations`,data))
-            .then(response => {
-               alert('message send to location')
-               navigate('/admindashboard')
-            })
-            .catch(error =>{
-                localStorage.clear();
-                if(error.response){
-                    alert(error.response.data.message)  //=> response payload
-                }
-            })
-    }
-    else{
-
-        var sendIndividual = {
-            ...data, 'individualId': sendList
+        else if (option.value === "2") {
+            axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/departments`, data))
+                .then(response => {
+                    alert('message send to department')
+                    navigate('/admindashboard')
+                })
+                .catch(error => {
+                    localStorage.clear();
+                    if (error.response) {
+                        alert(error.response.data.message)  //=> response payload
+                    }
+                })
         }
-        
-       
+        else if (option.value === "3") {
+            axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/locations`, data))
+                .then(response => {
+                    alert('message send to location')
+                    navigate('/admindashboard')
+                })
+                .catch(error => {
+                    localStorage.clear();
+                    if (error.response) {
+                        alert(error.response.data.message)  //=> response payload
+                    }
+                })
+        }
+        else {
 
-        axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`, sendIndividual))
-        .then(response => {
-           alert('message send to individual')
-           navigate('/admindashboard')
-        })
-        .catch(error =>{
-            localStorage.clear();
-            if(error.response){
-                alert(error.response.data.message)  //=> response payload
+            var sendIndividual = {
+                ...data, 'individualId': sendList
             }
-        })
-}
+            axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`, sendIndividual))
+                .then(response => {
+                    alert('message send to individual')
+                    navigate('/admindashboard')
+                })
+                .catch(error => {
+                    localStorage.clear();
+                    if (error.response) {
+                        alert(error.response.data.message)  //=> response payload
+                    }
+                })
+        }
 
-};
+    };
 
 
-    function handleChange (event) {
+    function handleChange(event) {
         const val = event.target.value
-        
-        setOption({value : val })
-        setData({"alertId":data.alertId, "message":data.message, "subject":data.subject, "departmentId":[], "locationId":[]});      
-      };
-     
-    function handleChangeCheckDepartment (event) {
+
+        setOption({ value: val })
+        setData({ "alertId": data.alertId, "message": data.message, "subject": data.subject, "departmentId": [], "locationId": [] });
+    };
+
+    function handleChangeCheckDepartment(event) {
         const val = event.target.value;
-        var array = check; 
-        if (array.includes(val)){
+        var array = check;
+        if (array.includes(val)) {
             array.splice(array.indexOf(val), 1);
             setCheck(array);
-           
-            setData(values=>({...values, "departmentId":check}))
+
+            setData(values => ({ ...values, "departmentId": check }))
         }
-        else{
-           setCheck(values => ([...values, val])) 
+        else {
+            setCheck(values => ([...values, val]))
         }
 
-      };
+    };
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(data)
-    }, [data])  
+    }, [data])
 
-    useEffect(()=> {
-       
-        setData(values=>({...values, "departmentId":check})) 
+    useEffect(() => {
+
+        setData(values => ({ ...values, "departmentId": check }))
     }, [check])
 
-    function handleChangeCheckLocation (event) {
+    function handleChangeCheckLocation(event) {
         const val = event.target.value;
-        var arrayLocation = checkLocation; 
-        if (arrayLocation.includes(val)){
+        var arrayLocation = checkLocation;
+        if (arrayLocation.includes(val)) {
             arrayLocation.splice(arrayLocation.indexOf(val), 1);
             setCheckLocation(arrayLocation);
-           
-            setData(values=>({...values, "locationId":checkLocation}))
+
+            setData(values => ({ ...values, "locationId": checkLocation }))
         }
-        else{
-           setCheckLocation(values => ([...values, val])) 
+        else {
+            setCheckLocation(values => ([...values, val]))
         }
 
-      };
+    };
 
-    useEffect(()=> {
-     
-        setData(values=>({...values, "locationId":checkLocation})) 
+    useEffect(() => {
+
+        setData(values => ({ ...values, "locationId": checkLocation }))
     }, [checkLocation])
 
     // function handleChangeCheckIndividual (event) {
@@ -202,17 +199,17 @@ function EmailDropdown(props) {
     //     setData(values=>({...values, "individualId":checkIndividual})) 
     // }, [checkIndividual])
 
-    function individualSendList(list){
+    function individualSendList(list) {
         var sendList = []
-        for(var i = 0; i < list.length; i++){
+        for (var i = 0; i < list.length; i++) {
             var element = list[i].Id
             sendList.push(element);
         }
-       
+
         setSendList(sendList)
     }
 
-    return(
+    return (
         <>
             <div className='textImage'>
                 <div className='titleEmail'>
@@ -241,7 +238,7 @@ function EmailDropdown(props) {
                                                     <div className='dept'>
                                                         <label className='department'>Departments: </label><br />
                                                         <input type="checkbox" id="" name="" value="1" className='checkbox' onChange={handleChangeCheckDepartment}></input> &nbsp;
-                                                        <label for="" className='departments'>Digital Tranformation Services</label><br /> 
+                                                        <label for="" className='departments'>Digital Tranformation Services</label><br />
                                                         <input type="checkbox" id="" name="" value="2" className='checkbox' onChange={handleChangeCheckDepartment}></input> &nbsp;
                                                         <label for="" className='departments'>Product Engineering Services</label><br />
                                                         <input type="checkbox" id="" name="" value="3" className='checkbox' onChange={handleChangeCheckDepartment}></input> &nbsp;
@@ -295,8 +292,8 @@ function EmailDropdown(props) {
                                                                 rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                                                                 headerStyle: { background: "#FC816D", color: "#fff" }
                                                             }}
-                                                            onSelectionChange={(selectedRows) => {console.log(selectedRows); individualSendList(selectedRows) }} 
-                                                            
+                                                            onSelectionChange={(selectedRows) => { console.log(selectedRows); individualSendList(selectedRows) }}
+
                                                         />
                                                     </div>
                                                     : null
@@ -314,7 +311,7 @@ function EmailDropdown(props) {
                 </div>
             </div>
         </>
- )
+    )
 }
 
 

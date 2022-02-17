@@ -17,7 +17,6 @@ function UserResponse() {
 const [alertData, setalertData] = useState([])
 
   const columns = [
-    { title: "No", field: "No", filterPlaceholder: "filter" },
     { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date() },
     { title: "Category", field: "categoryId", filterPlaceholder: "filter", lookup: { 1 : "Alert", 2 : "Event", 3 : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
@@ -45,24 +44,24 @@ const [alertData, setalertData] = useState([])
 
 
   //State to store the message to be displayed in the message box, which is in another component
-  const [message, setMessage] = useState('mess');
+  const [message, setMessage] = useState();
+
+  const [alertId, setAlertId] = useState();
 
   const [openDialogue, setOpenDialogue] = useState(false);
 
   function handleClickOpen(props, event) {
     props.action.onClick(event, props.data);
     setMessage(props.data.message)
+    setAlertId(props.data.id)
     setOpenDialogue(true)
   }
-
 
   return (
     <>
 
-      {openDialogue && <RespondBox content={message} handleClose={() => setOpenDialogue(false)} />}
+      {openDialogue && <RespondBox content={message} alertId={alertId} handleClose={() => setOpenDialogue(false)} />}
       <div className="App">
-
-
 
         <MaterialTable
           title="Response"
@@ -72,6 +71,7 @@ const [alertData, setalertData] = useState([])
           options={{
             sorting: true,
             search: true,
+
             searchFieldAlignment: "right",
             searchAutoFocus: true,
             searchFieldVariant: "standard",
@@ -127,11 +127,6 @@ const [alertData, setalertData] = useState([])
 
           icons={{ Add: () => <AddIcon /> }}
         />
-
-        <pre>
-          {JSON.stringify(message, null, 5)}
-        </pre>
-
       </div>
     </>
 
