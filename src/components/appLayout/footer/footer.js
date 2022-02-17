@@ -26,12 +26,12 @@ const FooterPage = () => {
           </MDBCol>
           <MDBCol md="6" className="socialIcons">
             
-          <a href="#" class="fa fa-facebook"></a>&nbsp;&nbsp;
-          <a href="#" class="fa fa-instagram"></a>&nbsp;&nbsp;
-          <a href="#" class="fa fa-twitter"></a>&nbsp;&nbsp;
-          <a href="#" class="fa fa-linkedin"></a>&nbsp;&nbsp;
-          <a href="#" class="fa fa-youtube"></a>&nbsp;&nbsp;
-          <a href="#" class="fa fa-pinterest"></a>
+          <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>&nbsp;&nbsp;
+          <a href="https://www.instagram.com/" target="_blank" class="fa fa-instagram"></a>&nbsp;&nbsp;
+          <a href="https://twitter.com/" target="_blank" class="fa fa-twitter"></a>&nbsp;&nbsp;
+          <a href="https://www.linkedin.com/" target="_blank" class="fa fa-linkedin"></a>&nbsp;&nbsp;
+          <a href="https://www.youtube.com/" target="_blank" class="fa fa-youtube"></a>&nbsp;&nbsp;
+          <a href="https://in.pinterest.com/" target="_blank" class="fa fa-pinterest"></a>
           
             {/* <h5 className="title">Follow Us On</h5>
             <ul>
