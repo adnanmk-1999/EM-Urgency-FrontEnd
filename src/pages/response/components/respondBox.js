@@ -18,9 +18,11 @@ function RespondDialogBox(props) {
 
   const [response, setResponse] = useState({});
 
+  const [responseId] = useState(props.responseId)
+
   function handleChange(event) {
     const res = event.target.value
-    setResponse({ "accessToken": localStorage.getItem('accessToken'), "alertId": props.alertId, "response": res });
+    setResponse({"response": res });
   }
 
   useEffect(() => {
@@ -29,9 +31,10 @@ function RespondDialogBox(props) {
 
 
   function handleSubmit() {
-    axios(axiosConfig.postConfig(`http://localhost:4010/users/response`, response))
+    axios(axiosConfig.editConfig(`http://localhost:4010/users/response/${responseId}`, responseId ,response))
       .then(() => {
         alert('Response Submitted !')
+        window.location = '/userdashboard'
       })
       .catch(error => {
         if (error.response) {
