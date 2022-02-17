@@ -14,13 +14,12 @@ function UserResponse() {
   }
 
   
-const [responseData, setResponseData] = useState([
-])
+const [alertData, setalertData] = useState([])
 
   const columns = [
     { title: "No", field: "No", filterPlaceholder: "filter" },
     { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date() },
-    { title: "Category", field: "category", filterPlaceholder: "filter", lookup: { alert: "Alert", event: "Event", announcement: "Announcement" } },
+    { title: "Category", field: "categoryId", filterPlaceholder: "filter", lookup: { 1 : "Alert", 2 : "Event", 3 : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
     { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { pending: "Pending", yes: "Yes", no: "No" } },
@@ -28,11 +27,15 @@ const [responseData, setResponseData] = useState([
 
  //Get alerts 
   useEffect(() => {
-    axios(axiosConfig.getConfig('http://localhost:4010/users/response')) //gets data from api
+    var data = {
+      accessToken : localStorage.getItem('accessToken')
+    }
+    console.log(data)
+    axios(axiosConfig.postConfig('http://localhost:4010/users/alerts', data)) //gets data from api
       .then(response => {
         console.log('Promise fullfilled'); //if data recieved, output
         console.log(response); //display output (responce)
-        setResponseData(response.data); //save only 'data' in response to the state
+        setalertData(response.data); //save only 'data' in response to the state
       })
       .catch(() => {
         alert('Session Timed out login again')
@@ -64,7 +67,7 @@ const [responseData, setResponseData] = useState([
         <MaterialTable
           title="Response"
           columns={columns}
-          data={responseData}
+          data={alertData}
 
           options={{
             sorting: true,
