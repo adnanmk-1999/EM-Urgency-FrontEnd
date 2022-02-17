@@ -7,4 +7,17 @@ li a, div a{
 }
 .footerBackground{
     background-color: #e29f95;
+    /* color: white; */
+    color: black;
+}
+
+.copyright{
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+.socialIcons{
+  font-size: 16px;
+  text-decoration: none;
+  padding-bottom: 10px;
+  /* margin-bottom: 10px; */
 }

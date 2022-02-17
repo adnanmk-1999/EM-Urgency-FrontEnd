@@ -11,7 +11,7 @@ function AboutUs() {
                <div className='titleAbout'>
                     <h1>About Us</h1>
                     <div style={{height:6, width:'12%', background: "linear-gradient(to right, #E31836 , #E42F24)"}}></div>
-                    <h2>Lorem ipsum is simply dummy text <br/>of the printing</h2>
+                    <h2>Advancing technology for <br/> humanity</h2>
                </div>
                 <img src = {AboutImage} className='img-fluid shadow-4 aboutImage' alt = 'about'></img>
             </div>
@@ -24,7 +24,7 @@ function AboutUs() {
 
                             <Card.Body >
                                 <Card.Text  className='cardText'>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
+                                Experion Technologies is a 14+ year old IT solutions & services company with a focus on digital technologies. With over 300 customers across 32 countries, Experion uses the power of Mobile, Web, Analytics, Cloud, and Digital technologies to unlock the potential of businesses across verticals.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -36,7 +36,7 @@ function AboutUs() {
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0"}}>
                             <Card.Body >
                                 <Card.Text  className='cardText'>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
+                                EM-Urgency provides monitoring and handling all events, announcements & holidays occurring throughout the IT services and systems of the Experion Technologies. All the alerts are notified via email. Employees can respond to the email by clicking on the link provided and share their responses.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -47,7 +47,7 @@ function AboutUs() {
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0" }}>
                             <Card.Body >
                                 <Card.Text  className='cardText'>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
+                                We focus on serving the Enterprise, ISV, and Startup segments across the Retail, Transportation, Healthcare, Financial services domains. Headquartered in Trivandrum, India. Experion has offices around the globe including the United States, United Kingdom, Switzerland, Netherlands, Australia etc...
                                 </Card.Text>
                             </Card.Body>
                         </Card>
