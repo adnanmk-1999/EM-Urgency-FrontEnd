@@ -41,9 +41,10 @@
     line-height: 30px;
 }
 
-.cardText {
+.cardTextAbout {
     display: flex; 
     justify-content: center;
     text-align: justify;
+    color:#6A6A6A;
 }
 

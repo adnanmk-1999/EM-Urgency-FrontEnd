@@ -5,23 +5,27 @@ height: 369px;
 margin-left: 15%;
 margin-right: 15%;
 margin-top: 3%;
-}
+} 
 
 .welcomeText {
     margin-top: 3%;
     text-align: center;
+    color:#2C2424;
+    font-family: Roboto;
+
     
 }
 
 .welcomeContent {
     font-family: Roboto;
-    font-style: normal;
+    font-style: thin;
     font-weight: normal;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 22px;
     display: flex;
     align-items: center;
     text-align: center;
+    color:#6A6A6A ;
     
 }
 
@@ -51,6 +55,8 @@ margin-top: 3%;
 
 .tileBody {
     margin-top: 10%;
+    font-family: Roboto;
+
 
 }
 
@@ -60,4 +66,17 @@ margin-top: 3%;
     margin-left: 15%; */
     padding: 0 6% 0 6%;
     margin-bottom: 5%;
+}
+
+.anchor {
+    text-decoration: none;
+    color:#6A6A6A;
+    font-family: Roboto;
+
+}
+
+.tileHeading {
+    text-decoration: none;
+    color:#2C2424;
+    font-family: Roboto;
 }

@@ -51,12 +51,21 @@
 .imageCardMS {
     height:15%;
     width:15%;
-    padding-top: 15px;
+    padding-top: 31px;
 
 }
 
 .cardText {
-    display: flex; 
+    /* display: flex; 
     justify-content: center;
-    text-align: justify;
+    text-align: justify; */
+    text-align: center;
+   
+}
+
+.anchor {
+    text-decoration: none;
+    color:#2C2424;
+
+ 
 }
