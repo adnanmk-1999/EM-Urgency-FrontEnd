@@ -33,12 +33,9 @@ function RouterIndex(){
                     <Route path="/piechart" element={<PieChart />} />
                     <Route path="/barchart" element={<BarChart />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="userdashboard" element={<UserResponse />} />
+                    <Route path="/userdashboard" element={<UserResponse />} />
                     <Route path="/aboutus" element={<AboutUs />} />
                     <Route path="/contactus" element={<ContactUs />} />
-                    
-
-                    
                 </Routes>
 
             </Router>
