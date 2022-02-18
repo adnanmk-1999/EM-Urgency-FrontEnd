@@ -52,8 +52,8 @@ function EmailDropdown(props) {
 
 
     const columns = [
-        {  title: 'Avatar', field: 'Image', render: rowData => <img src={rowData.Image} alt="profile" style={{width: 50, borderRadius: '50%'}}/>},
-        { title: "Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
+        { title: 'Avatar', field: 'Image', render: rowData => <img src={rowData.Image} alt="profile" style={{width: 50, borderRadius: '50%'}}/>},
+        { title: "Employee Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Name", field: "Name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Email", field: "Email", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Department", field: "department_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1 : "DTS", 2 : "ESS", 3: "PES" }},
