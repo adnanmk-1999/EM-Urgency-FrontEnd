@@ -47,7 +47,7 @@ function AboutUs() {
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0" }}>
                             <Card.Body >
                                 <Card.Text  className='cardText'>
-                                We focus on serving the Enterprise, ISV, and Startup segments across the Retail, Transportation, Healthcare, Financial services domains. Headquartered in Trivandrum, India. Experion has offices around the globe including the United States, United Kingdom, Switzerland, Netherlands, Australia etc...
+                                We focus on serving the Enterprise, ISV, and Startup segments across the Retail, Transportation, Healthcare, Financial services domains. Headquartered in Trivandrum, India. We have offices around the globe including the United States, United Kingdom, Switzerland, Netherlands, Australia etc...
                                 </Card.Text>
                             </Card.Body>
                         </Card>

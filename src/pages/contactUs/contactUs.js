@@ -2,7 +2,7 @@ import React from 'react';
 import './contactUs.css';
 import { Card, Row, Col, Container } from 'react-bootstrap';
 import ContactImage from '../../images/contactUs.png';
-import microsoftLogo from '../../images/microsoftLogo.png'
+import gmail from '../../images/gmail.png'
 import facebook from '../../images/facebook.png'
 import twitter from '../../images/twitter.png'
 
@@ -14,7 +14,7 @@ function ContactUs() {
                 <div className='titleContact'>
                     <h1 >Contact Us</h1>
                     <center><div style={{ height: 6, width: '12%', background: "linear-gradient(to right, #E31836 , #E42F24)" }}></div></center>
-                    <h2 style={{paddingTop:'4%',fontWeight:'lighter'}}>Get in touch</h2>
+                    <h2 style={{paddingTop:'3%',fontWeight:'lighter'}}>Get in touch  </h2>
                 </div>
                 <img src={ContactImage} className='img-fluid shadow-4 contactImage' alt='contact'></img>
             </div>
@@ -23,10 +23,11 @@ function ContactUs() {
                 <Row>
                     <Col md={4} >
                         <Card style={{ marginTop: 15, border: "none" }}>
-                            <center><Card.Img className='imageCardMS' variant="top" src={microsoftLogo} /></center>
+                            <center><Card.Img className='imageCardMS' variant="top" src={gmail} /></center>
                             <Card.Body >
                                 <Card.Text  className='cardText'>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
+                                    We would love to solve your queries <br/>
+                                emurgency.experion@gmail.com
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -38,7 +39,8 @@ function ContactUs() {
                             <center><Card.Img className='imageCard' variant="top" src={twitter} /></center>
                             <Card.Body>
                                 <Card.Text  className='cardText'>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
+                                We would love to keep you updated <br/>
+                                    em_urgency
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -49,7 +51,9 @@ function ContactUs() {
                             <center><Card.Img className='imageCard' variant="top" src={facebook} /></center>
                             <Card.Body >
                                 <Card.Text className='cardText'>
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio.
+                                    {/* At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio. */}
+                                    We would love to be in touch with you <br/>
+                                    em_urgency
                                 </Card.Text>
                             </Card.Body>
                         </Card>
