@@ -7,7 +7,7 @@ import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
 
 
-function EmailDropdown(props) {
+function EmailDropdown() {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -47,6 +47,7 @@ function EmailDropdown(props) {
             })
             .catch(() => {
                 alert('Session Timed out login again')
+                navigate('/login')
             });
     }, [option]);
 

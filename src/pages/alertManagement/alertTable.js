@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import roleController from '../../helpers/roleLogin';
 import Toaster from '../../components/toaster';
@@ -9,15 +9,14 @@ import axiosConfig from '../../helpers/axiosConfig';
 
 function AlertTable(props) {
 
-  if(!roleController.isAdmin()){
+  if (!roleController.isAdmin()) {
     window.location = '/login'
   }
 
   const [tableData, setTableData] = useState([]);
-  // const [data, setdata] = useState({})
 
-  const[reRender, setreRender] = useState('one time')
-  
+  const [reRender, setreRender] = useState('one time')
+
   const navigate = useNavigate();
 
   //Get alerts 
@@ -39,22 +38,22 @@ function AlertTable(props) {
       //       localStorage.setItem('accessToken', acc)
 
       //     })
-          .catch(() => {
-            alert('Session Timed out login again')
-            localStorage.clear()
-            window.location = '/login'
-          });
-     
+      .catch(() => {
+        alert('Session Timed out login again')
+        localStorage.clear()
+        window.location = '/login'
+      });
+
 
   }, [reRender]);
 
-   const redirectToReport = (rowData) => {
-      
-      navigate('/sendemail',{
-        state: { id: rowData.id, message:rowData.message, subject:rowData.subject} // your row data
-      });
-    };
-    
+  const redirectToReport = (rowData) => {
+
+    navigate('/sendemail', {
+      state: { id: rowData.id, message: rowData.message, subject: rowData.subject } // your row data
+    });
+  };
+
   const columns = [
     {
       title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date(),
@@ -94,8 +93,8 @@ function AlertTable(props) {
     },
     {
       title: "Sent Status", field: "statusName",
-      render: (rowData) => <div style={{ width:"100px", backgroundColor: rowData.statusName === 'Draft' ? '#F5E767' : rowData.statusName === 'Sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
-      searchable: false, export: false, editable: false
+      render: (rowData) => <div style={{ width: "100px", backgroundColor: rowData.statusName === 'Draft' ? '#F5E767' : rowData.statusName === 'Sent' ? '#008000aa' : '#f90000aa', borderRadius: "4px", textAlign: "center", color: 'white' }}>{rowData.statusName}</div>,
+      searchable: false, export: false, editable: false, lookup: { Sent: "Sent", Failed: "Failed", Draft: "Draft" }, filterPlaceholder: "filter",
     }
   ]
 
@@ -104,11 +103,11 @@ function AlertTable(props) {
 
       <MaterialTable
         title="Alert Information"
-        columns={columns} 
+        columns={columns}
         data={tableData}
         editable={{
           onRowAdd: (newRow) => new Promise((resolve, reject) => {
-            setTableData([ {...newRow, statusName : "Draft"}, ...tableData])
+            setTableData([{ ...newRow, statusName: "Draft" }, ...tableData])
             setTimeout(() => {
               Toaster.notifyAdd()
               addRow(newRow);
@@ -125,76 +124,72 @@ function AlertTable(props) {
               console.log(newRow)
               updateRow(newRow.id, newRow);
               Toaster.notifyEdit();
-              }, 500)
+            }, 500)
           }),
           onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
             const updatedData = [...tableData]
             updatedData.splice(selectedRow.tableData.id, 1)
             setTableData(updatedData)
-            setTimeout(() => { 
+            setTimeout(() => {
               resolve();
               deleteRow(selectedRow.id);
               Toaster.notifyDelete();
-              }
+            }
               , 1000)
           }),
-          onRowAddCancelled: () => {Toaster.notifyCancel()},
-          onRowUpdateCancelled: () => {Toaster.notifyCancel()},
-          isEditable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
-          isDeletable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
+          onRowAddCancelled: () => { Toaster.notifyCancel() },
+          onRowUpdateCancelled: () => { Toaster.notifyCancel() },
+          isEditable: rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
+          isDeletable: rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
         }}
 
-        onRowClick = {(event, rowData, togglePanel) => togglePanel()}
+        onRowClick={(event, rowData) => navigate("/responses",{
+          state: { id: rowData.id, message: rowData.message, subject: rowData.subject } 
+        }) }
 
         options={{
-          sorting: true, 
+          sorting: true,
           search: true,
-          searchFieldAlignment: "right", 
-          searchAutoFocus: true, 
+          searchFieldAlignment: "right",
+          searchAutoFocus: true,
           searchFieldVariant: "standard",
-          filtering: true, 
-          paging: true, 
-          pageSizeOptions: [2, 5, 10, 20, 25, 50, 100], 
+          filtering: true,
+          paging: true,
+          pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
           pageSize: 5,
-          paginationType: "stepped", 
-          showFirstLastPageButtons: false, 
-          paginationPosition: "bottom", 
+          paginationType: "stepped",
+          showFirstLastPageButtons: false,
+          paginationPosition: "bottom",
           exportButton: true,
-          exportAllData: true, 
-          exportFileName: "TableData", 
-          addRowPosition: "first", 
-          actionsColumnIndex: -1, 
+          exportAllData: true,
+          exportFileName: "TableData",
+          addRowPosition: "first",
+          actionsColumnIndex: -1,
           selection: false,
-          showSelectAllCheckbox: true, 
-          showTextRowsSelected: true, 
-          // selectionProps: rowData => ({
-          //   disabled: rowData.status == "pending",
-          //   // color:"primary"
-          // }),
-          grouping: true, 
+          showSelectAllCheckbox: true,
+          showTextRowsSelected: true,
+          grouping: true,
           columnsButton: true,
-          // rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          headerStyle: { background: "#FC816D",color:"#fff"}
+          headerStyle: { background: "#FC816D", color: "#fff" }
         }}
 
         actions={[
-          
+
           rowData => ({
             icon: 'mail',
             disabled: rowData.statusName === "Sent",
             tooltip: 'Sent Mail',
             onClick: (event, rowData) => {
               console.log("row data is", rowData)
-              // Navigate('/sendemail')   
-              redirectToReport(rowData);  
-              }         
-            })
+              redirectToReport(rowData);
+            }
+          })
         ]}
 
         onSelectionChange={(selectedRows) => console.log(selectedRows)}
-        
-        icons={{ Add: () => <AddIcon /> }} 
-        />
+
+        icons={{ Add: () => <AddIcon /> }}
+      />
 
     </div>
   );
@@ -202,31 +197,31 @@ function AlertTable(props) {
 
 
 //Helper Function for CRUD operations in the alert table
-function addRow(data){
+function addRow(data) {
   axios(axiosConfig.postConfig('http://localhost:4010/admin/alert', data))
     .then(response => {
       console.log('Promise fullfilled');
-      console.log(response);  
-  })
+      console.log(response);
+    })
 }
 
-function deleteRow(id){
+function deleteRow(id) {
   axios(axiosConfig.deleteConfig(`http://localhost:4010/admin/alert/${id}`, id))
     .then(response => {
       console.log('Promise fullfilled');
-      console.log(response);  
+      console.log(response);
     })
     .catch(() => {
       console.log("Could not delete")
     })
 }
 
-function updateRow(id, data){
+function updateRow(id, data) {
   axios(axiosConfig.editConfig(`http://localhost:4010/admin/alert/${id}`, id, data))
     .then(response => {
       console.log('Promise fullfilled');
-      console.log(response);  
-  })
+      console.log(response);
+    })
 }
 
 export default AlertTable;

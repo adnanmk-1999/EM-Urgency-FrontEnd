@@ -14,6 +14,7 @@ import Login from "../pages/login/loginPage";
 import UserResponse from "../pages/response/userResponse";
 import AboutUs from "../pages/aboutUs/aboutUs";
 import ContactUs from "../pages/contactUs/contactUs";
+import AlertResponses from "../pages/alertManagement/components/alertResponses";
 
 
 
@@ -36,6 +37,8 @@ function RouterIndex(){
                     <Route path="/userdashboard" element={<UserResponse />} />
                     <Route path="/aboutus" element={<AboutUs />} />
                     <Route path="/contactus" element={<ContactUs />} />
+                    <Route path="/responses" element={<AlertResponses />} />
+
                 </Routes>
 
             </Router>

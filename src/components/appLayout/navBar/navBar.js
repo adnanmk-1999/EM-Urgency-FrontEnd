@@ -19,6 +19,7 @@ function NavBar(){
               <Nav className="me-auto">
                 <Nav.Link className="link"><Link to="/" className="linkLink">Home</Link></Nav.Link>
                 <Nav.Link className="link"><Link to="/aboutus" className="linkLink">About</Link></Nav.Link>
+                <Nav.Link className="link"><Link to="/responses" className="linkLink">Alert Responses</Link></Nav.Link>
                 {roleController.isAdmin() && <Nav.Link className="link"><Link to="/admindashboard" className="linkLink">Alert</Link></Nav.Link>}               
                  {roleController.isUser() && <Nav.Link className="link"><Link to="/userdashboard" className="linkLink">Response</Link></Nav.Link>}
                 {<Nav.Link className="link"><Link to="/contactus" className="linkLink">Contact</Link></Nav.Link>}
