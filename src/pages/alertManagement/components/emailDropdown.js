@@ -50,7 +50,7 @@ function EmailDropdown(props) {
             });
     }, [option]);
 
-
+ 
     const columns = [
         { title: 'Avatar', field: 'Image', render: rowData => <img src={rowData.Image} alt="profile" style={{width: 50, borderRadius: '50%'}}/>},
         { title: "Employee Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
@@ -253,7 +253,6 @@ function EmailDropdown(props) {
                                                             title="Select employees"
                                                             columns={columns}
                                                             data={tableData}
-                                                            // onChange={handleChangeCheckIndividual}
                                                             options={{
                                                                 sorting: true,
                                                                 search: true,

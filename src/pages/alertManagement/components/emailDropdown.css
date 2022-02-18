@@ -6,18 +6,26 @@
 
 
 .goBack {
-    background-color: #FC816D;
+    /* background-color: #FC816D;
     border-color: white;
     border-radius: 50px;
     color:white;
     width: 90px;
-    margin: 5% 0 0 0;
+    margin: 3% 0 0 0;
+    height: 40px; */
+    background-color: #FC816D;
+    border-radius: 10px;
     height: 40px;
+    width: 90px;
+    color: white;
+    margin: 3% 0 0 0;
+    border: none;
+    font-size: 12px;
 
 }
 
 .goBack:hover{
-    background-color: white;
+    background-color: #f8dddd;
     color: #FC816D ;
     border-color: rgb(83, 83, 83);
 }
