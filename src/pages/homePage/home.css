@@ -5,11 +5,14 @@ height: 369px;
 margin-left: 15%;
 margin-right: 15%;
 margin-top: 3%;
-}
+} 
 
 .welcomeText {
     margin-top: 3%;
     text-align: center;
+    color:#2C2424;
+    font-family: Roboto;
+
     
 }
 
@@ -22,6 +25,7 @@ margin-top: 3%;
     display: flex;
     align-items: center;
     text-align: center;
+    color:#6A6A6A ;
     
 }
 
@@ -51,6 +55,8 @@ margin-top: 3%;
 
 .tileBody {
     margin-top: 10%;
+    font-family: Roboto;
+
 
 }
 
@@ -64,11 +70,13 @@ margin-top: 3%;
 
 .anchor {
     text-decoration: none;
-    color:black
+    color:#6A6A6A;
+    font-family: Roboto;
+
 }
 
 .tileHeading {
     text-decoration: none;
-    color:black
-
+    color:#2C2424;
+    font-family: Roboto;
 }

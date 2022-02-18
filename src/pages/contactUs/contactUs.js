@@ -11,10 +11,11 @@ function ContactUs() {
     return (
         <>
             <div className='textImage'>
-                <div className='titleContact'>
+                <div className='titleContact'> 
                     <h1 >Contact Us</h1>
-                    <center><div style={{ height: 6, width: '12%', background: "linear-gradient(to right, #E31836 , #E42F24)" }}></div></center>
+                    <center><div style={{ height: 6, width: '12%',  backgroundColor: "#FC816D" }}></div></center>
                     <h2 style={{paddingTop:'3%',fontWeight:'lighter'}}>Get in touch  </h2>
+
                 </div>
                 <img src={ContactImage} className='img-fluid shadow-4 contactImage' alt='contact'></img>
             </div>

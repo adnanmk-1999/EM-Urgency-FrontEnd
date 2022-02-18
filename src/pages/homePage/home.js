@@ -27,7 +27,7 @@ function homePage() {
                         <Card className='welcomeCard'>
                             <Card.Body>
 
-                                <Card.Text className='welcomeContent'>
+                                <Card.Text className='welcomeContent'> 
                                     {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Mauris lacinia est ut erat semper iaculis.
                                     Integer luctus augue mauris, et euismod neque aliquam quis.
