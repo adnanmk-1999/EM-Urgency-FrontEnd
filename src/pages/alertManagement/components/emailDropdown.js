@@ -52,9 +52,13 @@ function EmailDropdown(props) {
 
 
     const columns = [
+        {  title: 'Avatar', field: 'Image', render: rowData => <img src={rowData.Image} alt="profile" style={{width: 50, borderRadius: '50%'}}/>},
         { title: "Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Name", field: "Name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Email", field: "Email", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
+        { title: "Department", field: "department_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1 : "DTS", 2 : "ESS", 3: "PES" }},
+        { title: "Location", field: "location_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "Thiruvananthapuram", 2 : "Bengaluru", 3 : "Kochi" } },
+        { title: "Job Title", field: "job_title_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "HR", 2 : "Software Engineer", 3 : "Designer", 4 : "BU" } }
     ]
 
 
@@ -178,26 +182,6 @@ function EmailDropdown(props) {
         setData(values => ({ ...values, "locationId": checkLocation }))
     }, [checkLocation])
 
-    // function handleChangeCheckIndividual (event) {
-    //     const val = event.target.value;
-    //     var arrayIndividual = checkIndividual; 
-    //     console.log(arrayIndividual);
-    //     if (arrayIndividual.includes(val)){
-    //         arrayIndividual.splice(arrayIndividual.indexOf(val), 1);
-    //         setCheckIndividual(arrayIndividual);
-    //         console.log(checkIndividual)
-    //         setData(values=>({...values, "individualId":checkIndividual}))
-    //     }
-    //     else{
-    //        setCheckIndividual(values => ([...values, val])) 
-    //     }
-
-    //   };
-
-    // useEffect(()=> {
-    //     console.log(checkIndividual)
-    //     setData(values=>({...values, "individualId":checkIndividual})) 
-    // }, [checkIndividual])
 
     function individualSendList(list) {
         var sendList = []
