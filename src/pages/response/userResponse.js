@@ -21,7 +21,7 @@ const [alertData, setalertData] = useState([])
     { title: "Category", field: "categoryId", filterPlaceholder: "filter", lookup: { 1 : "Alert", 2 : "Event", 3 : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
-    { title: "Reply", field: "response", filterPlaceholder: "filter", lookup: { Pending: "Pending", Yes: "Yes", No: "No" } },
+    { title: "Reply", field: "response", filterPlaceholder: "filter", lookup: { Pending: "Pending", Yes: "Yes", No: "No" }, render: (rowData) => <>{ rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> },
   ]
 
  //Get alerts 
@@ -99,7 +99,7 @@ const [alertData, setalertData] = useState([])
             // }),
             grouping: true,
             columnsButton: true,
-            rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
+            // rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
             headerStyle: { background: "#FC816D", color: "#fff" }
           }}
 

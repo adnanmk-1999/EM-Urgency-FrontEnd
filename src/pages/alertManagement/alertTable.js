@@ -141,8 +141,10 @@ function AlertTable(props) {
           onRowAddCancelled: () => {Toaster.notifyCancel()},
           onRowUpdateCancelled: () => {Toaster.notifyCancel()},
           isEditable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
-          isDeletable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed'
+          isDeletable : rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
         }}
+
+        onRowClick = {(event, rowData, togglePanel) => togglePanel()}
 
         options={{
           sorting: true, 
@@ -171,7 +173,7 @@ function AlertTable(props) {
           // }),
           grouping: true, 
           columnsButton: true,
-          rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
+          // rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
           headerStyle: { background: "#FC816D",color:"#fff"}
         }}
 
