@@ -56,7 +56,7 @@ function AlertTable(props) {
 
   const columns = [
     {
-      title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date(),
+      title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date(), dateSetting: {format: 'dd/MM/yyyy'},
       validate: rowData => {
         if (rowData.date === undefined || rowData.date === "") {
           return "Required"
@@ -162,7 +162,7 @@ function AlertTable(props) {
           paginationPosition: "bottom",
           exportButton: true,
           exportAllData: true,
-          exportFileName: "TableData",
+          exportFileName: "Alerts",
           addRowPosition: "first",
           actionsColumnIndex: -1,
           selection: false,

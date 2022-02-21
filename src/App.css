@@ -43,7 +43,6 @@
 
 
 .link:hover {
- /* background-color: #FC816D;*/
  background-color: #FFC0B1;
   color: white;
 }
@@ -56,33 +55,6 @@
   font-size: 16px;
 }
 
-.linkLink{
-  color: rgb(20, 20, 20);
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  text-indent: 20px;
-  padding: 0px 16px 0px 16px;
-}
-
-.linkLink:hover{
-  /*background-color: #FC816D;*/
-  background-color: #FFC0B1;
-  color: white;
-}
-
-#beautifulThasni{
-  color: rgb(20, 20, 20);
-}
-
-
-#beautifulThasni:hover{
-  /* background-color: #FC816D; */
-  background-color: #FFC0B1;
-  color: white;
-}
-
-
 .dropNav{
   text-align: center;
   text-decoration: none;
@@ -91,7 +63,6 @@
 }
 
 .dropNav:hover{
-  /* background-color: #FC816D; */
   background-color: #FFC0B1;
   color: white;
 }
@@ -148,7 +119,6 @@
 h1, h2, h3, h4, h5, h6 {
   color: #2C2424;
   font-family: Roboto;
-
 }
 
 
@@ -156,9 +126,4 @@ h1, h2, h3, h4, h5, h6 {
   width: 90px;
   margin: none;
   padding: none;
-  
-}
-
-.active {
-  background-color: #f8dddd;
 }

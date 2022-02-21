@@ -1,19 +1,33 @@
 .message {
-    margin: 3% 0 0 5%;
-    font-size: 1.25rem;
+    margin : 25px 0 0 0;
     font-family: Roboto;
-    font-weight: Medium;
+    font-weight: 300;
+    font-size: 38px;
     color: #2C2424;
 }
 
-.alertMessage {
-    margin:1% 0 2% 5%; 
+
+.goBackList {
+    background-color: #FC816D;
+    border-radius: 10px;
+    height: 30px;
+    width: 90px;
+    color: white;
+    margin: 25px 0 25px 0;
+    border: none;
+    font-size: 12px;
+    font-family: Roboto;
 }
 
-.userResponses {
-    margin: 3% 5% 0 5%;
+.goBackList:hover{
+    background-color: #f8dddd;
+    color: #FC816D ;
+    border-color: rgb(83, 83, 83);
 }
 
-.responseCount {
-    margin: 0 2% 0 80%;
+.rowData{
+    color : white;
+    font-family: Roboto;
+    text-align: center;
 }
+

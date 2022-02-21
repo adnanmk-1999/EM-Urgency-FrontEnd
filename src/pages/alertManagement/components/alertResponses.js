@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Table, Row, Col, Container } from 'react-bootstrap';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
@@ -16,7 +17,7 @@ function AlertResponses() {
     const location = useLocation();
     const [tableData, setTableData] = useState([])
     const [count, setCount] = useState([])
-    const [notresponded,setNotResponded] = useState([])
+    const [notresponded, setNotResponded] = useState([])
 
 
 
@@ -38,14 +39,14 @@ function AlertResponses() {
             })
             .catch(() => {
                 alert('Session Timed out login again')
-                window.location='/login'
+                window.location = '/login'
             });
     }, [location.state.id]);
 
-      useEffect(()=>{
-         setNotResponded(tableData.length - count)
-         console.log(notresponded)
-      },[notresponded,tableData,count])
+    useEffect(() => {
+        setNotResponded(tableData.length - count)
+        console.log(notresponded)
+    }, [notresponded, tableData, count])
 
     const columns = [
         { title: 'Avatar', field: 'image', filtering: false, render: rowData => <img src={rowData.image} alt="profile" style={{ width: 50, borderRadius: '50%' }} /> },
@@ -61,43 +62,77 @@ function AlertResponses() {
 
 
     return (<>
-        <div>
-            <h1 className='message'>Message</h1><br /> 
-            <div className='responseCount'>Responded:{count}<br/>Not Responded:{notresponded}</div>
-        </div>
-        <div className='userResponses'>
-            <MaterialTable
-                title={location.state.message}
-                columns={columns}
-                data={tableData}
-                options={{
-                    sorting: true,
-                    search: true,
-                    searchFieldAlignment: "right",
-                    searchAutoFocus: true,
-                    searchFieldVariant: "standard",
-                    filtering: true,
-                    paging: true,
-                    pageSizeOptions: [2, 5, 10, 20, 50, 100],
-                    pageSize: 5,
-                    paginationType: "stepped",
-                    showFirstLastPageButtons: false,
-                    paginationPosition: "bottom",
-                    addRowPosition: "first",
-                    actionsColumnIndex: -1,
-                    showSelectAllCheckbox: true,
-                    showTextRowsSelected: true,
-                    columnsButton: false,
-                    rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-                    headerStyle: { background: "#FC816D", color: "#fff" }
-                }}
+        <Container className='userResponses'>
+            <Row>
+                <Col md={12}>
+                    <h1 className='message'>Message</h1><br />
+                </Col>
+                <Col>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={9}>
+                    <div>
+                        {location.state.message}
+                    </div>
+                </Col>
+                <Col md={3}>
+                    <Table style={{ backgroundColor: '#FC816D', borderRadius: '10px' }} >
 
-            />
+                        <tbody>
+                            <tr>
+                                <td className='rowData'>Responded</td>
+                                <td className='rowData'>{count}</td>
 
-        </div>
+                            </tr>
+                            <tr>
+                                <td className='rowData'>Not Responded</td>
+                                <td className='rowData'>{notresponded}</td>
+                            </tr>
+
+                        </tbody>
+                    </Table>
+                </Col>
+            </Row>
+
+            <div className='userResponses'>
+                <MaterialTable
+                    title="Responses"
+                    columns={columns}
+                    data={tableData}
+                    options={{
+                        sorting: true,
+                        search: true,
+                        searchFieldAlignment: "right",
+                        searchAutoFocus: true,
+                        searchFieldVariant: "standard",
+                        filtering: true,
+                        paging: true,
+                        pageSizeOptions: [2, 5, 10, 20, 50, 100],
+                        pageSize: 5,
+                        paginationType: "stepped",
+                        showFirstLastPageButtons: false,
+                        paginationPosition: "bottom",
+                        addRowPosition: "first",
+                        actionsColumnIndex: -1,
+                        exportButton: true,
+                        exportAllData: true,
+                        exportFileName: "Responses",
+                        columnsButton: true,
+                        showSelectAllCheckbox: true,
+                        showTextRowsSelected: true,
+                        rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
+                        headerStyle: { background: "#FC816D", color: "#fff" }
+                    }}
+
+                />
+            </div>
+
+        </Container>
+
 
         <br />
-        <center><button type="button" onClick={() => navigate('/admindashboard')} className='goBack'  >Go Back</button></center>
+        <center><button type="button" onClick={() => navigate('/admindashboard')} className='goBackList'  >Go Back</button></center>
     </>
 
     )

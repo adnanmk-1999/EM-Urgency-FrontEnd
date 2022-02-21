@@ -65,7 +65,7 @@ const [alertData, setalertData] = useState([])
       <div className="App">
 
         <MaterialTable
-          title="My Alert"
+          title="My Alerts"
           columns={columns}
           data={alertData}
 
