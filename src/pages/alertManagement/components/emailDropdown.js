@@ -47,7 +47,7 @@ function EmailDropdown() {
             })
             .catch(() => {
                 alert('Session Timed out login again')
-                navigate('/login')
+                window.location='/login'
             });
     }, [option]);
 

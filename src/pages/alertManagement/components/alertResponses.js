@@ -33,15 +33,14 @@ function AlertResponses() {
                 var responses = []
                 for (var i = 0; i < total; i++) {
                     responses.push(response.data[i].response)
-                    console.log(responses)
                 }
                 setCount(Counter.responseCount(total, responses))
             })
             .catch(() => {
                 alert('Session Timed out login again')
-                navigate('/login')
+                window.location='/login'
             });
-    }, []);
+    }, [location.state.id]);
 
       useEffect(()=>{
          setNotResponded(tableData.length - count)
