@@ -54,7 +54,7 @@ function AlertResponses() {
         { title: "Department", field: "departmentId", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "DTS", 2: "ESS", 3: "PES" } },
         { title: "Location", field: "locationId", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "Thiruvananthapuram", 2: "Bengaluru", 3: "Kochi" } },
         { title: "Job Title", field: "jobtitleId", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "HR", 2: "Software Engineer", 3: "Designer", 4: "BU" } },
-        { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { Pending: "Pending", Yes: "Yes", No: "No" }, render: (rowData) => <>{rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> },
+        { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { Pending: "Pending", Accepted: "Accepted", Rejected: "Rejected" }, render: (rowData) => <>{rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> },
 
     ]
 

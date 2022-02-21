@@ -28,7 +28,7 @@ function ContactUs() {
                             <Card.Body >
                                 <Card.Text  className='cardText'>
                                     We would love to solve your queries <br/>
-                                emurgency.experion@gmail.com
+                                <a href="mailto: emurgency.experion@gmail.com" target="_blank" rel="noopener noreferrer"  className='anchor'>emurgency.experion@gmail.com</a>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -41,7 +41,7 @@ function ContactUs() {
                             <Card.Body>
                                 <Card.Text  className='cardText'>
                                 We would love to keep you updated <br/>
-                                    em_urgency
+                                   <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="anchor">em_urgency</a> 
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -54,7 +54,7 @@ function ContactUs() {
                                 <Card.Text className='cardText'>
                                     {/* At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fugat harum quidem rerum facilis est et expedita distinctio. */}
                                     We would love to be in touch with you <br/>
-                                    em_urgency
+                                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="anchor">em_urgency</a>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

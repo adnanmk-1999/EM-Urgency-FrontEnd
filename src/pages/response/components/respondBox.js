@@ -6,7 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
 
@@ -17,7 +16,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function RespondDialogBox(props) {
 
   const [response, setResponse] = useState({});
-
   const [responseId] = useState(props.responseId)
 
   function handleChange(event) {
@@ -28,6 +26,8 @@ function RespondDialogBox(props) {
   useEffect(() => {
     console.log(response)
   }, [response])
+
+  
 
 
   function handleSubmit() {
@@ -62,10 +62,10 @@ function RespondDialogBox(props) {
           <DialogContentText id="alert-dialog-slide-description">
             <center>
               <div><label>Respond:</label>&nbsp;&nbsp;
-                <input type="radio" name="response" value="Yes" onChange={handleChange} />&nbsp;
-                <label>Yes</label> &nbsp;
-                <input type="radio" name="response" value="No" onChange={handleChange} />&nbsp;
-                <label>No</label>
+                <input type="radio" name="response" value="Accepted" onChange={handleChange} />&nbsp;
+                <label>Accept</label> &nbsp;
+                <input type="radio" name="response" value="Rejected" onChange={handleChange} />&nbsp;
+                <label>Reject</label>
               </div>
             </center>
           </DialogContentText>

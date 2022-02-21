@@ -21,7 +21,7 @@ const [alertData, setalertData] = useState([])
     { title: "Category", field: "categoryId", filterPlaceholder: "filter", lookup: { 1 : "Alert", 2 : "Event", 3 : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
-    { title: "Reply", field: "response", filterPlaceholder: "filter", lookup: { Pending: "Pending", Yes: "Yes", No: "No" }, render: (rowData) => <>{ rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> },
+    { title: "Reply", field: "response", filterPlaceholder: "filter", lookup: { Pending: "Pending", Accepted: "Accepted", Rejected: "Rejected" }, render: (rowData) => <>{ rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> },
   ]
 
  //Get alerts 
@@ -65,7 +65,7 @@ const [alertData, setalertData] = useState([])
       <div className="App">
 
         <MaterialTable
-          title="Response"
+          title="My Alert"
           columns={columns}
           data={alertData}
 

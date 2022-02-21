@@ -36,7 +36,7 @@ function AboutUs() {
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0"}}>
                             <Card.Body >
                                 <Card.Text  className='cardTextAbout'>
-                                EM-Urgency provides monitoring and handling all events, announcements & holidays occurring throughout the IT services and systems of the Experion Technologies. All the alerts are notified via email. Employees can respond to the email by clicking on the link provided and share their responses.
+                                EM-Urgency provides monitoring and handling all events, announcements & holidays occurring throughout the IT services and systems of the Experion Technologies. All the alerts are notified via email. They can respond to the email by clicking on the link provided and share their responses.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -47,7 +47,7 @@ function AboutUs() {
                         <Card style={{marginTop: 15, backgroundColor: "#F9F0F0" }}>
                             <Card.Body >
                                 <Card.Text  className='cardTextAbout'>
-                                We focus on serving the Enterprise, ISV, and Startup segments across the Retail, Transportation, Healthcare, Financial services domains. Headquartered in Trivandrum, India. We have offices around the globe including the United States, United Kingdom, Switzerland, Netherlands, Australia etc...
+                                We focus on serving the Enterprise, ISV, and Startup segments across the Retail, Transportation, Healthcare, Financial services domains. Headquartered in Trivandrum, India. We have offices around the globe including the United States, United Kingdom, Switzerland,  Australia etc...
                                 </Card.Text> 
                             </Card.Body>
                         </Card>

@@ -6,6 +6,7 @@
     margin-top: 10%;
     color: #2C2424;
     font-weight: lighter;
+    font-family: Roboto;
 }
 
 .contactImage {
@@ -60,12 +61,16 @@
     justify-content: center;
     text-align: justify; */
     text-align: center;
+    font-family: Roboto;
+
    
 }
 
 .anchor {
     text-decoration: none;
     color:#2C2424;
+    font-family: Roboto;
+    
 
  
 }

@@ -21,11 +21,10 @@ margin-top: 3%;
     font-style: thin;
     font-weight: normal;
     font-size: 16px;
-    line-height: 22px;
     display: flex;
     align-items: center;
     text-align: center;
-    color:#6A6A6A ;
+    /* color:#6A6A6A ; */
     
 }
 
@@ -56,6 +55,8 @@ margin-top: 3%;
 .tileBody {
     margin-top: 10%;
     font-family: Roboto;
+    font-size: 16px;
+    /* color: #6A6A6A; */
 
 
 }
