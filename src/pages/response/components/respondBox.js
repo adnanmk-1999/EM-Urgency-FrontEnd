@@ -61,10 +61,10 @@ function RespondDialogBox(props) {
           <br></br>
           <DialogContentText id="alert-dialog-slide-description">
             <center>
-              <div>Respond:
-                <input type="radio" name="response" value="Yes" onChange={handleChange} />
+              <div><label>Respond:</label>&nbsp;&nbsp;
+                <input type="radio" name="response" value="Yes" onChange={handleChange} />&nbsp;
                 <label>Yes</label> &nbsp;
-                <input type="radio" name="response" value="No" onChange={handleChange} />
+                <input type="radio" name="response" value="No" onChange={handleChange} />&nbsp;
                 <label>No</label>
               </div>
             </center>

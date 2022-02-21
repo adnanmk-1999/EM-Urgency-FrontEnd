@@ -1,0 +1,19 @@
+.message {
+    margin: 3% 0 0 5%;
+    font-size: 1.25rem;
+    font-family: Roboto;
+    font-weight: Medium;
+    color: #2C2424;
+}
+
+.alertMessage {
+    margin:1% 0 2% 5%; 
+}
+
+.userResponses {
+    margin: 3% 5% 0 5%;
+}
+
+.responseCount {
+    margin: 0 2% 0 80%;
+}

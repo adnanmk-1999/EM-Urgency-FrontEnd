@@ -60,7 +60,7 @@ const [alertData, setalertData] = useState([])
 
   return (
     <>
-
+      <div className=''>
       {openDialogue && <RespondBox content={message} responseId={responseId} handleClose={() => setOpenDialogue(false)} />}
       <div className="App">
 
@@ -74,13 +74,12 @@ const [alertData, setalertData] = useState([])
           options={{
             sorting: true,
             search: true,
-
             searchFieldAlignment: "right",
             searchAutoFocus: true,
             searchFieldVariant: "standard",
             filtering: true,
             paging: true,
-            pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
+            pageSizeOptions: [2, 5, 10, 15, 20, 25, 50, 100],
             pageSize: 5,
             paginationType: "stepped",
             showFirstLastPageButtons: false,
@@ -93,13 +92,8 @@ const [alertData, setalertData] = useState([])
             selection: false,
             showSelectAllCheckbox: true,
             showTextRowsSelected: true,
-            // selectionProps: rowData => ({
-            //   disabled: rowData.status == "pending",
-            //   // color:"primary"
-            // }),
             grouping: true,
             columnsButton: true,
-            // rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
             headerStyle: { background: "#FC816D", color: "#fff" }
           }}
 
@@ -132,6 +126,7 @@ const [alertData, setalertData] = useState([])
 
           icons={{ Add: () => <AddIcon /> }}
         />
+      </div>
       </div>
     </>
 
