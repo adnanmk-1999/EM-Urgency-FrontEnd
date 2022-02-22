@@ -57,11 +57,41 @@ toast.error("Cancelled", {
   });
 };
 
+function notifyEmailSend(){
+  // Calling toast method by passing string
+  toast.success("Email sent", {
+      position: "bottom-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+};
+
+function notifyResponseSubmit(){
+  // Calling toast method by passing string
+  toast.success("Respond submitted", {
+      position: "bottom-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+};
+
+
+
 var Toaster = {
   notifyAdd : notifyAdd,
   notifyCancel : notifyCancel,
   notifyEdit : notifyEdit,
-  notifyDelete : notifyDelete
+  notifyDelete : notifyDelete,
+  notifyEmailSend : notifyEmailSend,
+  notifyResponseSubmit : notifyResponseSubmit
 };
 
 export default Toaster;

@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
+import Toaster from '../../../components/toaster';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,21 +21,22 @@ function RespondDialogBox(props) {
 
   function handleChange(event) {
     const res = event.target.value
-    setResponse({"response": res });
+    setResponse({ "response": res });
   }
 
   useEffect(() => {
     console.log(response)
   }, [response])
 
-  
 
-
-  function handleSubmit() {
-    axios(axiosConfig.editConfig(`http://localhost:4010/users/response/${responseId}`, responseId ,response))
+    function handleSubmit() {
+    axios(axiosConfig.editConfig(`http://localhost:4010/users/response/${responseId}`, responseId, response))
       .then(() => {
-        alert('Response Submitted !')
-        window.location = '/userdashboard'
+        Toaster.notifyResponseSubmit();
+        setTimeout(() => {
+          window.location = '/userdashboard'
+
+        }, 1500)
       })
       .catch(error => {
         if (error.response) {
@@ -71,7 +73,7 @@ function RespondDialogBox(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => {props.handleClose(); handleSubmit()}}>Submit</Button><br />
+          <Button onClick={() => { props.handleClose(); handleSubmit(); }}>Submit</Button><br />
           <Button onClick={props.handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
