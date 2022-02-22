@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
-
 import roleController from '../../helpers/roleLogin';
 import axios from 'axios';
 import axiosConfig from '../../helpers/axiosConfig';
@@ -14,9 +13,7 @@ function PieGraph() {
   }
 
   const [sentCount, setsendCount] = useState([])
-  
   const [failedCount, setfailedCount] = useState([])
-  
   const [draftCount, setdraftCount] = useState([])
 
 
@@ -24,26 +21,24 @@ function PieGraph() {
   useEffect(() => {
     axios(axiosConfig.getConfig('http://localhost:4010/admin/piechartsent')) //gets data from api
       .then(response => {
-        console.log(response.data.data.Sent)
         setsendCount(response.data.data.Sent); //save only 'data' in response to the state
       })
-  },[])
+  }, [])
 
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     axios(axiosConfig.getConfig('http://localhost:4010/admin/piechartfailed')) //gets data from api
       .then(response => {
         setfailedCount(response.data.data.Failed); //save only 'data' in response to the state
       })
-  },[])
+  }, [])
 
-  useEffect(()=> {
+  useEffect(() => {
     axios(axiosConfig.getConfig('http://localhost:4010/admin/piechartdraft')) //gets data from api
       .then(response => {
         setdraftCount(response.data.data.Draft); //save only 'data' in response to the state
       })
-  },[])
-
+  }, [])
 
   const data = [
     { name: "Success", value: sentCount, fill: "#88E16E" },
@@ -53,15 +48,15 @@ function PieGraph() {
 
   return (
     <>
-    <div className='statusHeading'>Alert Status</div>
-      <ResponsiveContainer width='100%' height={550}>
+      <div className='statusHeading'>Alert Status</div>
+      <ResponsiveContainer width='100%' height={450}>
         <PieChart>
           <Pie
             dataKey="value"
             isAnimationActive={true}
             data={data}
             cx='50%'
-            cy={250}
+            cy={200}
             outerRadius={200}
             label
           />

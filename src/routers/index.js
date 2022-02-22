@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from 'react';
 
 import NavBar from "../components/appLayout/navBar/navBar";
@@ -18,9 +18,9 @@ import AlertResponses from "../pages/alertManagement/components/alertResponses";
 
 
 
-function RouterIndex(){
+function RouterIndex() {
 
-    return(
+    return (
         <>
             <Router>
 

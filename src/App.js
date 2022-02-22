@@ -5,13 +5,13 @@ import UserContextProvider from "./context/provider/userContextProvider";
 import RouterIndex from './routers';
 
 
-function App(){
-  return(
+function App() {
+  return (
     <UserContextProvider>
-    <>
-      <RouterIndex />
-      <FooterPage />
-    </>
+      <>
+        <RouterIndex />
+        <FooterPage />
+      </>
     </UserContextProvider>
   );
 };

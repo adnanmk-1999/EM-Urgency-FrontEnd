@@ -8,7 +8,7 @@ import Toaster from '../../components/toaster';
 import axiosConfig from '../../helpers/axiosConfig';
 import { TablePagination, Grid, Typography, Divider } from '@material-ui/core'
 
-function AlertTable(props) {
+function AlertTable() {
 
   if (!roleController.isAdmin()) {
     window.location = '/login'
@@ -24,21 +24,8 @@ function AlertTable(props) {
   useEffect(() => {
     axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
       .then(response => {
-        console.log('Promise fullfilled');
-        console.log(localStorage.getItem('roles')) //if data recieved, output
-        console.log(response); //display output (responce)
-        setTableData(response.data); //save only 'data' in response to the state
+        setTableData(response.data);
       })
-      // .catch(() => {
-      //   alert('trying to relogin');
-      //   setdata(localStorage.getItem('refreshToken'))
-      //   console.log(data);
-      //   axios(axiosConfig.postConfig('http://localhost:4010/users/relogin'),data) //gets data from api
-      //     .then(response => {
-      //       const acc = response.data.accessToken;
-      //       localStorage.setItem('accessToken', acc)
-
-      //     })
       .catch(() => {
         alert('Session Timed out login again')
         localStorage.clear()
@@ -51,7 +38,7 @@ function AlertTable(props) {
   const redirectToReport = (rowData) => {
 
     navigate('/sendemail', {
-      state: { id: rowData.id, message: rowData.message, subject: rowData.subject } // your row data
+      state: { id: rowData.id, message: rowData.message, subject: rowData.subject }
     });
   };
 
@@ -99,6 +86,30 @@ function AlertTable(props) {
     }
   ]
 
+
+  //Helper Function for CRUD operations in the alert table
+  function addRow(data) {
+    axios(axiosConfig.postConfig('http://localhost:4010/admin/alert', data))
+      .then(response => {
+        setreRender('second time')
+      })
+  }
+
+  function deleteRow(id) {
+    axios(axiosConfig.deleteConfig(`http://localhost:4010/admin/alert/${id}`, id))
+      .then(response => {
+      })
+      .catch(() => {
+      })
+  }
+
+  function updateRow(id, data) {
+    axios(axiosConfig.editConfig(`http://localhost:4010/admin/alert/${id}`, id, data))
+      .then(response => {
+        setreRender('second time')
+      })
+  }
+
   return (
     <div className="App">
 
@@ -122,7 +133,6 @@ function AlertTable(props) {
             setTableData(updatedData)
             setTimeout(() => {
               resolve();
-              console.log(newRow)
               updateRow(newRow.id, newRow);
               Toaster.notifyEdit();
             }, 500)
@@ -184,7 +194,6 @@ function AlertTable(props) {
             disabled: rowData.statusName === "Sent",
             tooltip: 'Sent Mail',
             onClick: (event, rowData) => {
-              console.log("row data is", rowData)
               redirectToReport(rowData);
             }
           })
@@ -207,37 +216,6 @@ function AlertTable(props) {
 
     </div>
   );
-}
-
-
-//Helper Function for CRUD operations in the alert table
-function addRow(data) {
-  axios(axiosConfig.postConfig('http://localhost:4010/admin/alert', data))
-    .then(response => {
-      console.log('Promise fullfilled');
-      console.log(response);
-      window.location = '/admindashboard';
-    })
-}
-
-function deleteRow(id) {
-  axios(axiosConfig.deleteConfig(`http://localhost:4010/admin/alert/${id}`, id))
-    .then(response => {
-      console.log('Promise fullfilled');
-      console.log(response);
-    })
-    .catch(() => {
-      console.log("Could not delete")
-    })
-}
-
-function updateRow(id, data) {
-  axios(axiosConfig.editConfig(`http://localhost:4010/admin/alert/${id}`, id, data))
-    .then(response => {
-      console.log('Promise fullfilled');
-      console.log(response);
-      window.location = '/admindashboard';
-    })
 }
 
 export default AlertTable;

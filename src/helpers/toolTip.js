@@ -1,6 +1,7 @@
 import React from 'react';
 
-function CustomTooltip ({ active, payload, label, message }) {
+function CustomTooltip({ active, payload, label }) {
+
     if (active && payload && payload.length) {
         return (
             <div className="custom-tooltip">
@@ -11,7 +12,6 @@ function CustomTooltip ({ active, payload, label, message }) {
             </div>
         );
     }
-
     return null;
 };
 

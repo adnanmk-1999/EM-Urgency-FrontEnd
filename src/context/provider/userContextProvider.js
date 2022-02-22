@@ -9,8 +9,7 @@ const UserContextProvider = ({ children }) => {
         const roles = localStorage.getItem('roles');
         const username = localStorage.getItem('username');
         const email = localStorage.getItem('email');
-        const refreshToken= localStorage.getItem('refreshToken')
-
+        const refreshToken = localStorage.getItem('refreshToken')
 
         setUserDetails(accessToken ? {
             accessToken,
@@ -21,7 +20,7 @@ const UserContextProvider = ({ children }) => {
         } : null)
     }, []);
 
-    const login = (accessToken, roles, username, email,refreshToken) => {
+    const login = (accessToken, roles, username, email, refreshToken) => {
         // debugger;
         if (accessToken) {
             localStorage.setItem('accessToken', accessToken);
@@ -29,7 +28,6 @@ const UserContextProvider = ({ children }) => {
             localStorage.setItem('username', username);
             localStorage.setItem('email', email);
             localStorage.setItem('refreshToken', refreshToken);
-
         }
 
         setUserDetails(accessToken ? {

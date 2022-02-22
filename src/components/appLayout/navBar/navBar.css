@@ -6,6 +6,7 @@
     font-size: 16px;
     margin : 0 2px 0 2px;
 }
+
 .active{
     color: white;
     background-color: #FFC0B1;
@@ -17,12 +18,10 @@ a:hover{
     color: black;
 }
 
-
-
 .link {
     color: rgb(20, 20, 20);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 16px;
-  }
+}

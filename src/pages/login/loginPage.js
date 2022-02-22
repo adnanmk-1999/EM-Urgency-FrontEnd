@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-
-import './login.css';
 import MicrosoftLogo from '../../images/microsoftLogo.png'
 import UserContext from "../../context/userContext";
 
-
+import './login.css';
 
 function Login() {
 
@@ -30,19 +28,11 @@ function Login() {
       .then(response => {
         let role = response.data.roles;
         const Role = "Role:ADMIN";
-        console.log(role);
-        // localStorage.setItem('accessToken', response.data.accessToken)
-        // localStorage.setItem('refreshToken', response.data.refreshToken)
-        // localStorage.setItem('roles', response.data.roles)
-        // localStorage.setItem('username', response.data.username)
-        // localStorage.setItem('email', response.data.email)
         userContext.login(response.data.accessToken, response.data.roles, response.data.username, response.data.email, response.data.refreshToken);
         if (role.includes(Role)) {
-          console.log("admin")
           navigate('/admindashboard')
 
         } else {
-          console.log("user")
           navigate('/userdashboard')
         }
       })
@@ -69,16 +59,11 @@ function Login() {
                     </div>
                     <form onSubmit={handleSubmit}>
                       <div className="form-group">
-
                         <input
                           type="text"
                           name="username"
                           placeholder="Username" onChange={handleChange}
-                          // className="form-control"
-                          // style={{border:"2px solid #032D23",boxSizing:"border-box",
-                          // borderRadius:"6px"}}
                           className="userTextFeild"
-
                         />
                       </div>
                       <br />
@@ -88,16 +73,11 @@ function Login() {
                           type="password"
                           name="password"
                           placeholder="Password" onChange={handleChange}
-                          // className="form-control"
                           className="password"
                           id="exampleInputPassword1"
                         />
                       </div>
                       <br />
-
-                      <div className="form-group">
-
-                      </div>
                       <button type="submit" className="btntheme">
                         Login
                       </button><br /><br />
@@ -105,12 +85,6 @@ function Login() {
                       <button type="submit" className="signIn">
                         <img className="microsoftLogo" src={MicrosoftLogo} alt="logo"></img> Sign In
                       </button><br />
-
-
-
-
-
-
                     </form>
                   </div>
                 </div>
@@ -119,7 +93,6 @@ function Login() {
                     <div className="overlay rounded-right" />
                     <div className="account-testimonial">
                       <h4 className="text-white mb-1">
-
                       </h4>
                     </div>
                   </div>
@@ -127,20 +100,10 @@ function Login() {
               </div>
             </div>
           </div>
-
         </div>
-
-
-
       </div>
     </div>
-
-
-
-
   );
 };
-
-
 
 export default Login;

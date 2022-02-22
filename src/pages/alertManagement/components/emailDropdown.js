@@ -22,17 +22,12 @@ function EmailDropdown() {
     })
 
     const [data, setData] = useState({ "alertId": location.state.id, "message": location.state.message, "subject": location.state.subject })
-    console.log("alertid", data);
 
     const [tableData, setTableData] = useState([])
-    var user = tableData;
-    console.log(user)
 
     useEffect(() => {
         axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
             .then(response => {
-                console.log('Promise fullfilled');
-                console.log(response); //display output (responce)
                 setTableData(response.data); //save only 'data' in response to the state
             })
             .catch(() => {
@@ -49,19 +44,19 @@ function EmailDropdown() {
             })
             .catch(() => {
                 alert('Session Timed out login again')
-                window.location='/login'
+                window.location = '/login'
             });
     }, [option]);
 
- 
+
     const columns = [
-        { title: 'Avatar', field: 'Image', filtering:false, render: rowData => <img src={rowData.Image} alt="profile" style={{width: 50, borderRadius: '50%'}}/>},
+        { title: 'Avatar', field: 'Image', filtering: false, render: rowData => <img src={rowData.Image} alt="profile" style={{ width: 50, borderRadius: '50%' }} /> },
         { title: "Employee Id", field: "Id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Name", field: "Name", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
         { title: "Email", field: "Email", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
-        { title: "Department", field: "department_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1 : "DTS", 2 : "ESS", 3: "PES" }},
-        { title: "Location", field: "location_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "Thiruvananthapuram", 2 : "Bengaluru", 3 : "Kochi" } },
-        { title: "Job Title", field: "job_title_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "HR", 2 : "Software Engineer", 3 : "Designer", 4 : "BU" } }
+        { title: "Department", field: "department_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "DTS", 2: "ESS", 3: "PES" } },
+        { title: "Location", field: "location_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "Thiruvananthapuram", 2: "Bengaluru", 3: "Kochi" } },
+        { title: "Job Title", field: "job_title_id", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "HR", 2: "Software Engineer", 3: "Designer", 4: "BU" } }
     ]
 
 
@@ -153,12 +148,7 @@ function EmailDropdown() {
         else {
             setCheck(values => ([...values, val]))
         }
-
     };
-
-    useEffect(() => {
-        console.log(data)
-    }, [data])
 
     useEffect(() => {
 
@@ -281,13 +271,13 @@ function EmailDropdown() {
 
                                                             components={{
                                                                 Pagination: (props) => <>
-                                                                  <Grid container style={{ padding:15}}>
-                                                                    <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Employees : {props.count}</Typography></Grid>
-                                                                  </Grid>
-                                                                  <Divider/>
-                                                                  <TablePagination {...props} />
+                                                                    <Grid container style={{ padding: 15 }}>
+                                                                        <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Employees : {props.count}</Typography></Grid>
+                                                                    </Grid>
+                                                                    <Divider />
+                                                                    <TablePagination {...props} />
                                                                 </>
-                                                              }}
+                                                            }}
 
                                                             onSelectionChange={(selectedRows) => { console.log(selectedRows); individualSendList(selectedRows) }}
 
@@ -295,7 +285,6 @@ function EmailDropdown() {
                                                     </div>
                                                     : null
                                             }
-
                                             <br />
                                             <button className="goBack" type="button" onClick={handleSubmit}>Send</button> &nbsp;&nbsp;
                                             <button type="button" onClick={() => navigate('/admindashboard')} className='goBack'>Go Back</button>

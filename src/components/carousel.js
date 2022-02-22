@@ -33,7 +33,6 @@ function HomeCarousel(){
                         alt="Third slide"
                     />
                 </Carousel.Item>
-
                 <Carousel.Item style={{ backgroundColor: 'white' }}>
                     <img
                         className='homeImage img-fluid '

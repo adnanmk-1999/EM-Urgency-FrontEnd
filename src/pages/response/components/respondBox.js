@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -24,12 +24,7 @@ function RespondDialogBox(props) {
     setResponse({ "response": res });
   }
 
-  useEffect(() => {
-    console.log(response)
-  }, [response])
-
-
-    function handleSubmit() {
+  function handleSubmit() {
     axios(axiosConfig.editConfig(`http://localhost:4010/users/response/${responseId}`, responseId, response))
       .then(() => {
         Toaster.notifyResponseSubmit();

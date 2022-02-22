@@ -14,8 +14,6 @@
     width: stretch;
     background-repeat: no-repeat;
     background-size: cover;
-
-
 }
 
 .titleAbout {
@@ -27,7 +25,6 @@
     font-size: 30;
     width: 100%;
     position: absolute;
-
 }
 
 .titleAbout h1 {
@@ -42,7 +39,6 @@
     padding-top: 20px;
     line-height: 30px;
     font-family: Roboto;
-
 }
 
 .cardTextAbout {
@@ -51,6 +47,5 @@
     text-align: justify;
     font-family: Roboto;
     font-size: 16px;
-
 }
 

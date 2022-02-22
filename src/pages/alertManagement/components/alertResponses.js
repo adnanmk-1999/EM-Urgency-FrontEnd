@@ -9,10 +9,6 @@ import { TablePagination, Grid, Typography, Divider } from '@material-ui/core'
 
 import "./alertResponses.css";
 
-
-
-
-
 function AlertResponses() {
 
     const navigate = useNavigate();
@@ -22,15 +18,12 @@ function AlertResponses() {
     const [notresponded, setNotResponded] = useState([])
 
 
-
     useEffect(() => {
         var data = {
             "alertId": location.state.id
         }
-        console.log(data);
         axios(axiosConfig.postConfig('http://localhost:4010/users/alertresponses', data)) //gets data from api
             .then(response => {
-                console.log(response); //display output (response)
                 setTableData(response.data); //save only 'data' in response to the state
                 var total = response.data.length
                 var responses = []
@@ -47,7 +40,6 @@ function AlertResponses() {
 
     useEffect(() => {
         setNotResponded(tableData.length - count)
-        console.log(notresponded)
     }, [notresponded, tableData, count])
 
     const columns = [
@@ -57,11 +49,8 @@ function AlertResponses() {
         { title: "Department", field: "departmentId", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "DTS", 2: "ESS", 3: "PES" } },
         { title: "Location", field: "locationId", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "Thiruvananthapuram", 2: "Bengaluru", 3: "Kochi" } },
         { title: "Job Title", field: "jobtitleId", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, lookup: { 1: "HR", 2: "Software Engineer", 3: "Designer", 4: "BU" } },
-        { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { Pending: "Pending", Accepted: "Accepted", Rejected: "Rejected" }, render: (rowData) => <>{rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> },
-
+        { title: "Reply", field: "reply", filterPlaceholder: "filter", lookup: { Pending: "Pending", Accepted: "Accepted", Rejected: "Rejected" }, render: (rowData) => <>{rowData.response === null && <div>Pending</div>}<div>{rowData.response}</div></> }
     ]
-
-
 
     return (<>
         <Container className='userResponses'>
@@ -85,14 +74,13 @@ function AlertResponses() {
                             <tr>
                                 <td className='rowData'>Responded</td>
                                 <td className='rowData'>{count}</td>
-
                             </tr>
                             <tr>
                                 <td className='rowData'>Not Responded</td>
                                 <td className='rowData'>{notresponded}</td>
                             </tr>
-
                         </tbody>
+
                     </Table>
                 </Col>
             </Row>
@@ -130,13 +118,13 @@ function AlertResponses() {
 
                     components={{
                         Pagination: (props) => <>
-                          <Grid container style={{ padding:15}}>
-                            <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Employees : {props.count}</Typography></Grid>
-                          </Grid>
-                          <Divider/>
-                          <TablePagination {...props} />
+                            <Grid container style={{ padding: 15 }}>
+                                <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Employees : {props.count}</Typography></Grid>
+                            </Grid>
+                            <Divider />
+                            <TablePagination {...props} />
                         </>
-                      }}
+                    }}
                 />
             </div>
 
@@ -144,7 +132,7 @@ function AlertResponses() {
         <br />
         <center><button type="button" onClick={() => navigate('/admindashboard')} className='goBackList'  >Go Back</button></center>
     </>
-
     )
 }
+
 export default AlertResponses;

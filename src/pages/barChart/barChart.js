@@ -20,8 +20,6 @@ function BarGraph() {
     currentDate: Dates.getDate()
   });
 
-  console.log(date)
-
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -31,8 +29,6 @@ function BarGraph() {
   useEffect(() => {
     axios(axiosConfig.postConfig('http://localhost:4010/admin/barchart', date)) //gets data from api
       .then(response => {
-        console.log('Promise fullfilled'); //if data recieved, output
-        console.log(response.data.data); //display output (responce)
         setData(response.data.data); //save only 'data' in response to the state
       })
       .catch((error) => {
@@ -40,8 +36,6 @@ function BarGraph() {
         window.location = '/login'
       });
   }, [date]);
-
-
 
   return (
     <>
@@ -52,7 +46,7 @@ function BarGraph() {
       {data.length === 0 ?
         <>
           <div className='noData'>No Alerts Sent !</div>
-           <ResponsiveContainer width='100%' height={350}>
+          <ResponsiveContainer width='100%' height={300}>
             <BarChart
               width={500}
               height={500}
@@ -66,7 +60,7 @@ function BarGraph() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="subject" />
               <YAxis scale='linear' domain={[0, 3]} />
-              <Tooltip cursor={{fill: '#0000'}} content={<CustomTooltip />} />
+              <Tooltip cursor={{ fill: '#0000' }} content={<CustomTooltip />} />
               <Legend />
               <Bar dataKey="Responded" barSize={50} fill="#7ABB67" />
               <Bar dataKey="Unresponded" barSize={50} fill="#CA6767" />
@@ -75,7 +69,7 @@ function BarGraph() {
         </>
         :
         <>
-          <ResponsiveContainer width='100%' height={500}>
+          <ResponsiveContainer width='100%' height={400}>
             <BarChart
               width={500}
               height={500}
@@ -90,15 +84,13 @@ function BarGraph() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="subject" />
               <YAxis scale='linear' domain={[0, 'dataMax']} />
-              <Tooltip cursor={{fill: '#0000'}} content={<CustomTooltip />} />
+              <Tooltip cursor={{ fill: '#0000' }} content={<CustomTooltip />} />
               <Legend />
               <Bar dataKey="Responded" barSize={50} fill="#7ABB67" />
               <Bar dataKey="Unresponded" barSize={50} fill="#CA6767" />
             </BarChart>
           </ResponsiveContainer>
         </>}
-
-
     </>
   );
 }
