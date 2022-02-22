@@ -54,7 +54,7 @@ function PieGraph() {
   return (
     <>
     <div className='statusHeading'>Alert Status</div>
-      <ResponsiveContainer width='100%' height={600}>
+      <ResponsiveContainer width='100%' height={550}>
         <PieChart>
           <Pie
             dataKey="value"

@@ -3,6 +3,8 @@ import axios from 'axios';
 import axiosConfig from '../../helpers/axiosConfig';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import roleController from '../../helpers/roleLogin';
+import Dates from '../../helpers/getDate';
+import CustomTooltip from '../../helpers/toolTip';
 
 import './barChart.css'
 
@@ -14,9 +16,20 @@ function BarGraph() {
 
   const [data, setData] = useState([]);
 
+  const [date, setDate] = useState({
+    currentDate: Dates.getDate()
+  });
+
+  console.log(date)
+
+  function handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    setDate(values => ({ ...values, [name]: value }))
+  };
 
   useEffect(() => {
-    axios(axiosConfig.getConfig('http://localhost:4010/admin/barchart')) //gets data from api
+    axios(axiosConfig.postConfig('http://localhost:4010/admin/barchart', date)) //gets data from api
       .then(response => {
         console.log('Promise fullfilled'); //if data recieved, output
         console.log(response.data.data); //display output (responce)
@@ -26,34 +39,66 @@ function BarGraph() {
         alert('Session Timed out login again')
         window.location = '/login'
       });
-  }, []);
+  }, [date]);
 
 
 
   return (
     <>
       <div className='resHeading'>Response Status</div>
-      <ResponsiveContainer width='100%' height={500}>
-        <BarChart
-          width={500}
-          height={500}
-          data={data}
-          margin={{
-            top: 50,
-            right: 30,
-            left: 30,
-            bottom: 5
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="subject" />
-          <YAxis scale='linear' domain={[0, 'dataMax']} />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="responded" fill="#7ABB67" />
-          <Bar dataKey="notResponded" fill="#CA6767" />
-        </BarChart>
-      </ResponsiveContainer>
+
+      <label className='dataInput'>Select date :</label><input type='date' className='dateInput' name='currentDate' value={date.currentDate || ''} onChange={handleChange} max={Dates.getDate()}></input>
+
+      {data.length === 0 ?
+        <>
+          <div className='noData'>No Alerts Sent !</div>
+           <ResponsiveContainer width='100%' height={350}>
+            <BarChart
+              width={500}
+              height={500}
+              margin={{
+                top: 50,
+                right: 30,
+                left: 30,
+                bottom: 5
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="subject" />
+              <YAxis scale='linear' domain={[0, 3]} />
+              <Tooltip cursor={{fill: '#0000'}} content={<CustomTooltip />} />
+              <Legend />
+              <Bar dataKey="Responded" barSize={50} fill="#7ABB67" />
+              <Bar dataKey="Unresponded" barSize={50} fill="#CA6767" />
+            </BarChart>
+          </ResponsiveContainer>
+        </>
+        :
+        <>
+          <ResponsiveContainer width='100%' height={500}>
+            <BarChart
+              width={500}
+              height={500}
+              data={data}
+              margin={{
+                top: 50,
+                right: 30,
+                left: 30,
+                bottom: 5
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="subject" />
+              <YAxis scale='linear' domain={[0, 'dataMax']} />
+              <Tooltip cursor={{fill: '#0000'}} content={<CustomTooltip />} />
+              <Legend />
+              <Bar dataKey="Responded" barSize={50} fill="#7ABB67" />
+              <Bar dataKey="Unresponded" barSize={50} fill="#CA6767" />
+            </BarChart>
+          </ResponsiveContainer>
+        </>}
+
+
     </>
   );
 }

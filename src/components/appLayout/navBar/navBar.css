@@ -4,6 +4,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 16px;
+    margin : 0 2px 0 2px;
 }
 .active{
     color: white;
