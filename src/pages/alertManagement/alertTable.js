@@ -62,7 +62,8 @@ function AlertTable(props) {
           return "Required"
         }
         return true
-      }
+      },
+      render: row => <span>{ row["date"] }</span>
     },
     {
       title: "Category", field: "categoryName", filterPlaceholder: "filter", lookup: { Announcement: "Announcement", Event: "Event", Holiday: "Holiday" },

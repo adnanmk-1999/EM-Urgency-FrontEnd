@@ -17,7 +17,7 @@ function UserResponse() {
 const [alertData, setalertData] = useState([])
 
   const columns = [
-    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" } },
+    { title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, render: row => <span>{ row["date"] }</span> },
     { title: "Category", field: "categoryId", filterPlaceholder: "filter", lookup: { 1 : "Alert", 2 : "Event", 3 : "Announcement" } },
     { title: "Subject", field: "subject", filterPlaceholder: "filter" },
     { title: "Messsage", field: "message", filterPlaceholder: "filter" },
