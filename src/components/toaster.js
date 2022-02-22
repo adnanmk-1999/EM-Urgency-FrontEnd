@@ -2,13 +2,12 @@ import { toast } from "react-toastify";
 // Import toastify css file
 import 'react-toastify/dist/ReactToastify.css';
  // Toast-configuration method,
- // Tt is compulsory method.
+ // It is compulsory method.
  toast.configure()
 
  function notifyAdd(){
-  // Calling toast method by passing string
   toast.success("Alert added", {
-      position: "bottom-center",
+      position: "top-center",
       autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
@@ -19,9 +18,8 @@ import 'react-toastify/dist/ReactToastify.css';
 };
 
 function notifyDelete(){
-// Calling toast method by passing string
 toast.success("Alert Deleted", {
-    position: "bottom-center",
+    position: "top-center",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -32,9 +30,8 @@ toast.success("Alert Deleted", {
 };
 
 function notifyEdit(){
-// Calling toast method by passing string
 toast.success("Alert Updated", {
-    position: "bottom-center",
+    position: "top-center",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -45,9 +42,8 @@ toast.success("Alert Updated", {
 };
 
 function notifyCancel(){
-// Calling toast method by passing string
 toast.error("Cancelled", {
-    position: "bottom-center",
+    position: "top-center",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -58,9 +54,8 @@ toast.error("Cancelled", {
 };
 
 function notifyEmailSend(){
-  // Calling toast method by passing string
-  toast.success("Email sent", {
-      position: "bottom-center",
+  toast.success("Message Sent", {
+      position: "top-center",
       autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
@@ -71,9 +66,20 @@ function notifyEmailSend(){
 };
 
 function notifyResponseSubmit(){
-  // Calling toast method by passing string
   toast.success("Respond submitted", {
-      position: "bottom-center",
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+};
+
+function notifySelectOption(){
+  toast.error("Please select an option", {
+      position: "top-center",
       autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
@@ -91,7 +97,8 @@ var Toaster = {
   notifyEdit : notifyEdit,
   notifyDelete : notifyDelete,
   notifyEmailSend : notifyEmailSend,
-  notifyResponseSubmit : notifyResponseSubmit
+  notifyResponseSubmit : notifyResponseSubmit,
+  notifySelectOption : notifySelectOption
 };
 
 export default Toaster;

@@ -6,6 +6,7 @@ import axios from 'axios';
 import roleController from '../../helpers/roleLogin';
 import Toaster from '../../components/toaster';
 import axiosConfig from '../../helpers/axiosConfig';
+import { TablePagination, Grid, Typography, Divider } from '@material-ui/core'
 
 function AlertTable(props) {
 
@@ -56,14 +57,13 @@ function AlertTable(props) {
 
   const columns = [
     {
-      title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date(), dateSetting: {format: 'dd/MM/yyyy'},
+      title: "Sent Date", type: "date", field: "date", sorting: true, filterPlaceholder: "filter", headerStyle: { color: "#fff" }, initialEditValue: new Date(), dateSetting: { format: 'dd/MM/yyyy' },
       validate: rowData => {
         if (rowData.date === undefined || rowData.date === "") {
           return "Required"
         }
         return true
-      },
-      render: row => <span>{ row["date"] }</span>
+      }
     },
     {
       title: "Category", field: "categoryName", filterPlaceholder: "filter", lookup: { Announcement: "Announcement", Event: "Event", Holiday: "Holiday" },
@@ -144,9 +144,12 @@ function AlertTable(props) {
           isDeletable: rowData => rowData.statusName === 'Draft' || rowData.statusName === 'Failed',
         }}
 
-        onRowClick={(event, rowData) => navigate("/responses",{
-          state: { id: rowData.id, message: rowData.message, subject: rowData.subject } 
-        }) }
+        onRowClick={(event, rowData) => {
+          rowData.statusName === 'Sent' &&
+            navigate("/responses", {
+              state: { id: rowData.id, message: rowData.message, subject: rowData.subject }
+            })
+        }}
 
         options={{
           sorting: true,
@@ -187,6 +190,16 @@ function AlertTable(props) {
           })
         ]}
 
+        components={{
+          Pagination: (props) => <>
+            <Grid container style={{ padding: 15 }}>
+              <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Alerts : {props.count}</Typography></Grid>
+            </Grid>
+            <Divider />
+            <TablePagination {...props} />
+          </>
+        }}
+
         onSelectionChange={(selectedRows) => console.log(selectedRows)}
 
         icons={{ Add: () => <AddIcon /> }}
@@ -203,6 +216,7 @@ function addRow(data) {
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);
+      window.location = '/admindashboard';
     })
 }
 
@@ -222,6 +236,7 @@ function updateRow(id, data) {
     .then(response => {
       console.log('Promise fullfilled');
       console.log(response);
+      window.location = '/admindashboard';
     })
 }
 

@@ -5,4 +5,52 @@
     font-size: 38px;
     padding: 2% 0 0 0;
     text-align: center;
+    margin : 0 0 25px 0;
+}
+
+.dateInput{
+    margin: 0 0 0 5px;
+}
+
+.dataInput{
+    margin: 0 0 0 90px;
+}
+
+.custom-tooltip{
+    width: 350px;
+    background-color: white;
+    border: solid;
+    border-width: 2px;
+    border-color: rgb(133, 133, 133);
+    padding : 10px
+}
+
+.subject{
+    text-align: center;
+    color: rgb(66, 66, 66);
+    font-family: Roboto;
+    font-weight: 500;
+}
+
+.label1{
+    color: #7ABB67 ;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+.label2{
+    color: #CA6767 ;
+}
+
+.intro{
+    font-family: Roboto;
+    color: rgb(66, 66, 66);
+    font-weight: 300;
+}
+
+.noData{
+    text-align: center;
+    padding: 50px 0 0 0 ;
+    font-size: 25px;
+    font-family: Roboto;
 }

@@ -5,6 +5,8 @@ import MaterialTable from 'material-table';
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
 import Counter from '../../../helpers/responseCounter';
+import { TablePagination, Grid, Typography, Divider } from '@material-ui/core'
+
 import "./alertResponses.css";
 
 
@@ -118,6 +120,7 @@ function AlertResponses() {
                         exportButton: true,
                         exportAllData: true,
                         exportFileName: "Responses",
+                        grouping: true,
                         columnsButton: true,
                         showSelectAllCheckbox: true,
                         showTextRowsSelected: true,
@@ -125,12 +128,19 @@ function AlertResponses() {
                         headerStyle: { background: "#FC816D", color: "#fff" }
                     }}
 
+                    components={{
+                        Pagination: (props) => <>
+                          <Grid container style={{ padding:15}}>
+                            <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Employees : {props.count}</Typography></Grid>
+                          </Grid>
+                          <Divider/>
+                          <TablePagination {...props} />
+                        </>
+                      }}
                 />
             </div>
 
         </Container>
-
-
         <br />
         <center><button type="button" onClick={() => navigate('/admindashboard')} className='goBackList'  >Go Back</button></center>
     </>

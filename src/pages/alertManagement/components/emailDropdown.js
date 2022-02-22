@@ -6,7 +6,7 @@ import { Card, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
 import Toaster from '../../../components/toaster';
-
+import { TablePagination, Grid, Typography, Divider } from '@material-ui/core'
 
 
 function EmailDropdown() {
@@ -68,7 +68,7 @@ function EmailDropdown() {
     function handleSubmit(event) {
         event.preventDefault();
         if (option.value === "0") {
-            alert("please select an option");
+            Toaster.notifySelectOption();
         }
 
         else if (option.value === "1") {
@@ -278,6 +278,17 @@ function EmailDropdown() {
                                                                 rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                                                                 headerStyle: { background: "#FC816D", color: "#fff" }
                                                             }}
+
+                                                            components={{
+                                                                Pagination: (props) => <>
+                                                                  <Grid container style={{ padding:15}}>
+                                                                    <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Employees : {props.count}</Typography></Grid>
+                                                                  </Grid>
+                                                                  <Divider/>
+                                                                  <TablePagination {...props} />
+                                                                </>
+                                                              }}
+
                                                             onSelectionChange={(selectedRows) => { console.log(selectedRows); individualSendList(selectedRows) }}
 
                                                         />

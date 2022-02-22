@@ -16,6 +16,10 @@
 .App{
     margin: 20px;
     font-size: 14px;
-    
 }
+
+.paginationTotal{
+    font-family: Roboto;
+    font-size: 20px;
+  }
 

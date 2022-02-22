@@ -20,14 +20,14 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/" className="newLink">Home</NavLink>
-            <NavLink to="/aboutus" className="newLink">About</NavLink>
             {roleController.isAdmin() && <NavLink to="/admindashboard" className="newLink">Alert</NavLink>}
             {roleController.isUser() && <NavLink to="/userdashboard" className="newLink">Inbox</NavLink>}
             {roleController.isAdmin() && <>
               <NavLink className="newLink" to="/piechart"> Alert Chart</NavLink>
               <NavLink className="newLink" to="/barchart"> Response Chart</NavLink></>
             }
-            {<NavLink to="/contactus" className="newLink">Contact</NavLink>}
+            <NavLink to="/aboutus" className="newLink">About</NavLink>
+            <NavLink to="/contactus" className="newLink">Contact</NavLink>
 
           </Nav>
           <Nav>

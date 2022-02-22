@@ -6,6 +6,8 @@ import axios from 'axios';
 import axiosConfig from '../../helpers/axiosConfig';
 import './userResponse.css';
 import roleController from '../../helpers/roleLogin';
+import { TablePagination, Grid, Typography, Divider } from '@material-ui/core'
+
 
 function UserResponse() {
 
@@ -116,10 +118,15 @@ const [alertData, setalertData] = useState([])
                   Respond
                 </button>
                 }
-                
-
               </>
             ),
+            Pagination: (props) => <>
+            <Grid container style={{ padding:15}}>
+              <Grid sm={12} item align="right"><Typography variant="subtitle2" className='paginationTotal' >Total Messages : {props.count}</Typography></Grid>
+            </Grid>
+            <Divider/>
+            <TablePagination {...props} />
+          </>
           }}
 
           onSelectionChange={(selectedRows) => console.log(selectedRows)}

@@ -20,7 +20,7 @@ function ContactUs() {
                 <img src={ContactImage} className='img-fluid shadow-4 contactImage' alt='contact'></img>
             </div>
 
-            <Container>
+            <Container style={{marginTop : 25}}>
                 <Row>
                     <Col md={4} >
                         <Card style={{ marginTop: 15, border: "none" }}>
