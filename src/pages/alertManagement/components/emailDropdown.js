@@ -5,6 +5,8 @@ import "./emailDropdown.css";
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import axiosConfig from '../../../helpers/axiosConfig';
+import Toaster from '../../../components/toaster';
+
 
 
 function EmailDropdown() {
@@ -73,7 +75,7 @@ function EmailDropdown() {
 
             axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/all`, data))
                 .then(response => {
-                    alert('message send to all users')
+                    Toaster.notifyEmailSend()
                     navigate('/admindashboard')
 
                 })
@@ -88,7 +90,7 @@ function EmailDropdown() {
         else if (option.value === "2") {
             axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/departments`, data))
                 .then(response => {
-                    alert('message send to department')
+                    Toaster.notifyEmailSend()
                     navigate('/admindashboard')
                 })
                 .catch(error => {
@@ -101,7 +103,7 @@ function EmailDropdown() {
         else if (option.value === "3") {
             axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/locations`, data))
                 .then(response => {
-                    alert('message send to location')
+                    Toaster.notifyEmailSend()
                     navigate('/admindashboard')
                 })
                 .catch(error => {
@@ -118,7 +120,7 @@ function EmailDropdown() {
             }
             axios(axiosConfig.postConfig(`http://localhost:4010/admin/sentalert/individuals`, sendIndividual))
                 .then(response => {
-                    alert('message send to individual')
+                    Toaster.notifyEmailSend()
                     navigate('/admindashboard')
                 })
                 .catch(error => {
