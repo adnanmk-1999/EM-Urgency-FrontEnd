@@ -58,7 +58,7 @@ function RespondDialogBox(props) {
           <br></br>
           <DialogContentText id="alert-dialog-slide-description">
             <center>
-              <div><label>Respond:</label>&nbsp;&nbsp;
+              <div>
                 <input type="radio" name="response" value="Accepted" onChange={handleChange} />&nbsp;
                 <label>Accept</label> &nbsp;
                 <input type="radio" name="response" value="Rejected" onChange={handleChange} />&nbsp;
@@ -67,9 +67,9 @@ function RespondDialogBox(props) {
             </center>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+          <DialogActions>
           <Button onClick={() => { props.handleClose(); handleSubmit(); }}>Submit</Button><br />
-          <Button onClick={props.handleClose}>Cancel</Button>
+          <Button onClick={props.handleClose}>Cancel</Button>  
         </DialogActions>
       </Dialog>
     </div>

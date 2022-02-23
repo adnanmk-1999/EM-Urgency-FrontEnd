@@ -47,7 +47,7 @@ function Login() {
   return (
     <div id="main-wrapper" className="container">
       <div className="row justify-content-center">
-        <div className="col-xl-10">
+        <div className="col-xl-12">
           <div className="card border-0">
             <div className="card-body p-0">
               <div className="row no-gutters">
@@ -55,7 +55,7 @@ function Login() {
                   <div className="p-4">
                     <h3 className="h5 mb-2" style={{ fontSize: "30px", fontFamily: "Roboto" }}>Welcome back to EM-Urgency</h3><br />
                     <div className="mb-4">
-                      <h1 className="h4 font-weight-bold text-theme mb-4" style={{ marginTop: "5px", fontSize: "60px", fontFamily: "Roboto", color: "#2C2424" }}>Login</h1><br />
+                      <h1 className="h4 font-weight-bold text-theme mb-4" style={{ marginTop: "5px", fontSize: "60px", fontFamily: "Roboto", color: "#2C2424" }}>Login</h1>
                     </div>
                     <form onSubmit={handleSubmit}>
                       <div className="form-group">
