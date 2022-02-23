@@ -40,6 +40,16 @@
   text-align: center;
 }
 
+/* For fixed navBar */
+/* .topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  padding-top: 2px;
+} */
+
 
 .link:hover {
  background-color: #FFC0B1;

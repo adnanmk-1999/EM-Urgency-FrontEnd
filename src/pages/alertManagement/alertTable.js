@@ -184,11 +184,10 @@ function AlertTable() {
           showTextRowsSelected: true,
           grouping: true,
           columnsButton: true,
-          headerStyle: { background: "#FC816D", color: "#fff" }
+          headerStyle: { background: "#FC816D", color: "#fff", fontFamily : "roboto", fontSize : "16px" }
         }}
 
         actions={[
-
           rowData => ({
             icon: 'mail',
             disabled: rowData.statusName === "Sent",

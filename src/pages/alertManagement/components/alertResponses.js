@@ -113,7 +113,7 @@ function AlertResponses() {
                         showSelectAllCheckbox: true,
                         showTextRowsSelected: true,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-                        headerStyle: { background: "#FC816D", color: "#fff" }
+                        headerStyle: { background: "#FC816D", color: "#fff", fontFamily : "roboto", fontSize : "16px" }
                     }}
 
                     components={{
