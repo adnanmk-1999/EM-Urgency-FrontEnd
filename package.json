@@ -23,6 +23,7 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
     "react-dom": "^16.13.1",
+    "react-google-login": "^5.2.2",
     "react-minimal-pie-chart": "^8.2.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "3.4.1",

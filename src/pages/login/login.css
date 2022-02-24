@@ -81,6 +81,7 @@
     border: 2px solid #bebebe;
     box-sizing: border-box;
     border-radius: 6px;
+    background-color: white;
   }
 
   .password:hover {

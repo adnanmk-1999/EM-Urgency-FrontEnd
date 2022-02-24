@@ -4,6 +4,9 @@ import axios from 'axios';
 import MicrosoftLogo from '../../images/microsoftLogo.png'
 import UserContext from "../../context/userContext";
 
+import GoogleLogin from 'react-google-login';
+
+
 import './login.css';
 
 function Login() {
@@ -43,6 +46,54 @@ function Login() {
         }
       })
   };
+
+
+
+  const handleFailure = (result) => {
+    alert(result);
+  };
+
+  // const handleLogin = async (googleData) => {
+  //   console.log(googleData)
+  //   const res = await fetch('/users/glogin', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       token: googleData.tokenId,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+
+  //   const data = await res.json();
+  //   localStorage.setItem('email', data.email);
+  //   localStorage.setItem('roles', data.role);
+  //   localStorage.setItem('accessToken', data.accessToken);
+  //   localStorage.setItem('refreshToken', data.refreshToken);
+  //   localStorage.setItem('username', data.Username);
+
+
+  // };
+
+    const handleLogin = (googleData) => {
+    console.log(googleData.tokenId)
+    axios.post(`http://localhost:4010/users/glogin`, {token : googleData.tokenId})
+    .then((data) => {
+      userContext.login(data.data.accessToken, data.data.role, data.data.Username, data.data.email, data.data.refreshToken);
+    // localStorage.setItem('email', data.data.email);
+    // localStorage.setItem('roles', data.data.role);
+    // localStorage.setItem('accessToken', data.data.accessToken);
+    // localStorage.setItem('refreshToken', data.data.refreshToken);
+    // localStorage.setItem('username', data.data.Username);
+    navigate('/userdashboard')
+    })
+    .catch(error => {
+      localStorage.clear();
+      if (error.response) {
+        alert("You are not an employee of the company !")  //=> response payload
+      }
+    })
+  }
 
   return (
     <div id="main-wrapper" className="container">
@@ -85,7 +136,15 @@ function Login() {
                       <button type="submit" className="signIn">
                         <img className="microsoftLogo" src={MicrosoftLogo} alt="logo"></img> Sign In
                       </button><br />
+
                     </form>
+                    <GoogleLogin
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                        buttonText="Log in with Google"
+                        onSuccess={handleLogin}
+                        onFailure={handleFailure}
+                        cookiePolicy={'single_host_origin'}
+                      ></GoogleLogin>
                   </div>
                 </div>
                 <div className="col-lg-6 d-none d-lg-inline-block">
