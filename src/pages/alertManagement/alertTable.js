@@ -3,6 +3,7 @@ import MaterialTable from 'material-table'
 import AddIcon from '@material-ui/icons/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import axiosInstance from "../../helpers/httpServer";
 import roleController from '../../helpers/roleLogin';
 import Toaster from '../../components/toaster';
 import axiosConfig from '../../helpers/axiosConfig';
@@ -22,14 +23,15 @@ function AlertTable() {
 
   //Get alerts 
   useEffect(() => {
-    axios(axiosConfig.getConfig('http://localhost:4010/admin/alert')) //gets data from api
-      .then(response => {
+    axiosInstance
+      .get("/admin/alert")
+      .then((response) => {
         setTableData(response.data);
       })
       .catch(() => {
-        alert('Session Timed out login again')
-        localStorage.clear()
-        window.location = '/login'
+        alert("Session Timed out login again");
+        localStorage.clear();
+        window.location = "/login";
       });
 
 

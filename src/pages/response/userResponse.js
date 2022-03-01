@@ -27,10 +27,7 @@ function UserResponse() {
   ]
 
   useEffect(() => {
-    var data = {
-      accessToken: localStorage.getItem('accessToken')
-    }
-    axios(axiosConfig.postConfig('http://localhost:4010/users/alerts', data)) //gets data from api
+    axios(axiosConfig.getConfig('http://localhost:4010/users/alerts')) //gets data from api
       .then(response => {
         setalertData(response.data.data); //save only 'data' in response to the state
       })
@@ -63,9 +60,6 @@ function UserResponse() {
             title="My Alerts"
             columns={columns}
             data={alertData}
-
-            date
-
             options={{
               sorting: true,
               search: true,
