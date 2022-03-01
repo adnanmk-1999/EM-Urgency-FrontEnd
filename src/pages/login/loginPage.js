@@ -36,9 +36,9 @@ function Login() {
           response.data.refreshToken
         );
         if (role.includes(Role)) {
-          navigate("/admindashboard");
+          window.location = '/admindashboard';
         } else {
-          navigate("/userdashboard");
+          window.location = "/userdashboard";
         }
       })
       .catch((error) => {
